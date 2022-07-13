@@ -1,0 +1,59 @@
+Classes:
+    -Seleção
+    -Grupo
+    -Fases
+        -Grupos
+        -Mata-mata
+    -Jogo
+    -Pódio e estátisiticas
+
+Especificações: 
+    -Seleção:
+        -OBS: Os cartões somente serão utilizados se houverem empates de todas as regras anteriores
+        -Bandeira
+        -Nome do país
+        -Gols marcados
+        -Gols sofridos
+        -Cartões Amarelos
+        -Cartões Vermelhos
+    -Grupos:
+        -Os grupos serão feitos na forma de enum, seguinto a seguinte ordem:
+            -OBS: criação com automatica no nome da seleção
+            -GRUPO A: Catar, Equador, Senegal, Holanda
+            -GRUPO B: Inglaterra, Irã, Estados Unidos, País de Gales
+            -GRUPO C: Argentina, Arábia Saudita, México, Polônia
+            -GRUPO D: França, Austrália, Dinamarca, Tunísia
+            -GRUPO E: Espanha, Costa Rica, Alemanha, Japão
+            -GRUPO F: Bélgica, Canadá, Marrocos, Croácia
+            -GRUPO G: Brasil, Sérvia, Suíça, Camarões
+            -GRUPO H: Portugal, Gana, Uruguai, Coreia do Sul
+    -Fases:
+        -Grupos:
+            -Cálculo usando todas as informações da seleção para verificar o primeiro 
+            e segundo colocado
+                -Contabilização do placar:
+                    -Vitória
+                    -Derrota
+                    -Empate
+                    -Atualização das variáveis individuais de cada seleção
+            -Função placar para anotar os resultados dos jogos
+            -Metódo de classificação para inicar primeiro e segundo colocados
+        -Mata-mata:
+            -Implementação: Listas de listas com o vencedor recebendo pop para a 
+            próxima fases
+            -Partidas, vitória considerando os gols da prorrogação e penâltis
+            -OBS: em caso de empate o usuario informa o vencedor
+    - Jogos:
+        Farão a contabilização dos gols, vitorias e derrotas nos objetos (seleção).
+    - Pódio e estátisiticas:
+        -Música de fundo estourada
+        -Os primeiros três colocados
+        -Estátisiticas:
+            -Melhor ataque
+            -Melhor defesa
+    
+    -OBS: 
+        -Selecionar imagens das seleções, mascote e interface
+        -Músicas de abertura e de vencedor
+        -Músida de suspense para a função fantasmão escolhe
+        -Pensar no mascote
