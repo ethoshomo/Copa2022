@@ -6,9 +6,12 @@ class Selecao():
     def __init__(self, nome: str):
         self.nome = nome
         self.pontos = 0
+        self.vitorias = 0
+        self.derrotas = 0
+        self.empates = 0
         self.gols_marcados = 0
         self.gols_sofridos = 0
-        self.bandeira = None
+        self.bandeira = nome + ".png"
 
     def set_nome(self, nome: str):
         self.nome = nome
@@ -17,12 +20,12 @@ class Selecao():
         self.pontos = pontos
 
     def set_gols_marcados(self, gols_marcados: int):
-        self.gols_marcados = gols_marcados
+        self.gols_marcados += gols_marcados
 
     def set_gols_sofridos(self, gols_sofridos: int):
         self.gols_sofridos = gols_sofridos
 
-    def set_bandeira(self, bandeira: str): # Arrumar depois
+    def set_bandeira(self, bandeira: str):
         self.bandeira = bandeira
 
     def get_nome(self):
@@ -30,6 +33,12 @@ class Selecao():
 
     def get_pontos(self):
         return self.pontos
+
+    def get_vitorias(self):
+        return self.vitorias
+
+    def get_empates(self):
+        return self.empates
 
     def get_gols_marcados(self):
         return self.gols_marcados
@@ -43,8 +52,24 @@ class Selecao():
     def att_gols_marcados(self, gols_marcados: int):
         self.gols_marcados += gols_marcados
 
-    def attt_gols_sofridos(self, gols_sofridos: int):
+    def att_gols_sofridos(self, gols_sofridos: int):
         self.gols_sofridos += gols_sofridos
+
+    def att_jogo(self, gols_favoraveis, gols_contra):
+        self.att_gols_marcados(gols_favoraveis)
+        self.att_gols_sofridos(gols_contra)
+
+        if gols_favoraveis == gols_contra:
+            self.empates += 1
+        elif gols_favoraveis > gols_contra:
+            self.vitorias += 1
+        elif gols_contra > gols_favoraveis:
+            self.derrotas += 1
+        
+        self.att_pontos()
+
+    def att_pontos(self):
+        self.set_pontos(self.get_vitorias()*3+self.get_empates()*1)
 
     def __str__(self) -> str:
         return self.nome
