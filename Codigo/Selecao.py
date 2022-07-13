@@ -56,9 +56,13 @@ class Selecao():
         self.gols_sofridos += gols_sofridos
 
     def att_jogo(self, gols_favoraveis, gols_contra):
+        # Atualiza dados da Tabela        
+
+        # Gols a favor e contra
         self.att_gols_marcados(gols_favoraveis)
         self.att_gols_sofridos(gols_contra)
 
+        # Vitorias, Empates e Derrotas
         if gols_favoraveis == gols_contra:
             self.empates += 1
         elif gols_favoraveis > gols_contra:
@@ -66,6 +70,7 @@ class Selecao():
         elif gols_contra > gols_favoraveis:
             self.derrotas += 1
         
+        # Pontos Ganhos
         self.att_pontos()
 
     def att_pontos(self):

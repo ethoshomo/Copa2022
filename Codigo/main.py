@@ -42,7 +42,7 @@ def prever(btn, cx1, cx2, res):
 def janela_grupos():
     # Variaveis
     selecao1_nome = str("Brasil")
-    selecao_bandeira = "brasil.png"
+    selecao_bandeira = "imagens/brasil.png"
     selecao1_pontos = int(0)
     selecao1_jogos = int(0)
     selecao1_vitorias = int(0)
@@ -50,9 +50,6 @@ def janela_grupos():
     selecao1_derrotas = int(0)
     selecao1_gols_favoraveis = int(0)
     selecao1_gols_contrarios = int(0)
-
-
-
 
     # Cria a janela de Fase de Grupos
     janela2 = Toplevel()
@@ -65,7 +62,7 @@ def janela_grupos():
     janela2.resizable(True, True)
 
     # Personaliza o background
-    bg = ImageTk.PhotoImage(Image.open('campo.png').resize((800, 600)))
+    bg = ImageTk.PhotoImage(Image.open('imagens/campo.png').resize((800, 600)))
     canvas = Canvas(janela2, width=800, height=600)
     canvas.pack(fill="both", expand=True)
     canvas.create_image(0, 0, image=bg, anchor="nw")
@@ -222,7 +219,7 @@ def janela_quizz():
     janela2.resizable(False, False)
 
     # Personaliza o background
-    bg = ImageTk.PhotoImage(Image.open('estadio.png').resize((800, 400)))
+    bg = ImageTk.PhotoImage(Image.open('imagens/estadio.png').resize((800, 400)))
     canvas = Canvas(janela2, width=800, height=400)
     canvas.pack(fill="both", expand=True)
     canvas.create_image(0, 0, image=bg, anchor="nw")
@@ -390,7 +387,7 @@ def janela_quizz():
 
 def janela_vidente():
     pygame.mixer.init()
-    pygame.mixer.music.load("misterio.mp3")
+    pygame.mixer.music.load("musica/misterio.mp3")
     pygame.mixer.music.play(loops=0)
 
     # Cria a janela do vidente e ajusta padrões
@@ -404,7 +401,7 @@ def janela_vidente():
     janela2.resizable(False, False)
 
     # Personaliza o background
-    bg = ImageTk.PhotoImage(Image.open('vidente.png').resize((450, 400)))
+    bg = ImageTk.PhotoImage(Image.open('imagens/vidente.png').resize((450, 400)))
     canvas = Canvas(janela2, width=450, height=400)
     canvas.pack(fill="both", expand=True)
     canvas.create_image(0, 0, image=bg, anchor="nw")
@@ -472,7 +469,7 @@ def janela_sobre():
     janela2.resizable(False, False)
 
     # Personaliza o background
-    bg = ImageTk.PhotoImage(Image.open('background.png').resize((700, 300)))
+    bg = ImageTk.PhotoImage(Image.open('imagens/background.png').resize((700, 300)))
     canvas = Canvas(janela2, width=600, height=300)
     canvas.pack(fill="both", expand=True)
     canvas.create_image(0, 0, image=bg, anchor="nw")
@@ -523,14 +520,14 @@ def janela_sobre():
 
 #Criação da Janela e suas configurações
 janela = Tk()
-p1 = PhotoImage(file="icone.png")
+p1 = PhotoImage(file="imagens/icone.png")
 janela.iconphoto(False, p1)
 janela.geometry("600x300+300+300")
 janela.title("Show de Bola!!")
 janela.resizable(False, False)
 
 # Imagem de fundo
-bg = ImageTk.PhotoImage(Image.open('image2.png').resize((800, 300)))
+bg = ImageTk.PhotoImage(Image.open('imagens/menu.png').resize((800, 300)))
 canvas = Canvas(janela, width=700, height=300)
 canvas.pack(fill="both", expand=True)
 canvas.create_image(0, 0, image=bg, anchor="nw")
@@ -540,6 +537,7 @@ button1 = Button(janela, text="FASE DE GRUPOS", bg='white', fg='black', width=12
 button2 = Button(janela, text="QUIZZ", bg='white', fg='black', width=7, height=1, bd=3, relief=SOLID, anchor=CENTER, font="bold", command=janela_quizz)
 button3 = Button(janela, text="VIDENTE", bg='white', fg='black', width=7, height=1, bd=3, relief=SOLID, anchor=CENTER, font="bold", command=janela_vidente)
 button4 = Button(janela, text="SOBRE", bg='white', fg='black', width=7, height=1, bd=3, relief=SOLID, anchor=CENTER, font="bold", command=janela_sobre)
+
 button1_canvas = canvas.create_window(20, 150, anchor="nw", window=button1)
 button2_canvas = canvas.create_window(177, 150, anchor="nw", window=button2)
 button3_canvas = canvas.create_window(282, 150, anchor="nw", window=button3)
