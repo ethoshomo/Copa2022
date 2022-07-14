@@ -1,7 +1,3 @@
-
-import re
-
-
 class Selecao():
     def __init__(self, nome: str):
         self.nome = nome
@@ -11,7 +7,7 @@ class Selecao():
         self.empates = 0
         self.gols_marcados = 0
         self.gols_sofridos = 0
-        self.bandeira = nome + ".png"
+        self.bandeira = "../Imagens/bandeiras/" + nome + ".png"
 
     def set_nome(self, nome: str):
         self.nome = nome
