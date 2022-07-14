@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 import pygame
 import random
 
+
 #-----------------------------------------------------------------------------
 # FUNÇOES AUXILIARES
 
@@ -29,6 +30,7 @@ def salvar():
 #-----------------------------------------------------------------------------
 # JANELAS
 def janela_grupos():
+
     grupo_str = str("GRUPO A")
 
     # Interface de Banco de Dados com Variáveis
@@ -101,8 +103,7 @@ def janela_grupos():
     frame.place(relx=0.05, rely=0.03, relwidth=0.9, relheight=0.05)
 
     # Botões dos Grupos
-    btn_grupo_a = Button(frame,
-                      font="Verdana 10 bold",
+    btn_grupo_a = Button(frame, font="Verdana 10 bold",
                       text="Grupo A",
                       bd=0,
                       padx=2,
@@ -310,10 +311,10 @@ def janela_grupos():
     # AQUI FAZEMOS A DEFINIÇÃO DAS CLASSIFICAÇÕES NA TABELA
     # ATENÇÃO QUE EXISTE UMA DIFERENÇA DE LINHAS, AFINAL A TABELA DO GRID COMEÇA NA LINHA "TABELA DO GRUPO"
     # DESSE MODO, O PRIMEIRO COLOCADO FICA NA LINHA 2; SEGUNDO, NA 3; TERCEIRO, NA 4; QUARTO, NA 5.
-    colocacaoA = int(4) # Colocação da Seleção 1
+    colocacaoA = int(4); # Colocação da Seleção 1
     colocacaoB = int(3) # Colocação da Seleção 2
-    colocacaoC = int(2) # Colocação da Seleção 3
-    colocacaoD = int(5)  # Colocação da Seleção 4
+    colocacaoC = int(5) # Colocação da Seleção 3
+    colocacaoD = int(2)  # Colocação da Seleção 4
 
 
     # Primeira Linha da Tabela de Jogos - Cabeçalho
@@ -376,7 +377,6 @@ def janela_grupos():
 
 
     janela2.mainloop()
-
 def janela_quizz():
     pergunta = str("Pergunta para o QUIZZ. Ficou boa a interface? Acho que devo fazer uma pergunta gigantesca para testar todas as possibilidades de erro.")
     resposta1 = str("CLARO!!")
@@ -560,7 +560,6 @@ def janela_quizz():
     btn_sair.grid(row=0, column=2, padx=2)
 
     janela2.mainloop()
-
 def janela_vidente():
     pygame.mixer.init()
     pygame.mixer.music.load("musica/misterio.mp3")
@@ -633,7 +632,6 @@ def janela_vidente():
     #Ao fechar a janela, utiliza protocolo de saida.
     janela2.protocol("WM_DELETE_WINDOW", lambda:quit_protocol(janela2))
     janela2.mainloop()
-
 def janela_sobre():
     janela2 = Toplevel()
     janela2.title("SHOW DE BOLA - SOBRE")
