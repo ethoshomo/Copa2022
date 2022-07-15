@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import messagebox
+
 from PIL import Image, ImageTk
 import pygame
 import random
@@ -25,10 +27,6 @@ def prever(btn, cx1, cx2, res):
     else:
         res['text'] = cx2.get()
     pygame.mixer.music.stop()
-def salvar():
-    pass
-def show_image(lbl, img):
-    pass
 
 
 #-----------------------------------------------------------------------------
@@ -156,6 +154,15 @@ def janela_grupos(a: Atualizacao):
                         fg="white",
                         command=lambda: quit(janela2))
     btn_retornar.grid(row=0, column=8, padx=1)
+
+
+    def ajuda():
+        messagebox.showinfo("AJUDA","""Para salvar o jogo, é necessário inserir valores válidos (números inteiros maiores ou iguais a zero). \nPor outro lado, é necessário observar que 0x0 refere-se a um empate. Caso tenha digitado algum valor equivocado, pode-se retirar o resultado digitando "#" nas caixas de entrada.""")
+
+
+    def salvar():
+        pass
+
 
     def atualizar_grupo(atual, novo):
 
@@ -346,7 +353,10 @@ def janela_grupos(a: Atualizacao):
 
     # Salvar informações
     btn_salvar = Button(jogos, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38", fg="white", command=salvar)
-    btn_salvar.grid(row=7, column=2, columnspan=3, padx=1)
+    btn_salvar.grid(row=7, column=1, columnspan=2, padx=1)
+    # Ajuda
+    btn_ajuda = Button(jogos, font="Verdana 10 bold", text="AJUDA", bd=0, padx=2, pady=2, bg="#405E38", fg="white", command=ajuda)
+    btn_ajuda.grid(row=7, column=4, columnspan=2, padx=1)
 
 
     # -----------------------------------------------------------------------------

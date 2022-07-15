@@ -55,3 +55,20 @@ class Atualizacao:
         self.s4_gols_contrarios = StringVar(value=g.selecao4.gols_sofridos)
         self.s4_saldo_gols = StringVar(value=g.selecao4.saldo_de_gols)
         self.s4_colocacao = g.selecao4.colocacao
+
+
+class AtualizacaoResultados:
+
+    def __init__(self):
+        self.resultado11 = int()
+        self.resultado12 = int()
+        self.resultado21 = int()
+        self.resultado22 = int()
+        self.resultado31 = int()
+        self.resultado32 = int()
+        self.resultado41 = int()
+        self.resultado42 = int()
+        self.resultado51 = int()
+        self.resultado52 = int()
+        self.resultado61 = int()
+        self.resultado62 = int()
