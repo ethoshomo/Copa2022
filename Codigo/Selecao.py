@@ -1,4 +1,5 @@
 class Selecao():
+
     def __init__(self, nome: str):
         self.nome = nome
         self.pontos = 0
@@ -9,7 +10,7 @@ class Selecao():
         self.gols_sofridos = 0
         self.saldo_de_gols = 0
         self.colocacao = 0
-        self.bandeira = "../Imagens/bandeiras/" + nome + ".png"
+        self.bandeira = "../imagens/bandeiras/" + nome + ".png"
 
     def set_nome(self, nome: str):
         self.nome = nome
@@ -57,7 +58,7 @@ class Selecao():
         self.gols_sofridos += gols_sofridos
 
     def att_jogo(self, gols_favoraveis, gols_contra):
-        # Atualiza dados da Tabela        
+        # Atualiza dados da Tabela
 
         # Gols a favor e contra
         self.att_gols_marcados(gols_favoraveis)
@@ -70,9 +71,9 @@ class Selecao():
             self.vitorias += 1
         elif gols_contra > gols_favoraveis:
             self.derrotas += 1
-        
+
         self.saldo_de_gols += gols_favoraveis - gols_contra
-        
+
         # Pontos Ganhos
         self.att_pontos()
 
@@ -82,4 +83,3 @@ class Selecao():
     def __str__(self) -> str:
         s  = str(self.nome) + ' ' + str(self.saldo_de_gols) + ' ' + str(self.pontos) + ' ' + str(self.colocacao)
         return s
-         
