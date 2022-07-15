@@ -6,7 +6,9 @@ class DataSet():
     def __init__(self):
         self.df_selecoes = pd.read_pickle('dataset/Selecoes.plk')
     
-    def salvando_grupo(self, nome_grupo :str, jogos: list):
+    def salvando_grupo(self, grupo :str, jogos: list):
+        nome_grupo = grupo.replace(' ', '')
+        
         df_jogos = self.criando_DataFrame(nome_grupo)
 
         # Quantos gols a seleção df_selecoes[grupo][1] fez em df_selecoes[grupo][0] e vice-versa 
@@ -38,7 +40,9 @@ class DataSet():
         
         df_jogos.to_pickle(nome)
     
-    def recuperando_jogos(self, nome_grupo: str):
+    def recuperando_jogos(self, grupo: str):
+        nome_grupo = grupo.replace(' ', '')
+        
         jogos = [['-','-'] for i in range(6)]
         nome = 'dataset/' + nome_grupo + '.pkl'
         df_jogos = pd.read_pickle(nome)
@@ -92,7 +96,9 @@ class DataSet():
 # 4 -> 4x1  Holanda 5 x 4 Catar
 # 5 -> 2x3  Equador 4 x 5 Senegal
     
-    def recuperando_grupos(self, nome_grupo: str):
+    def recuperando_grupos(self, grupo: str):
+        nome_grupo = grupo.replace(' ', '')
+        
         jogos = self.recuperando_jogos(nome_grupo)
         
         grupo = Grupo(nome_grupo)
@@ -150,7 +156,9 @@ class DataSet():
         
         return grupo
         
-    def criando_DataFrame(self, nome_grupo: str):
+    def criando_DataFrame(self, grupo: str):
+        nome_grupo = grupo.replace(' ', '')
+        
         inicio = ['-' for i in range(4)]
         
         data = {self.df_selecoes[nome_grupo][0]:inicio,

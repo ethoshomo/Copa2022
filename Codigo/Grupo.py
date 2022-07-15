@@ -1,18 +1,20 @@
 from Atualizacao import *
-from Codigo.Atualizacao import Atualizacao
+#from Codigo.Atualizacao import Atualizacao
 import pandas as pd
-from Codigo.Selecao import Selecao
-
+#from Codigo.Selecao import Selecao
+from Selecao import Selecao
 
 class Grupo(Selecao):
     def __init__(self, grupo: str):
+        nome_grupo = grupo.replace(' ', '')
+        
         df_selecoes   = pd.read_pickle('dataset/Selecoes.plk')
-        self.selecao1 = Selecao(df_selecoes[grupo][0])
-        self.selecao2 = Selecao(df_selecoes[grupo][1])
-        self.selecao3 = Selecao(df_selecoes[grupo][2])
-        self.selecao4 = Selecao(df_selecoes[grupo][3])
+        self.selecao1 = Selecao(df_selecoes[nome_grupo][0])
+        self.selecao2 = Selecao(df_selecoes[nome_grupo][1])
+        self.selecao3 = Selecao(df_selecoes[nome_grupo][2])
+        self.selecao4 = Selecao(df_selecoes[nome_grupo][3])
 
-        self.nome_grupo = 'Grupo ' + grupo[5]
+        self.nome_grupo = grupo
         
         self.selecao1.set_colocacao(2)
         self.selecao2.set_colocacao(3)
@@ -91,8 +93,7 @@ class Grupo(Selecao):
         atualizar.s4_colocacao = self.selecao4.colocacao
 
 if __name__ == "__main__":
-    gA = Grupo('GrupoA')
-
+    gA = Grupo('Grupo A')
     gA.teste()
     gA.selecao1.att_jogo(2,1)
     gA.selecao2.att_jogo(1,2)
@@ -100,14 +101,14 @@ if __name__ == "__main__":
     gA.teste()
 
 
-    # gB = Grupo('GrupoB')
-    # gB.teste()
+    gB = Grupo('Grupo B')
+    gB.teste()
 
-    # gB = Grupo('GrupoC')
-    # gB.teste()
+    gB = Grupo('Grupo C')
+    gB.teste()
 
-    # gC = Grupo('GrupoD')
-    # gC.teste()
+    gC = Grupo('Grupo D')
+    gC.teste()
 
-    # gC = Grupo('GrupoE')
-    # gC.teste()
+    gC = Grupo('Grupo E')
+    gC.teste()
