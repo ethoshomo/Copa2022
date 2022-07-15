@@ -1,8 +1,10 @@
 from Atualizacao import *
-from Selecao import Selecao
+from Codigo.Atualizacao import Atualizacao
 import pandas as pd
+from Codigo.Selecao import Selecao
 
-class Grupo():
+
+class Grupo(Selecao):
     def __init__(self, grupo: str):
         df_selecoes   = pd.read_pickle('dataset/Selecoes.plk')
         self.selecao1 = Selecao(df_selecoes[grupo][0])
@@ -51,11 +53,12 @@ class Grupo():
         self.selecao4.set_colocacao(lista_grupos.index(self.selecao4)+2)
 
     def atualizar(self, atualizar: Atualizacao):
+        # Atualizar nome do Grupo
         atualizar.grupo_nome.set(self.nome_grupo)
 
         # Atualizando Selecao 1
         atualizar.s1_nome.set(self.selecao1.nome)
-        #atualizar.s1_bandeira.set(self.selecao1.bandeira)
+        atualizar.s1_bandeira.set(self.selecao1.bandeira)
         atualizar.s1_pontos.set(self.selecao1.pontos)
         atualizar.s1_vitorias.set(self.selecao1.vitorias)
         atualizar.s1_empates.set(self.selecao1.empates)
@@ -67,7 +70,7 @@ class Grupo():
 
         # Atualizando Selecao 2
         atualizar.s2_nome.set(self.selecao2.nome)
-        # atualizar.s2_bandeira.set(self.selecao2.bandeira)
+        atualizar.s2_bandeira.set(self.selecao2.bandeira)
         atualizar.s2_pontos.set(self.selecao2.pontos)
         atualizar.s2_vitorias.set(self.selecao2.vitorias)
         atualizar.s2_empates.set(self.selecao2.empates)
@@ -79,7 +82,7 @@ class Grupo():
 
         # Atualizando Selecao 3
         atualizar.s3_nome.set(self.selecao3.nome)
-        # atualizar.s3_bandeira.set(self.selecao3.bandeira)
+        atualizar.s3_bandeira.set(self.selecao3.bandeira)
         atualizar.s3_pontos.set(self.selecao3.pontos)
         atualizar.s3_vitorias.set(self.selecao3.vitorias)
         atualizar.s3_empates.set(self.selecao3.empates)
@@ -91,7 +94,7 @@ class Grupo():
 
         # Atualizando Selecao 4
         atualizar.s4_nome.set(self.selecao4.nome)
-        # atualizar.s4_bandeira.set(self.selecao4.bandeira)
+        atualizar.s4_bandeira.set(self.selecao4.bandeira)
         atualizar.s4_pontos.set(self.selecao4.pontos)
         atualizar.s4_vitorias.set(self.selecao4.vitorias)
         atualizar.s4_empates.set(self.selecao4.empates)

@@ -27,34 +27,9 @@ def prever(btn, cx1, cx2, res):
     pygame.mixer.music.stop()
 def salvar():
     pass
-def atualizar_grupo(atual, novo):
-    novo_grupo = Grupo(novo)
-    novo_grupo.atualizar(atual)
+def show_image(lbl, img):
+    pass
 
-# Converte as letras não ASCII de um alfabeto e os espaços também
-def converte_palavra(palavra) :
-    palavra = palavra.lower()
-
-    palavra = palavra.replace(" ", "_")
-
-    palavra = palavra.replace("á", "a")
-    palavra = palavra.replace("ã", "a")
-    palavra = palavra.replace("â", "a")
-
-    palavra = palavra.replace("é", "e")
-    palavra = palavra.replace("ê", "e")
-
-    palavra = palavra.replace("ó", "o")
-    palavra = palavra.replace("õ", "o")
-    palavra = palavra.replace("ô", "o")
-
-    palavra = palavra.replace("í", "i")
-
-    palavra = palavra.replace("ú", "u")
-
-    palavra = palavra.replace("ç", "c")
-
-    return palavra
 
 #-----------------------------------------------------------------------------
 # JANELAS
@@ -182,6 +157,59 @@ def janela_grupos(a: Atualizacao):
                         command=lambda: quit(janela2))
     btn_retornar.grid(row=0, column=8, padx=1)
 
+    def atualizar_grupo(atual, novo):
+
+        novo_grupo = Grupo(novo)
+        novo_grupo.atualizar(atual)
+
+        img1 = ImageTk.PhotoImage(Image.open(atual.s1_bandeira.get()).resize((50, 30)))
+        lbl1.configure(image=img1)
+        lbl1.image = img1
+
+        img2 = ImageTk.PhotoImage(Image.open(atual.s2_bandeira.get()).resize((50, 30)))
+        lbl2.configure(image=img2)
+        lbl2.image = img2
+
+        img3 = ImageTk.PhotoImage(Image.open(atual.s3_bandeira.get()).resize((50, 30)))
+        lbl3.configure(image=img3)
+        lbl3.image = img3
+
+        img4 = ImageTk.PhotoImage(Image.open(atual.s4_bandeira.get()).resize((50, 30)))
+        lbl4.configure(image=img4)
+        lbl4.image = img4
+
+        img5 = ImageTk.PhotoImage(Image.open(atual.s1_bandeira.get()).resize((50, 30)))
+        lbl5.configure(image=img5)
+        lbl5.image = img5
+
+        img6 = ImageTk.PhotoImage(Image.open(atual.s3_bandeira.get()).resize((50, 30)))
+        lbl6.configure(image=img6)
+        lbl6.image = img6
+
+        img7 = ImageTk.PhotoImage(Image.open(atual.s4_bandeira.get()).resize((50, 30)))
+        lbl7.configure(image=img7)
+        lbl7.image = img7
+
+        img8 = ImageTk.PhotoImage(Image.open(atual.s2_bandeira.get()).resize((50, 30)))
+        lbl8.configure(image=img8)
+        lbl8.image = img8
+
+        img9 = ImageTk.PhotoImage(Image.open(atual.s4_bandeira.get()).resize((50, 30)))
+        lbl9.configure(image=img9)
+        lbl9.image = img9
+
+        img10 = ImageTk.PhotoImage(Image.open(atual.s1_bandeira.get()).resize((50, 30)))
+        lbl10.configure(image=img10)
+        lbl10.image = img10
+
+        img11 = ImageTk.PhotoImage(Image.open(atual.s2_bandeira.get()).resize((50, 30)))
+        lbl11.configure(image=img11)
+        lbl11.image = img11
+
+        img12 = ImageTk.PhotoImage(Image.open(atual.s3_bandeira.get()).resize((50, 30)))
+        lbl12.configure(image=img12)
+        lbl12.image = img12
+
 
     # -----------------------------------------------------------------------------
     # Frame de jogos
@@ -193,86 +221,127 @@ def janela_grupos(a: Atualizacao):
 
     # Primeiro jogo
     linha1 = 1
-    img1 = ImageTk.PhotoImage(Image.open(a.s1_bandeira).resize((50, 30)))
-    img2 = ImageTk.PhotoImage(Image.open(a.s2_bandeira).resize((50, 30)))
+    img1 = ImageTk.PhotoImage(Image.open(a.s1_bandeira.get()).resize((50, 30)))
+    img2 = ImageTk.PhotoImage(Image.open(a.s2_bandeira.get()).resize((50, 30)))
     Label(jogos, bg='white', textvariable=a.s1_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=linha1, column=0, padx=2)
-    Label(jogos, bg='white', width=60, justify=LEFT, image=img1).grid(row=linha1, column=1)
+    # Tratamento Dinâmico da Imagem
+    lbl1 = Label(jogos, bg='white', width=60, justify=LEFT)
+    lbl1.configure(image=img1)
+    lbl1.image = img1
+    lbl1.grid(row=linha1, column=1)
     resultado11 = Entry(jogos, bg='white', width=3)
     resultado11.grid(row=linha1, column=2, ipadx=2)
     Label(jogos, bg='white', width=2, text='X').grid(row=linha1, column=3)
     resultado12 = Entry(jogos, bg='white', width=3)
     resultado12.grid(row=linha1, column=4, ipadx=2)
-    Label(jogos, bg='white', width=60, justify=RIGHT, image=img2).grid(row=linha1, column=5)
+    # Tratamento dinsâmico da imagem
+    lbl2 = Label(jogos, bg='white', width=60, justify=RIGHT, image=img2)
+    lbl2.configure(image=img2)
+    lbl2.image = img2
+    lbl2.grid(row=linha1, column=5)
+    # Texto
     Label(jogos, bg='white', textvariable=a.s2_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=linha1, column=6, padx=2)
 
     # Segundo jogo
     linha2 = 2
-    img3 = ImageTk.PhotoImage(Image.open(a.s3_bandeira).resize((50, 30)))
-    img4 = ImageTk.PhotoImage(Image.open(a.s4_bandeira).resize((50, 30)))
+    img3 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img4 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
     Label(jogos, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=linha2, column=0, padx=2)
-    Label(jogos, bg='white', width=60, justify=LEFT, image=img3).grid(row=linha2, column=1)
+    # Tratamento Dinâmico da Imagem
+    lbl3 = Label(jogos, bg='white', width=60, justify=LEFT)
+    lbl3.configure(image=img3)
+    lbl3.image = img3
+    lbl3.grid(row=linha2, column=1)
     resultado21 = Entry(jogos, bg='white', width=3)
     resultado21.grid(row=linha2, column=2, ipadx=2)
     Label(jogos, bg='white', width=2, text='X').grid(row=linha2, column=3)
     resultado22 = Entry(jogos, bg='white', width=3)
     resultado22.grid(row=linha2, column=4, ipadx=2)
-    Label(jogos, bg='white', width=60, justify=RIGHT, image=img4).grid(row=linha2, column=5)
+    #Tratamento dinâmico da Imagem
+    lbl4 = Label(jogos, bg='white', width=60, justify=RIGHT, image=img4)
+    lbl4.configure(image=img4)
+    lbl4.image = img4
+    lbl4.grid(row=linha2, column=5)
     Label(jogos, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=linha2, column=6, padx=2)
 
     # Terceiro jogo
     linha3 = 3
-    img5 = ImageTk.PhotoImage(Image.open(a.s1_bandeira).resize((50, 30)))
-    img6 = ImageTk.PhotoImage(Image.open(a.s3_bandeira).resize((50, 30)))
+    img5 = ImageTk.PhotoImage(Image.open(a.s1_bandeira.get()).resize((50, 30)))
+    img6 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
     Label(jogos, bg='white', textvariable=a.s1_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=linha3, column=0, padx=2)
-    Label(jogos, bg='white', width=60, justify=LEFT, image=img5).grid(row=linha3, column=1)
+    lbl5 = Label(jogos, bg='white', width=60, justify=LEFT)
+    lbl5.configure(image=img5)
+    lbl5.image = img5
+    lbl5.grid(row=linha3, column=1)
     resultado31 = Entry(jogos, bg='white', width=3)
     resultado31.grid(row=linha3, column=2, ipadx=2)
     Label(jogos, bg='white', width=2, text='X').grid(row=linha3, column=3)
     resultado32 = Entry(jogos, bg='white', width=3)
     resultado32.grid(row=linha3, column=4, ipadx=2)
-    Label(jogos, bg='white', width=60, justify=RIGHT, image=img6).grid(row=linha3, column=5)
+    lbl6 = Label(jogos, bg='white', width=60, justify=RIGHT)
+    lbl6.configure(image=img6)
+    lbl6.image = img6
+    lbl6.grid(row=linha3, column=5)
     Label(jogos, bg='white', textvariable=a.s3_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=linha3, column=6, padx=2)
 
     # Quarto jogo
     linha4 = 4
-    img7 = ImageTk.PhotoImage(Image.open(a.s4_bandeira).resize((50, 30)))
-    img8 = ImageTk.PhotoImage(Image.open(a.s2_bandeira).resize((50, 30)))
+    img7 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    img8 = ImageTk.PhotoImage(Image.open(a.s2_bandeira.get()).resize((50, 30)))
     Label(jogos, bg='white', textvariable=a.s4_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=linha4, column=0, padx=2)
-    Label(jogos, bg='white', width=60, justify=LEFT, image=img7).grid(row=linha4, column=1)
+    lbl7 = Label(jogos, bg='white', width=60, justify=LEFT)
+    lbl7.configure(image=img7)
+    lbl7.image = img7
+    lbl7.grid(row=linha4, column=1)
     resultado41 = Entry(jogos, bg='white', width=3)
     resultado41.grid(row=linha4, column=2, ipadx=2)
     Label(jogos, bg='white', width=2, text='X').grid(row=linha4, column=3)
     resultado42 = Entry(jogos, bg='white', width=3)
     resultado42.grid(row=linha4, column=4, ipadx=2)
-    Label(jogos, bg='white', width=60, justify=RIGHT, image=img8).grid(row=linha4, column=5)
+    lbl8 = Label(jogos, bg='white', width=60, justify=RIGHT)
+    lbl8.configure(image=img8)
+    lbl8.image = img8
+    lbl8.grid(row=linha4, column=5)
     Label(jogos, bg='white', textvariable=a.s2_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=linha4, column=6, padx=2)
 
     # Quinto jogo
     linha5 = 5
-    img9 = ImageTk.PhotoImage(Image.open(a.s4_bandeira).resize((50, 30)))
-    img10 = ImageTk.PhotoImage(Image.open(a.s1_bandeira).resize((50, 30)))
+    img9 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    img10 = ImageTk.PhotoImage(Image.open(a.s1_bandeira.get()).resize((50, 30)))
     Label(jogos, bg='white', textvariable=a.s4_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=linha5, column=0, padx=2)
-    Label(jogos, bg='white', width=60, justify=LEFT, image=img9).grid(row=linha5, column=1)
+    lbl9 = Label(jogos, bg='white', width=60, justify=LEFT)
+    lbl9.configure(image=img9)
+    lbl9.image = img9
+    lbl9.grid(row=linha5, column=1)
     resultado51 = Entry(jogos, bg='white', width=3)
     resultado51.grid(row=linha5, column=2, ipadx=2)
     Label(jogos, bg='white', width=2, text='X').grid(row=linha5, column=3)
     resultado52 = Entry(jogos, bg='white', width=3)
     resultado52.grid(row=linha5, column=4, ipadx=2)
-    Label(jogos, bg='white', width=60, justify=RIGHT, image=img10).grid(row=linha5, column=5)
+    lbl10 = Label(jogos, bg='white', width=60, justify=RIGHT)
+    lbl10.configure(image=img10)
+    lbl10.image = img10
+    lbl10.grid(row=linha5, column=5)
     Label(jogos, bg='white', textvariable=a.s1_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=linha5, column=6, padx=2)
 
     # Sexto jogo
     linha6 = 6
-    img11 = ImageTk.PhotoImage(Image.open(a.s2_bandeira).resize((50, 30)))
-    img12 = ImageTk.PhotoImage(Image.open(a.s3_bandeira).resize((50, 30)))
+    img11 = ImageTk.PhotoImage(Image.open(a.s2_bandeira.get()).resize((50, 30)))
+    img12 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
     Label(jogos, bg='white', textvariable=a.s2_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=linha6, column=0, padx=2)
-    Label(jogos, bg='white', width=60, justify=LEFT, image=img11).grid(row=linha6, column=1)
+    lbl11 = Label(jogos, bg='white', width=60, justify=LEFT)
+    lbl11.configure(image=img11)
+    lbl11.image = img11
+    lbl11.grid(row=linha6, column=1)
     resultado61 = Entry(jogos, bg='white', width=3)
     resultado61.grid(row=linha6, column=2, ipadx=2)
     Label(jogos, bg='white', width=2, text='X').grid(row=linha6, column=3)
     resultado62 = Entry(jogos, bg='white', width=3)
     resultado62.grid(row=linha6, column=4, ipadx=2)
-    Label(jogos, bg='white', width=60, justify=RIGHT, image=img12).grid(row=linha6, column=5)
+    lbl12 = Label(jogos, bg='white', width=60, justify=RIGHT)
+    lbl12.configure(image=img12)
+    lbl12.image = img12
+    lbl12.grid(row=linha6, column=5)
     Label(jogos, bg='white', textvariable=a.s3_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=linha6, column=6, padx=2)
 
     # Salvar informações
@@ -296,10 +365,6 @@ def janela_grupos(a: Atualizacao):
     colocacaoB = a.s2_colocacao # Colocação da Seleção 2
     colocacaoC = a.s3_colocacao # Colocação da Seleção 3
     colocacaoD = a.s4_colocacao # Colocação da Seleção 4
-    print(colocacaoA)
-    print(colocacaoB)
-    print(colocacaoC)
-    print(colocacaoD)
 
 
     # Primeira Linha da Tabela de Jogos - Cabeçalho
@@ -359,6 +424,7 @@ def janela_grupos(a: Atualizacao):
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=6)
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=7)
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=8)
+
     janela2.mainloop()
 
 def janela_quizz():

@@ -10,7 +10,7 @@ class Selecao():
         self.gols_sofridos = 0
         self.saldo_de_gols = 0
         self.colocacao = 0
-        self.bandeira = "../imagens/bandeiras/" + nome + ".png"
+        self.bandeira = "imagens/bandeiras/" + self.converte_palavra(nome) + ".png"
 
     def set_nome(self, nome: str):
         self.nome = nome
@@ -83,3 +83,20 @@ class Selecao():
     def __str__(self) -> str:
         s  = str(self.nome) + ' ' + str(self.colocacao)
         return s
+
+    # Converte as letras não ASCII de um alfabeto e os espaços também
+    def converte_palavra(self, palavra):
+        palavra = palavra.lower()
+        palavra = palavra.replace(" ", "_")
+        palavra = palavra.replace("á", "a")
+        palavra = palavra.replace("ã", "a")
+        palavra = palavra.replace("â", "a")
+        palavra = palavra.replace("é", "e")
+        palavra = palavra.replace("ê", "e")
+        palavra = palavra.replace("ó", "o")
+        palavra = palavra.replace("õ", "o")
+        palavra = palavra.replace("ô", "o")
+        palavra = palavra.replace("í", "i")
+        palavra = palavra.replace("ú", "u")
+        palavra = palavra.replace("ç", "c")
+        return palavra
