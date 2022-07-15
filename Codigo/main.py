@@ -26,6 +26,30 @@ def prever(btn, cx1, cx2, res):
 def salvar():
     pass
 
+# Converte as letras não ASCII de um alfabeto e os espaços também
+def converte_palavra(palavra) :
+    palavra = palavra.lower()
+
+    palavra = palavra.replace(" ", "_")
+
+    palavra = palavra.replace("á", "a")
+    palavra = palavra.replace("ã", "a")
+    palavra = palavra.replace("â", "a")
+
+    palavra = palavra.replace("é", "e")
+    palavra = palavra.replace("ê", "e")
+
+    palavra = palavra.replace("ó", "o")
+    palavra = palavra.replace("õ", "o")
+    palavra = palavra.replace("ô", "o")
+
+    palavra = palavra.replace("í", "i")
+
+    palavra = palavra.replace("ú", "u")
+
+    palavra = palavra.replace("ç", "c")
+
+    return palavra
 
 #-----------------------------------------------------------------------------
 # JANELAS
