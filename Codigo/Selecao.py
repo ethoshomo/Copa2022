@@ -80,6 +80,6 @@ class Selecao():
         self.set_pontos(self.get_vitorias()*3+self.get_empates()*1)
 
     def __str__(self) -> str:
-        s  = str(self.nome) + ' ' + str(self.saldo_de_gols) + ' ' + str(self.pontos) + ' ' + str(self.colocacao)
+        s  = str(self.nome) + ' ' + str(self.colocacao)
         return s
          

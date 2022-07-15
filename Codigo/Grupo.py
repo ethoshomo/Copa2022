@@ -9,9 +9,9 @@ class Grupo():
         self.selecao3 = Selecao(df_selecoes[grupo][2])
         self.selecao4 = Selecao(df_selecoes[grupo][3])
         self.selecao1.set_colocacao(2)
-        self.selecao1.set_colocacao(3)
-        self.selecao1.set_colocacao(4)
-        self.selecao1.set_colocacao(5)
+        self.selecao2.set_colocacao(3)
+        self.selecao3.set_colocacao(4)
+        self.selecao4.set_colocacao(5)
 
     def teste(self):
         print(self.selecao1)
