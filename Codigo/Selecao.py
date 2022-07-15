@@ -7,6 +7,8 @@ class Selecao():
         self.empates = 0
         self.gols_marcados = 0
         self.gols_sofridos = 0
+        self.saldo_de_gols = 0
+        self.colocacao = 0
         self.bandeira = "../Imagens/bandeiras/" + nome + ".png"
 
     def set_nome(self, nome: str):
@@ -23,6 +25,9 @@ class Selecao():
 
     def set_bandeira(self, bandeira: str):
         self.bandeira = bandeira
+
+    def set_colocacao(self, colocacao: int):
+        self.colocacao = colocacao
 
     def get_nome(self):
         return self.nome
@@ -66,6 +71,8 @@ class Selecao():
         elif gols_contra > gols_favoraveis:
             self.derrotas += 1
         
+        self.saldo_de_gols += gols_favoraveis - gols_contra
+        
         # Pontos Ganhos
         self.att_pontos()
 
@@ -73,4 +80,6 @@ class Selecao():
         self.set_pontos(self.get_vitorias()*3+self.get_empates()*1)
 
     def __str__(self) -> str:
-        return self.nome
+        s  = str(self.nome) + ' ' + str(self.saldo_de_gols) + ' ' + str(self.pontos) + ' ' + str(self.colocacao)
+        return s
+         
