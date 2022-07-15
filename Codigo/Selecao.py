@@ -81,7 +81,7 @@ class Selecao():
         self.set_pontos(self.get_vitorias()*3+self.get_empates()*1)
 
     def __str__(self) -> str:
-        s  = str(self.nome) + ' ' + str(self.colocacao)
+        s  = str(self.nome) + ' saldo de gols: ' + str(self.saldo_de_gols) + ' pontos: ' + str(self.pontos) + ' colocação: ' + str(self.colocacao)
         return s
 
     # Converte as letras não ASCII de um alfabeto e os espaços também
