@@ -33,10 +33,10 @@ class Grupo(Selecao):
         lista_grupos.sort(key=lambda x: x.saldo_de_gols, reverse=True)
         lista_grupos.sort(key=lambda x: x.pontos       , reverse=True)
 
-        self.selecao1.set_colocacao(lista_grupos.index(self.selecao1))
-        self.selecao2.set_colocacao(lista_grupos.index(self.selecao2))
-        self.selecao3.set_colocacao(lista_grupos.index(self.selecao3))
-        self.selecao4.set_colocacao(lista_grupos.index(self.selecao4))
+        self.selecao1.set_colocacao(lista_grupos.index(self.selecao1)+1)
+        self.selecao2.set_colocacao(lista_grupos.index(self.selecao2)+1)
+        self.selecao3.set_colocacao(lista_grupos.index(self.selecao3)+1)
+        self.selecao4.set_colocacao(lista_grupos.index(self.selecao4)+1)
 
     def atualizar(self, atualizar: Atualizacao):
         # Atualiza posicoes
@@ -55,6 +55,7 @@ class Grupo(Selecao):
         atualizar.s1_gols_favoraveis.set(self.selecao1.gols_marcados)
         atualizar.s1_gols_contrarios.set(self.selecao1.gols_sofridos)
         atualizar.s1_saldo_gols.set(self.selecao1.saldo_de_gols)
+        atualizar.s1_colocacao.set(self.selecao1.colocacao)
 
         # Atualizando Selecao 2
         atualizar.s2_nome.set(self.selecao2.nome)
@@ -66,6 +67,7 @@ class Grupo(Selecao):
         atualizar.s2_gols_favoraveis.set(self.selecao2.gols_marcados)
         atualizar.s2_gols_contrarios.set(self.selecao2.gols_sofridos)
         atualizar.s2_saldo_gols.set(self.selecao2.saldo_de_gols)
+        atualizar.s2_colocacao.set(self.selecao2.colocacao)
 
         # Atualizando Selecao 3
         atualizar.s3_nome.set(self.selecao3.nome)
@@ -77,6 +79,7 @@ class Grupo(Selecao):
         atualizar.s3_gols_favoraveis.set(self.selecao3.gols_marcados)
         atualizar.s3_gols_contrarios.set(self.selecao3.gols_sofridos)
         atualizar.s3_saldo_gols.set(self.selecao3.saldo_de_gols)
+        atualizar.s3_colocacao.set(self.selecao3.colocacao)
 
         # Atualizando Selecao 4
         atualizar.s4_nome.set(self.selecao4.nome)
@@ -88,6 +91,7 @@ class Grupo(Selecao):
         atualizar.s4_gols_favoraveis.set(self.selecao4.gols_marcados)
         atualizar.s4_gols_contrarios.set(self.selecao4.gols_sofridos)
         atualizar.s4_saldo_gols.set(self.selecao4.saldo_de_gols)
+        atualizar.s4_colocacao.set(self.selecao4.colocacao)
 
 
 if __name__ == "__main__":
