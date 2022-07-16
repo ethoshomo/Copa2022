@@ -35,22 +35,33 @@ def prever(btn, cx1, cx2, res):
 # JANELAS
 def janela_grupos(a: Atualizacao):
 
-
     # ------------------------------------------------------------------------------------------------------------------
     # Funções auxiliares
+
+    def tratamento_dados(valor):
+        # Verifica valores de entrada
+        if valor.isdigit() and valor != '' and int(valor) >= 0:
+            return int(valor)
+        elif valor == '':
+            return -1
+        else:
+            messagebox.showerror("ERRO", "Somente valores inteiros maiores ou iguais a zero.")
+            return -1
+
     def ajuda():
         messagebox.showinfo("AJUDA", """Para salvar o jogo, é necessário inserir valores válidos (números inteiros
             maiores ou iguais a zero). \nPor outro lado, é necessário observar que 0x0 refere-se a um empate. Caso tenha
             digitado algum valor equivocado, pode-se retirar o resultado digitando "#" nas caixas de entrada.""")
 
     def salvar():
-        resultados = [[int(resultado11.get()), int(resultado12.get())],
-                      [int(resultado21.get()), int(resultado22.get())],
-                      [int(resultado31.get()), int(resultado32.get())],
-                      [int(resultado41.get()), int(resultado42.get())],
-                      [int(resultado51.get()), int(resultado52.get())],
-                      [int(resultado61.get()), int(resultado62.get())]]
-        
+        resultados = [[tratamento_dados(resultado11.get()), tratamento_dados(resultado12.get())],
+                      [tratamento_dados(resultado21.get()), tratamento_dados(resultado22.get())],
+                      [tratamento_dados(resultado31.get()), tratamento_dados(resultado32.get())],
+                      [tratamento_dados(resultado41.get()), tratamento_dados(resultado42.get())],
+                      [tratamento_dados(resultado51.get()), tratamento_dados(resultado52.get())],
+                      [tratamento_dados(resultado61.get()), tratamento_dados(resultado62.get())]]
+
+
         gravar = DataSet()
         
         gravar.salvando_grupo(a.grupo_nome.get(), resultados)
