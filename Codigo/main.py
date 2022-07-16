@@ -4,7 +4,8 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 import pygame
 import random
-from Grupo import *
+from Grupo import Grupo
+from Codigo.DataSet import DataSet
 from Atualizacao import *
 
 
@@ -33,6 +34,83 @@ def prever(btn, cx1, cx2, res):
 # JANELAS
 def janela_grupos(a: Atualizacao):
 
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Funções auxiliares
+    def ajuda():
+        messagebox.showinfo("AJUDA", """Para salvar o jogo, é necessário inserir valores válidos (números inteiros
+            maiores ou iguais a zero). \nPor outro lado, é necessário observar que 0x0 refere-se a um empate. Caso tenha
+            digitado algum valor equivocado, pode-se retirar o resultado digitando "#" nas caixas de entrada.""")
+
+    def salvar():
+        resultados = [[resultado11.get(), resultado12.get()],
+                      [resultado21.get(), resultado22.get()],
+                      [resultado31.get(), resultado32.get()],
+                      [resultado41.get(), resultado42.get()],
+                      [resultado51.get(), resultado52.get()],
+                      [resultado61.get(), resultado62.get()]]
+
+
+        gravar = DataSet()
+        gravar.salvando_grupo(a.grupo_nome.get(), resultados)
+        grupo = gravar.recuperando_grupos(a.grupo_nome.get())
+        grupo.atualizar(a)
+
+
+    def atualizar_grupo(atual, novo):
+        novo_grupo = Grupo(novo)
+        novo_grupo.atualizar(atual)
+
+        img1 = ImageTk.PhotoImage(Image.open(atual.s1_bandeira.get()).resize((50, 30)))
+        lbl1.configure(image=img1)
+        lbl1.image = img1
+
+        img2 = ImageTk.PhotoImage(Image.open(atual.s2_bandeira.get()).resize((50, 30)))
+        lbl2.configure(image=img2)
+        lbl2.image = img2
+
+        img3 = ImageTk.PhotoImage(Image.open(atual.s3_bandeira.get()).resize((50, 30)))
+        lbl3.configure(image=img3)
+        lbl3.image = img3
+
+        img4 = ImageTk.PhotoImage(Image.open(atual.s4_bandeira.get()).resize((50, 30)))
+        lbl4.configure(image=img4)
+        lbl4.image = img4
+
+        img5 = ImageTk.PhotoImage(Image.open(atual.s1_bandeira.get()).resize((50, 30)))
+        lbl5.configure(image=img5)
+        lbl5.image = img5
+
+        img6 = ImageTk.PhotoImage(Image.open(atual.s3_bandeira.get()).resize((50, 30)))
+        lbl6.configure(image=img6)
+        lbl6.image = img6
+
+        img7 = ImageTk.PhotoImage(Image.open(atual.s4_bandeira.get()).resize((50, 30)))
+        lbl7.configure(image=img7)
+        lbl7.image = img7
+
+        img8 = ImageTk.PhotoImage(Image.open(atual.s2_bandeira.get()).resize((50, 30)))
+        lbl8.configure(image=img8)
+        lbl8.image = img8
+
+        img9 = ImageTk.PhotoImage(Image.open(atual.s4_bandeira.get()).resize((50, 30)))
+        lbl9.configure(image=img9)
+        lbl9.image = img9
+
+        img10 = ImageTk.PhotoImage(Image.open(atual.s1_bandeira.get()).resize((50, 30)))
+        lbl10.configure(image=img10)
+        lbl10.image = img10
+
+        img11 = ImageTk.PhotoImage(Image.open(atual.s2_bandeira.get()).resize((50, 30)))
+        lbl11.configure(image=img11)
+        lbl11.image = img11
+
+        img12 = ImageTk.PhotoImage(Image.open(atual.s3_bandeira.get()).resize((50, 30)))
+        lbl12.configure(image=img12)
+        lbl12.image = img12
+
+
+    #-------------------------------------------------------------------------------------------------------------------
     # Cria a janela de Fase de Grupos
     janela2 = Toplevel()
     janela2.title("SHOW DE BOLA - QUIZZ")
@@ -49,8 +127,9 @@ def janela_grupos(a: Atualizacao):
     canvas.pack(fill="both", expand=True)
     canvas.create_image(0, 0, image=bg, anchor="nw")
 
+
     # Serão três frames longos: frame superior, jogos e tabela
-    #-----------------------------------------------------------------------------
+    #-------------------------------------------------------------------------------------------------------------------
     # Frame de Grupos
     frame = Frame(janela2, bg="white")
     frame.grid_anchor(CENTER)
@@ -156,69 +235,7 @@ def janela_grupos(a: Atualizacao):
     btn_retornar.grid(row=0, column=8, padx=1)
 
 
-    def ajuda():
-        messagebox.showinfo("AJUDA","""Para salvar o jogo, é necessário inserir valores válidos (números inteiros maiores ou iguais a zero). \nPor outro lado, é necessário observar que 0x0 refere-se a um empate. Caso tenha digitado algum valor equivocado, pode-se retirar o resultado digitando "#" nas caixas de entrada.""")
-
-
-    def salvar():
-        pass
-
-
-    def atualizar_grupo(atual, novo):
-
-        novo_grupo = Grupo(novo)
-        novo_grupo.atualizar(atual)
-
-        img1 = ImageTk.PhotoImage(Image.open(atual.s1_bandeira.get()).resize((50, 30)))
-        lbl1.configure(image=img1)
-        lbl1.image = img1
-
-        img2 = ImageTk.PhotoImage(Image.open(atual.s2_bandeira.get()).resize((50, 30)))
-        lbl2.configure(image=img2)
-        lbl2.image = img2
-
-        img3 = ImageTk.PhotoImage(Image.open(atual.s3_bandeira.get()).resize((50, 30)))
-        lbl3.configure(image=img3)
-        lbl3.image = img3
-
-        img4 = ImageTk.PhotoImage(Image.open(atual.s4_bandeira.get()).resize((50, 30)))
-        lbl4.configure(image=img4)
-        lbl4.image = img4
-
-        img5 = ImageTk.PhotoImage(Image.open(atual.s1_bandeira.get()).resize((50, 30)))
-        lbl5.configure(image=img5)
-        lbl5.image = img5
-
-        img6 = ImageTk.PhotoImage(Image.open(atual.s3_bandeira.get()).resize((50, 30)))
-        lbl6.configure(image=img6)
-        lbl6.image = img6
-
-        img7 = ImageTk.PhotoImage(Image.open(atual.s4_bandeira.get()).resize((50, 30)))
-        lbl7.configure(image=img7)
-        lbl7.image = img7
-
-        img8 = ImageTk.PhotoImage(Image.open(atual.s2_bandeira.get()).resize((50, 30)))
-        lbl8.configure(image=img8)
-        lbl8.image = img8
-
-        img9 = ImageTk.PhotoImage(Image.open(atual.s4_bandeira.get()).resize((50, 30)))
-        lbl9.configure(image=img9)
-        lbl9.image = img9
-
-        img10 = ImageTk.PhotoImage(Image.open(atual.s1_bandeira.get()).resize((50, 30)))
-        lbl10.configure(image=img10)
-        lbl10.image = img10
-
-        img11 = ImageTk.PhotoImage(Image.open(atual.s2_bandeira.get()).resize((50, 30)))
-        lbl11.configure(image=img11)
-        lbl11.image = img11
-
-        img12 = ImageTk.PhotoImage(Image.open(atual.s3_bandeira.get()).resize((50, 30)))
-        lbl12.configure(image=img12)
-        lbl12.image = img12
-
-
-    # -----------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------------------------------------------
     # Frame de jogos
     jogos = Frame(janela2, bg="white")
     jogos.grid_anchor(CENTER)
@@ -359,7 +376,7 @@ def janela_grupos(a: Atualizacao):
     btn_ajuda.grid(row=7, column=4, columnspan=2, padx=1)
 
 
-    # -----------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------------------------------------------
     # Frame da Tabela dos Grupos
     frame_grupos = Frame(janela2, bg="white")
     frame_grupos.grid_anchor(CENTER)
@@ -367,15 +384,6 @@ def janela_grupos(a: Atualizacao):
 
     # Título do Frame
     Label(frame_grupos, text="TABELA DO GRUPO", font="Verdana 12 bold", bg="white", fg="#405E38", padx=5, pady=5, height=1, justify=LEFT).grid(row=0, column=0, columnspan=8)
-
-    # AQUI FAZEMOS A DEFINIÇÃO DAS CLASSIFICAÇÕES NA TABELA
-    # ATENÇÃO QUE EXISTE UMA DIFERENÇA DE LINHAS, AFINAL A TABELA DO GRID COMEÇA NA LINHA "TABELA DO GRUPO"
-    # DESSE MODO, O PRIMEIRO COLOCADO FICA NA LINHA 2; SEGUNDO, NA 3; TERCEIRO, NA 4; QUARTO, NA 5.
-    colocacaoA = a.s1_colocacao # Colocação da Seleção 1
-    colocacaoB = a.s2_colocacao # Colocação da Seleção 2
-    colocacaoC = a.s3_colocacao # Colocação da Seleção 3
-    colocacaoD = a.s4_colocacao # Colocação da Seleção 4
-
 
     # Primeira Linha da Tabela de Jogos - Cabeçalho
     posicaoA = int(1)
@@ -389,53 +397,54 @@ def janela_grupos(a: Atualizacao):
     Label(frame_grupos, bg="#405E38", fg='white', text='SG', width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=posicaoA, column=8)
 
     # Montando a Coluna 0 (a classificação é fixa)
-    Label(frame_grupos, bg="#405E38", fg='white', text='1', width=3, padx=2, justify=LEFT, font="Verdana 8 bold").grid(row=2, column=0, padx=2)
-    Label(frame_grupos, bg="#405E38", fg='white', text='2', width=3, padx=2, justify=LEFT, font="Verdana 8 bold").grid(row=3, column=0, padx=2)
-    Label(frame_grupos, bg="#405E38", fg='white', text='3', width=3, padx=2, justify=LEFT, font="Verdana 8 bold").grid(row=4, column=0, padx=2)
-    Label(frame_grupos, bg="#405E38", fg='white', text='4', width=3, padx=2, justify=LEFT, font="Verdana 8 bold").grid(row=5, column=0, padx=2)
+    Label(frame_grupos, bg="#405E38", fg='white', textvariable=a.s1_colocacao, width=3, padx=2, justify=LEFT, font="Verdana 8 bold").grid(row=2, column=0, padx=2)
+    Label(frame_grupos, bg="#405E38", fg='white', textvariable=a.s2_colocacao, width=3, padx=2, justify=LEFT, font="Verdana 8 bold").grid(row=3, column=0, padx=2)
+    Label(frame_grupos, bg="#405E38", fg='white', textvariable=a.s3_colocacao, width=3, padx=2, justify=LEFT, font="Verdana 8 bold").grid(row=4, column=0, padx=2)
+    Label(frame_grupos, bg="#405E38", fg='white', textvariable=a.s4_colocacao, width=3, padx=2, justify=LEFT, font="Verdana 8 bold").grid(row=5, column=0, padx=2)
 
 
     # Dados da Primeira Seleção
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_nome, width=30, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoA, column=1)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_pontos, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoA, column=2)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_vitorias, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoA, column=3)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_empates, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoA, column=4)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_derrotas, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoA, column=5)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoA, column=6)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoA, column=7)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoA, column=8)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_nome, width=30, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=2, column=1)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_pontos, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=2, column=2)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_vitorias, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=2, column=3)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_empates, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=2, column=4)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_derrotas, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=2, column=5)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=2, column=6)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=2, column=7)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=2, column=8)
+
 
     # Dados da Segunda Seleção
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_nome, width=30, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoB, column=1)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_pontos, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoB, column=2)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_vitorias, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoB, column=3)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_empates, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoB, column=4)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_derrotas, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoB, column=5)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoB, column=6)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoB, column=7)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoB, column=8)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_nome, width=30, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=3, column=1)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_pontos, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=3, column=2)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_vitorias, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=3, column=3)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_empates, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=3, column=4)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_derrotas, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=3, column=5)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=3, column=6)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=3, column=7)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=3, column=8)
 
     # Dados da Terceira Seleção
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_nome, width=30, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoC, column=1)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_pontos, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoC, column=2)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_vitorias, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoC, column=3)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_empates, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoC, column=4)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_derrotas, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoC, column=5)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoC, column=6)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoC, column=7)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoC, column=8)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_nome, width=30, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=4, column=1)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_pontos, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=4, column=2)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_vitorias, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=4, column=3)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_empates, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=4, column=4)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_derrotas, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=4, column=5)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=4, column=6)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=4, column=7)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s3_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=4, column=8)
 
     # Dados da Quarta Seleção
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_nome, width=30, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=1)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_pontos, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=2)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_vitorias, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=3)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_empates, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=4)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_derrotas, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=5)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=6)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=7)
-    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=colocacaoD, column=8)
-
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_nome, width=30, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=1)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_pontos, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=2)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_vitorias, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=3)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_empates, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=4)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_derrotas, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=5)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=6)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=7)
+    Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=8)
     janela2.mainloop()
+
 
 def janela_quizz():
     pergunta = str("Pergunta para o QUIZZ. Ficou boa a interface? Acho que devo fazer uma pergunta gigantesca para testar todas as possibilidades de erro.")

@@ -33,12 +33,15 @@ class Grupo(Selecao):
         lista_grupos.sort(key=lambda x: x.saldo_de_gols, reverse=True)
         lista_grupos.sort(key=lambda x: x.pontos       , reverse=True)
 
-        self.selecao1.set_colocacao(lista_grupos.index(self.selecao1)+2)
-        self.selecao2.set_colocacao(lista_grupos.index(self.selecao2)+2)
-        self.selecao3.set_colocacao(lista_grupos.index(self.selecao3)+2)
-        self.selecao4.set_colocacao(lista_grupos.index(self.selecao4)+2)
+        self.selecao1.set_colocacao(lista_grupos.index(self.selecao1))
+        self.selecao2.set_colocacao(lista_grupos.index(self.selecao2))
+        self.selecao3.set_colocacao(lista_grupos.index(self.selecao3))
+        self.selecao4.set_colocacao(lista_grupos.index(self.selecao4))
 
     def atualizar(self, atualizar: Atualizacao):
+        # Atualiza posicoes
+        self.organizando_grupos()
+
         # Atualizar nome do Grupo
         atualizar.grupo_nome.set(self.nome_grupo)
 
