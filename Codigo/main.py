@@ -539,9 +539,13 @@ def janela_quizz():
         btn_verificar_resposta.configure(state=DISABLED)
 
     def proxima_pergunta():
+        # Coleta a próxima pergunta
         prox = quizz.proxima_pergunta()
+
+        # Ativa o botão de verificar o gabarito
         btn_verificar_resposta.configure(state=ACTIVE)
 
+        # Atualiza valores para os novos
         questao.set(prox.get_questao())
         resposta1.set(prox.get_resposta1())
         resposta2.set(prox.get_resposta2())
@@ -549,6 +553,7 @@ def janela_quizz():
         resposta4.set(prox.get_resposta4())
         gabarito.set(prox.get_gabarito())
 
+        # Atualiza radiobuttons
         radiobtn1.configure(value=resposta1.get())
         radiobtn1.value = resposta1.get()
 
