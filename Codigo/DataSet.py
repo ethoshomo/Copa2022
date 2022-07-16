@@ -1,3 +1,15 @@
+"""
+UNIVERSIDADE DE SÃO PAULO (USP)
+PROJETO FINAL DA DISCIPLINA DE PROGRAMAÇÃO ORIENTADA A OBJETOS (POO)
+TEMÁTICA: COPA DO MUNDO DE 2022
+PROGRAMA DESENVOLVIDO: SHOW DE BOLA!!!
+DOCENTE: MÁRCIO DELAMARO
+DISCENTES:
+    CARLOS FILIPE DE CASTRO LEMOS (12542630)
+    JOÃO GABRIEL SASSERON ROBERTO AMORIN (12542564)
+    PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
+    PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
+"""
 import pandas as pd
 import os
 from Grupo import Grupo
@@ -78,7 +90,7 @@ class DataSet():
         jogos[5][1] = df_jogos[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][2]]
 
         return jogos
-    
+
     def recuperando_jogos_str(self, grupo: str):
         # transforma os dados recebidos em int para str
         jogos_int = self.recuperando_jogos(grupo)
@@ -92,7 +104,7 @@ class DataSet():
                     jogos_str[i][j] = str(jogos_int[i][j])
 
         return jogos_str
-    
+
     def recuperando_grupos(self, grupo: str):
         # Recupera o grupo do jeito que estava
         nome_grupo = grupo.replace(' ', '')
@@ -144,7 +156,7 @@ class DataSet():
         df_padrao = pd.DataFrame(data, index=self.df_selecoes[nome_grupo])
 
         return df_padrao
-    
+
     def cria_arq(self, grupo: str):
         #cria um arquivo se ele não existir
         nome_grupo = grupo.replace(' ', '')
@@ -153,7 +165,7 @@ class DataSet():
         if not os.path.exists(nome_data):
             df = self.criando_DataFrame(grupo)
             df.to_pickle(nome_data)
-            
+
 if __name__ == '__main__':
     ds = DataSet()
     g  = ds.recuperando_jogos_str('Grupo F')

@@ -1,22 +1,34 @@
+"""
+UNIVERSIDADE DE SÃO PAULO (USP)
+PROJETO FINAL DA DISCIPLINA DE PROGRAMAÇÃO ORIENTADA A OBJETOS (POO)
+TEMÁTICA: COPA DO MUNDO DE 2022
+PROGRAMA DESENVOLVIDO: SHOW DE BOLA!!!
+DOCENTE: MÁRCIO DELAMARO
+DISCENTES:
+    CARLOS FILIPE DE CASTRO LEMOS (12542630)
+    JOÃO GABRIEL SASSERON ROBERTO AMORIN (12542564)
+    PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
+    PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
+"""
 from click import password_option
 from Grupo import Grupo
-import pandas as pd    
+import pandas as pd
 
 def criando_pkl_jogos(nomes):
     lista_zeros = ['---' for i in range(4)]
-    
-    data = {nomes[0][0]:lista_zeros, 
+
+    data = {nomes[0][0]:lista_zeros,
             nomes[0][1]:lista_zeros,
             nomes[0][2]:lista_zeros,
             nomes[0][3]:lista_zeros}
 
     df = pd.DataFrame(data, index=nomes[0])
-    
+
     print(df)
     print()
-    
+
 def criando_pkl_selecoes(nomes):
-    
+
     data_selecoes = {'GrupoA':nomes[0],
                      'GrupoB':nomes[1],
                      'GrupoC':nomes[2],
@@ -25,31 +37,31 @@ def criando_pkl_selecoes(nomes):
                      'GrupoF':nomes[5],
                      'GrupoG':nomes[6],
                      'GrupoH':nomes[7],}
-    
+
     dataFrame_selecoes = pd.DataFrame(data_selecoes)
-    
+
     dataFrame_selecoes.to_pickle('dataset/Selecoes.plk')
-    
+
     dados_selecoes = pd.read_pickle('dataset/Selecoes.plk')
-    
+
     print(dados_selecoes)
     print()
 
 def nomes_por_grupo():
-    nomes = [['Catar', 'Equador', 'Senegal', 'Holanda'], 
-             ['Inglaterra', 'Irã', 'Estados Unidos', 'País de Gales'], 
-             ['Argentina', 'Arábia Saudita', 'México', 'Polônia'], 
-             ['França', 'Austrália', 'Dinamarca', 'Tunísia'], 
-             ['Espanha', 'Costa Rica', 'Alemanha', 'Japão'], 
-             ['Bélgica', 'Canadá', 'Marrocos', 'Croácia'], 
-             ['Brasil', 'Sérvia', 'Suíça', 'Camarões'], 
+    nomes = [['Catar', 'Equador', 'Senegal', 'Holanda'],
+             ['Inglaterra', 'Irã', 'Estados Unidos', 'País de Gales'],
+             ['Argentina', 'Arábia Saudita', 'México', 'Polônia'],
+             ['França', 'Austrália', 'Dinamarca', 'Tunísia'],
+             ['Espanha', 'Costa Rica', 'Alemanha', 'Japão'],
+             ['Bélgica', 'Canadá', 'Marrocos', 'Croácia'],
+             ['Brasil', 'Sérvia', 'Suíça', 'Camarões'],
              ['Portugal', 'Gana', 'Uruguai', 'Coreia do Sul']]
 
     return nomes
 
 def perguntas_quiz():
     perguntas = [[] for i in range(11)]
-    
+
     perguntas[0] = ['Em que ano o Brasil conquistou sua primeira Copa da mundo?',
                     '1994',
                     '1958',
@@ -116,7 +128,7 @@ def perguntas_quiz():
                      '9',
                      '10',
                      '8']
-    
+
     data_perguntas = {0:perguntas[0],
                       1:perguntas[1],
                       2:perguntas[2],
@@ -128,18 +140,18 @@ def perguntas_quiz():
                       8:perguntas[8],
                       9:perguntas[9],
                       10:perguntas[10]}
-    
+
     df_pergutas = pd.DataFrame(data_perguntas)
-    
+
     df_pergutas.to_pickle('dataset/Perguntas.pkl')
-    
+
     print(df_pergutas[5])
-    
+
 if __name__ == '__main__':
     nomes = nomes_por_grupo()
-    
+
     print(nomes)
-    
+
     t = pd.read_pickle('dataset/Selecoes.plk')
-    
+
     perguntas_quiz()

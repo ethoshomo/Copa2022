@@ -1,3 +1,15 @@
+"""
+UNIVERSIDADE DE SÃO PAULO (USP)
+PROJETO FINAL DA DISCIPLINA DE PROGRAMAÇÃO ORIENTADA A OBJETOS (POO)
+TEMÁTICA: COPA DO MUNDO DE 2022
+PROGRAMA DESENVOLVIDO: SHOW DE BOLA!!!
+DOCENTE: MÁRCIO DELAMARO
+DISCENTES:
+    CARLOS FILIPE DE CASTRO LEMOS (12542630)
+    JOÃO GABRIEL SASSERON ROBERTO AMORIN (12542564)
+    PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
+    PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
+"""
 class Pergunta():
     def __init__(self, campos: list):
         self.questao   = campos[0]
@@ -6,10 +18,10 @@ class Pergunta():
         self.resposta3 = campos[3]
         self.resposta4 = campos[4]
         self.gabarito  = campos[5]
-    
+
     def get_questao(self):
         return self.questao
-    
+
     def get_resposta1(self):
         return self.resposta1
 
@@ -21,10 +33,10 @@ class Pergunta():
 
     def get_resposta4(self):
         return self.resposta4
-    
+
     def get_gabarito(self):
         return self.gabarito
-    
+
     def __str__(self):
         s = self.get_questao() + ' ---> ' + self.get_gabarito()
         return s

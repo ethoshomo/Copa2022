@@ -1,3 +1,15 @@
+"""
+UNIVERSIDADE DE SÃO PAULO (USP)
+PROJETO FINAL DA DISCIPLINA DE PROGRAMAÇÃO ORIENTADA A OBJETOS (POO)
+TEMÁTICA: COPA DO MUNDO DE 2022
+PROGRAMA DESENVOLVIDO: SHOW DE BOLA!!!
+DOCENTE: MÁRCIO DELAMARO
+DISCENTES:
+    CARLOS FILIPE DE CASTRO LEMOS (12542630)
+    JOÃO GABRIEL SASSERON ROBERTO AMORIN (12542564)
+    PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
+    PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
+"""
 from tkinter import *
 from tkinter import messagebox
 
@@ -520,17 +532,9 @@ def janela_grupos(a: Atualizacao):
 def janela_quizz():
 
     def verificar_resposta(resposta):
-        print("Resposta marcada:")
-        print(resposta.get())
-        print(type(resposta))
-        print("Gabarito:")
-        print(gabarito.get())
-        print(type(gabarito.get()))
 
         if str(resposta.get()) == str(gabarito.get()):
             pontuacao.set(str(int(pontuacao.get())+10))
-        else:
-            print("Tente novamente!!")
 
         btn_verificar_resposta.configure(state=DISABLED)
 
@@ -557,9 +561,6 @@ def janela_quizz():
         radiobtn4.configure(value=resposta4.get())
         radiobtn4.value = resposta4.get()
 
-        print("Proximo Gabarito:")
-        print(prox.get_gabarito())
-
         radiobtn1.deselect()
         radiobtn2.deselect()
         radiobtn3.deselect()
@@ -570,12 +571,6 @@ def janela_quizz():
 
     quizz = Quiz()
     pergunta = quizz.proxima_pergunta()
-
-    print(pergunta.get_questao())
-    print(pergunta.get_resposta1())
-    print(pergunta.get_resposta2())
-    print(pergunta.get_resposta3())
-    print(pergunta.get_resposta4())
 
     janela2 = Toplevel()
     janela2.title("SHOW DE BOLA - QUIZZ")
@@ -709,9 +704,6 @@ def janela_quizz():
                             fg="white",
                             wraplength=400)
     label_resposta4.grid(row=4, column=1, sticky=W)
-
-    print(var)
-    print(type(var))
 
     # Verificar Resposta
     btn_verificar_resposta = Button(frame_quiz,
