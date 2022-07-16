@@ -7,6 +7,7 @@ class DataSet():
         self.df_selecoes = pd.read_pickle('dataset/Selecoes.plk')
 
     def salvando_grupo(self, grupo :str, jogos: list):
+        # Caso o nome venha com ' '
         nome_grupo = grupo.replace(' ', '')
 
         df_jogos = self.criando_DataFrame(nome_grupo)
@@ -38,24 +39,16 @@ class DataSet():
 
         nome = 'dataset/' + nome_grupo + '.pkl'
 
-        print(df_jogos)
-
         df_jogos.to_pickle(nome)
-
-    def cria_arq(self, grupo: str):
-        nome_grupo = grupo.replace(' ', '')
-        nome_data  = 'dataset/' + nome_grupo + '.pkl'
-
-        if not os.path.exists(nome_data):
-            df = self.criando_DataFrame(grupo)
-            df.to_pickle(nome_data)
 
     def recuperando_jogos(self, grupo: str):
         nome_grupo = grupo.replace(' ', '')
 
+        # Se o arquivo do jogo ainda não existe, cria
         self.cria_arq(grupo)
 
-        jogos = [['-','-'] for i in range(6)]
+        # Inicia os jogos e faz a leitura do arquivo
+        jogos = [[-1, -1] for i in range(6)]
         nome = 'dataset/' + nome_grupo + '.pkl'
         df_jogos = pd.read_pickle(nome)
 
@@ -81,16 +74,27 @@ class DataSet():
         jogos[4][1] = df_jogos[self.df_selecoes[nome_grupo][3]][self.df_selecoes[nome_grupo][0]]
 
         # JOGO 6
-        print('Retorno jogos ---> :')
         jogos[5][0] = df_jogos[self.df_selecoes[nome_grupo][2]][self.df_selecoes[nome_grupo][1]]
         jogos[5][1] = df_jogos[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][2]]
 
-        print('Retorno jogos int ---> : ', end='')
-        print(jogos)
-
         return jogos
+    
+    def recuperando_jogos_str(self, grupo: str):
+        # transforma os dados recebidos em int para str
+        jogos_int = self.recuperando_jogos(grupo)
 
+        # Caso o usuário não preencheu o placar
+        jogos_str = [['',''] for i in range(6)]
+
+        for i in range(len(jogos_int)):
+            for j in range(2):
+                if jogos_int[i][j] != -1:
+                    jogos_str[i][j] = str(jogos_int[i][j])
+
+        return jogos_str
+    
     def recuperando_grupos(self, grupo: str):
+        # Recupera o grupo do jeito que estava
         nome_grupo = grupo.replace(' ', '')
 
         jogos = self.recuperando_jogos(nome_grupo)
@@ -122,31 +126,12 @@ class DataSet():
             grupo.selecao2.att_jogo(jogos[5][0], jogos[5][1])
             grupo.selecao3.att_jogo(jogos[5][1], jogos[5][0])
 
-        grupo.teste()
-
         grupo.organizando_grupos()
-
-        grupo.teste()
 
         return grupo
 
-    def recuperando_jogos_str(self, grupo: str):
-        jogos_int = self.recuperando_jogos(grupo)
-
-        jogos_str = [['',''] for i in range(6)]
-
-        for i in range(len(jogos_int)):
-            for j in range(2):
-                if jogos_int[i][j] != -1:
-                    jogos_str[i][j] = str(jogos_int[i][j])
-
-        print('Retorno jogos str ---> : ', end='')
-        print(jogos_str)
-
-
-        return jogos_str
-
     def criando_DataFrame(self, grupo: str):
+        # Cria um dataframe standart
         nome_grupo = grupo.replace(' ', '')
 
         inicio = [-1 for i in range(4)]
@@ -159,7 +144,16 @@ class DataSet():
         df_padrao = pd.DataFrame(data, index=self.df_selecoes[nome_grupo])
 
         return df_padrao
+    
+    def cria_arq(self, grupo: str):
+        #cria um arquivo se ele não existir
+        nome_grupo = grupo.replace(' ', '')
+        nome_data  = 'dataset/' + nome_grupo + '.pkl'
 
+        if not os.path.exists(nome_data):
+            df = self.criando_DataFrame(grupo)
+            df.to_pickle(nome_data)
+            
 if __name__ == '__main__':
     ds = DataSet()
     g  = ds.recuperando_jogos_str('Grupo F')
