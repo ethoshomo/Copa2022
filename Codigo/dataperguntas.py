@@ -61,7 +61,7 @@ if __name__ == '__main__':
                     'Romârio',
                     'Bebeto',
                     'Branco',
-                    'Preto',
+                    'Dunga',
                     'Branco']
     perguntas[10] = ['Quantas seleções já venceram a Copa do Mundo?',
                      '7',
