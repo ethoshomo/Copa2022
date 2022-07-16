@@ -4,6 +4,8 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 import pygame
 import random
+
+from Codigo.Quiz import Quiz
 from Grupo import Grupo
 from DataSet import DataSet
 #from Codigo.DataSet import DataSet
@@ -483,7 +485,6 @@ def janela_grupos(a: Atualizacao):
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=2, column=7)
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s1_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=2, column=8)
 
-
     # Dados da Segunda Seleção
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_nome, width=30, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=3, column=1)
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s2_pontos, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=3, column=2)
@@ -516,14 +517,65 @@ def janela_grupos(a: Atualizacao):
     salvar()
     janela2.mainloop()
 
-
 def janela_quizz():
 
-    def verificar_resposta():
-        messagebox.showinfo("Ihuuuu", "Deu certo o botão!!")
+    def verificar_resposta(resposta):
+        print("Resposta marcada:")
+        print(resposta.get())
+        print(type(resposta))
+        print("Gabarito:")
+        print(gabarito.get())
+        print(type(gabarito.get()))
+
+        if str(resposta.get()) == str(gabarito.get()):
+            pontuacao.set(str(int(pontuacao.get())+10))
+        else:
+            print("Tente novamente!!")
+
+        btn_verificar_resposta.configure(state=DISABLED)
+
+    def proxima_pergunta():
+        prox = quizz.proxima_pergunta()
+        btn_verificar_resposta.configure(state=ACTIVE)
+
+        questao.set(prox.get_questao())
+        resposta1.set(prox.get_resposta1())
+        resposta2.set(prox.get_resposta2())
+        resposta3.set(prox.get_resposta3())
+        resposta4.set(prox.get_resposta4())
+        gabarito.set(prox.get_gabarito())
+
+        radiobtn1.configure(value=resposta1.get())
+        radiobtn1.value = resposta1.get()
+
+        radiobtn2.configure(value=resposta2.get())
+        radiobtn2.value = resposta2.get()
+
+        radiobtn3.configure(value=resposta3.get())
+        radiobtn3.value = resposta3.get()
+
+        radiobtn4.configure(value=resposta4.get())
+        radiobtn4.value = resposta4.get()
+
+        print("Proximo Gabarito:")
+        print(prox.get_gabarito())
+
+        radiobtn1.deselect()
+        radiobtn2.deselect()
+        radiobtn3.deselect()
+        radiobtn4.deselect()
+
+        janela2.mainloop()
 
 
-    # Abrir lista de listas aqui
+    quizz = Quiz()
+    pergunta = quizz.proxima_pergunta()
+
+    print(pergunta.get_questao())
+    print(pergunta.get_resposta1())
+    print(pergunta.get_resposta2())
+    print(pergunta.get_resposta3())
+    print(pergunta.get_resposta4())
 
     janela2 = Toplevel()
     janela2.title("SHOW DE BOLA - QUIZZ")
@@ -534,13 +586,23 @@ def janela_quizz():
     janela2.grab_set()
     janela2.resizable(False, False)
 
-    pergunta = StringVar(value="Pergunta para o QUIZZ. Ficou boa a interface? Acho que devo fazer uma pergunta gigantesca para testar todas as possibilidades de erro.")
-    resposta1 = StringVar(value="CLARO!!")
-    resposta2 = StringVar(value="NÃO SEI AINDA!!")
-    resposta3 = StringVar(value="ESTÁ MUITO PROFISSIONAL!! rs")
-    resposta4 = StringVar(value="FICOU HORRÍVEL!!!")
-    pontuacao = str(0)
+    # Declarando variáveis dinâmicas
+    var = StringVar()
+    questao = StringVar()
+    resposta1 = StringVar()
+    resposta2 = StringVar()
+    resposta3 = StringVar()
+    resposta4 = StringVar()
+    gabarito = StringVar()
+    pontuacao = StringVar(value="0")
 
+    # Preenchendo variáveis dinâmicas
+    questao.set(pergunta.get_questao())
+    resposta1.set(pergunta.get_resposta1())
+    resposta2.set(pergunta.get_resposta2())
+    resposta3.set(pergunta.get_resposta3())
+    resposta4.set(pergunta.get_resposta4())
+    gabarito.set(pergunta.get_gabarito())
 
     # Personaliza o background
     bg = ImageTk.PhotoImage(Image.open('imagens/estadio.png').resize((800, 400)))
@@ -561,7 +623,7 @@ def janela_quizz():
     frame_quiz = Frame(janela2, bg="#0E0405")
     frame_quiz.grid_anchor(CENTER)
     frame_quiz.place(relx=0.05, rely=0.2, relwidth=0.9, relheight=0.6)
-    var = IntVar()
+
 
     label_pergunta = Label(frame_quiz,
                            text="PERGUNTA:",
@@ -575,7 +637,7 @@ def janela_quizz():
     label_pergunta.grid(row=0, column=0, sticky=E)
 
     label_questao = Label(frame_quiz,
-                           textvariable=pergunta,
+                           textvariable=questao,
                            font="Verdana 10 bold",
                            bg="#0E0405",
                            fg="white",
@@ -585,13 +647,9 @@ def janela_quizz():
     label_questao.grid(row=0, column=1, sticky=W)
 
     #Opcao 1
-    radiobtn1 = Radiobutton(frame_quiz,
-                            variable=var,
-                            bd=0,
-                            padx=0,
-                            pady=0,
-                            bg="#0E0405",
-                            value=1)
+    radiobtn1 = Radiobutton(frame_quiz, variable=var, bd=0, padx=0, pady=0, bg="#0E0405")
+    radiobtn1.configure(value=resposta1.get())
+    radiobtn1.value = resposta1.get()
     radiobtn1.grid(row=1, column=0, sticky=E)
     label_resposta4 = Label(frame_quiz,
                             textvariable=resposta1,
@@ -608,7 +666,7 @@ def janela_quizz():
                             padx=0,
                             pady=0,
                             bg="#0E0405",
-                            value=2)
+                            value=resposta2.get())
     radiobtn2.grid(row=2, column=0, sticky=E)
     label_resposta4 = Label(frame_quiz,
                             textvariable=resposta2,
@@ -625,7 +683,7 @@ def janela_quizz():
                             padx=0,
                             pady=0,
                             bg="#0E0405",
-                            value=3)
+                            value=resposta3.get())
     radiobtn3.grid(row=3, column=0, sticky=E)
     label_resposta4 = Label(frame_quiz,
                             textvariable=resposta3,
@@ -642,7 +700,7 @@ def janela_quizz():
                             padx=0,
                             pady=0,
                             bg="#0E0405",
-                            value=4)
+                            value=resposta4.get())
     radiobtn4.grid(row=4, column=0, sticky=E)
     label_resposta4 = Label(frame_quiz,
                             textvariable=resposta4,
@@ -652,8 +710,11 @@ def janela_quizz():
                             wraplength=400)
     label_resposta4.grid(row=4, column=1, sticky=W)
 
+    print(var)
+    print(type(var))
+
     # Verificar Resposta
-    btn_avancar = Button(frame_quiz,
+    btn_verificar_resposta = Button(frame_quiz,
                          font="Verdana 10 bold",
                          text="VERIFICAR RESPOSTA",
                          bd=0,
@@ -661,27 +722,37 @@ def janela_quizz():
                          pady=2,
                          bg="#911724",
                          fg="white",
-                         command=lambda: verificar_resposta())
-    btn_avancar.grid(row=6, columnspan=2, padx=2, pady=10)
+                         command=lambda: verificar_resposta(var))
+    btn_verificar_resposta.grid(row=6, columnspan=2, padx=2, pady=10)
 
     # Frame de Rodapé
     frame = Frame(janela2, bg="#0E0405")
     frame.grid_anchor(CENTER)
     frame.place(relx=0.05, rely=0.9, relwidth=0.9)
 
-    # Label Pontuação
-    str_pontuacao = "Pontuacao total: " + pontuacao
-    label_pontuacao = Label(frame,
+    label_pontuacao_str = Label(frame,
                             font="Verdana 8 bold",
-                            text=str_pontuacao,
+                            text="Pontuação total: ",
                             bd=0,
                             padx=1,
                             pady=1,
-                            width=30,
+                            width=20,
                             bg="#0E0405",
                             fg="white",
                             anchor=CENTER)
-    label_pontuacao.grid(row=0, column=0, padx=5)
+    label_pontuacao_str.grid(row=0, column=0, padx=5)
+
+    label_pontuacao = Label(frame,
+                            font="Verdana 8 bold",
+                            textvariable=pontuacao,
+                            bd=0,
+                            padx=1,
+                            pady=1,
+                            width=10,
+                            bg="#0E0405",
+                            fg="white",
+                            anchor=CENTER)
+    label_pontuacao.grid(row=0, column=1, padx=5)
 
     # Botão Próxima Pergunta
     btn_avancar = Button(frame,
@@ -692,8 +763,8 @@ def janela_quizz():
                       pady=2,
                       bg="#911724",
                       fg="white",
-                      command=lambda: quit(janela2))
-    btn_avancar.grid(row=0, column=1, padx=2)
+                      command=lambda: proxima_pergunta())
+    btn_avancar.grid(row=0, column=2, padx=2)
 
     # Botão retornar
     btn_sair = Button(frame,
@@ -705,9 +776,11 @@ def janela_quizz():
                       bg="#911724",
                       fg="white",
                       command=lambda: quit(janela2))
-    btn_sair.grid(row=0, column=2, padx=2)
+    btn_sair.grid(row=0, column=3, padx=2)
 
     janela2.mainloop()
+
+
 def janela_vidente():
     pygame.mixer.init()
     pygame.mixer.music.load("musica/misterio.mp3")
