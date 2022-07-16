@@ -103,48 +103,28 @@ class DataSet():
         
         grupo = Grupo(nome_grupo)
         
-        # # SELEÇÃO 1
-        # grupo.selecao1.att_jogo(jogos[0][0], jogos[0][1])
-        # grupo.selecao1.att_jogo(jogos[2][0], jogos[2][1])
-        # grupo.selecao1.att_jogo(jogos[4][1], jogos[4][0])
-        
-        # # SELEÇÃo 2
-        # grupo.selecao2.att_jogo(jogos[0][1], jogos[0][0])  
-        # grupo.selecao2.att_jogo(jogos[3][1], jogos[3][0])  
-        # grupo.selecao2.att_jogo(jogos[5][0], jogos[5][1])
-        
-        # # SELEÇÃO 3
-        # grupo.selecao3.att_jogo(jogos[1][0], jogos[1][1])
-        # grupo.selecao3.att_jogo(jogos[2][1], jogos[2][0])  
-        # grupo.selecao3.att_jogo(jogos[5][1], jogos[5][0])
-        
-        # # SELEÇÃO 4
-        # grupo.selecao4.att_jogo(jogos[1][1], jogos[1][0])
-        # grupo.selecao4.att_jogo(jogos[3][0], jogos[3][1])  
-        # grupo.selecao4.att_jogo(jogos[4][0], jogos[4][1])  
-        
         # SELEÇÃO 1
-        if '-' not in jogos[0]:
+        if -1 not in jogos[0]:
             grupo.selecao1.att_jogo(jogos[0][0], jogos[0][1])
             grupo.selecao2.att_jogo(jogos[0][1], jogos[0][0])
         
-        if '-' not in jogos[1]:
+        if -1 not in jogos[1]:
             grupo.selecao3.att_jogo(jogos[1][0], jogos[1][1])
             grupo.selecao4.att_jogo(jogos[1][1], jogos[1][0])
         
-        if '-' not in jogos[2]:
+        if -1 not in jogos[2]:
             grupo.selecao1.att_jogo(jogos[2][0], jogos[2][1])
             grupo.selecao3.att_jogo(jogos[2][1], jogos[2][0])  
         
-        if '-' not in jogos[3]:
+        if -1 not in jogos[3]:
             grupo.selecao2.att_jogo(jogos[3][1], jogos[3][0])  
             grupo.selecao4.att_jogo(jogos[3][0], jogos[3][1])  
         
-        if '-' not in jogos[4]:
+        if -1 not in jogos[4]:
             grupo.selecao1.att_jogo(jogos[4][1], jogos[4][0])
             grupo.selecao4.att_jogo(jogos[4][0], jogos[4][1])  
         
-        if '-' not in jogos[5]:
+        if -1 not in jogos[5]:
             grupo.selecao2.att_jogo(jogos[5][0], jogos[5][1])
             grupo.selecao3.att_jogo(jogos[5][1], jogos[5][0])
         
@@ -159,7 +139,7 @@ class DataSet():
     def criando_DataFrame(self, grupo: str):
         nome_grupo = grupo.replace(' ', '')
         
-        inicio = ['-' for i in range(4)]
+        inicio = [-1 for i in range(4)]
         
         data = {self.df_selecoes[nome_grupo][0]:inicio,
                 self.df_selecoes[nome_grupo][1]:inicio,
@@ -172,15 +152,11 @@ class DataSet():
     
 if __name__ == '__main__':
     ds = DataSet()
-    
-    a_jogos = [['-', '-'], ['-', '-'], ['-', '-'], ['-', '-'], ['-', '-'], ['-', '-']]
-    
-    ds.salvando_grupo('GrupoA', a_jogos)
-    
-    d_jogos = ds.recuperando_jogos('GrupoA')
-    
-    ds.recuperando_grupos('GrupoA')
-    
+    a_jogos = [[-1, -1], [-1, -1], [-1, -1], [-1, -1], [-1, -1], [-1, -1]]
+    ds.salvando_grupo('Grupo A', a_jogos)
+    d_jogos = ds.recuperando_jogos('Grupo A')
+    g = ds.recuperando_grupos('Grupo A')
+    g.teste()
     print('Antes:  ', end='')
     print(a_jogos)
     print('Depois: ', end='')
