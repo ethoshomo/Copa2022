@@ -34,21 +34,31 @@ def prever(btn, cx1, cx2, res):
 # JANELAS
 def janela_grupos(a: Atualizacao):
 
-
     # ------------------------------------------------------------------------------------------------------------------
     # Funções auxiliares
+
+    def tratamento_dados(valor):
+        # Verifica valores de entrada
+        if valor.isdigit() and valor != '' and int(valor) >= 0:
+            return int(valor)
+        elif valor == '':
+            return -1
+        else:
+            messagebox.showerror("ERRO", "Somente valores inteiros maiores ou iguais a zero.")
+            return -1
+
     def ajuda():
         messagebox.showinfo("AJUDA", """Para salvar o jogo, é necessário inserir valores válidos (números inteiros
             maiores ou iguais a zero). \nPor outro lado, é necessário observar que 0x0 refere-se a um empate. Caso tenha
             digitado algum valor equivocado, pode-se retirar o resultado digitando "#" nas caixas de entrada.""")
 
     def salvar():
-        resultados = [[resultado11.get(), resultado12.get()],
-                      [resultado21.get(), resultado22.get()],
-                      [resultado31.get(), resultado32.get()],
-                      [resultado41.get(), resultado42.get()],
-                      [resultado51.get(), resultado52.get()],
-                      [resultado61.get(), resultado62.get()]]
+        resultados = [[tratamento_dados(resultado11.get()), tratamento_dados(resultado12.get())],
+                      [tratamento_dados(resultado21.get()), tratamento_dados(resultado22.get())],
+                      [tratamento_dados(resultado31.get()), tratamento_dados(resultado32.get())],
+                      [tratamento_dados(resultado41.get()), tratamento_dados(resultado42.get())],
+                      [tratamento_dados(resultado51.get()), tratamento_dados(resultado52.get())],
+                      [tratamento_dados(resultado61.get()), tratamento_dados(resultado62.get())]]
 
 
         gravar = DataSet()
