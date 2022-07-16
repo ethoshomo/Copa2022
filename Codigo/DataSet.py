@@ -13,30 +13,32 @@ class DataSet():
 
         # Quantos gols a seleção df_selecoes[grupo][1] fez em df_selecoes[grupo][0] e vice-versa 
         # JOGO 1
-        df_jogos.loc[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][0]] = jogos[0][0]
-        df_jogos.loc[self.df_selecoes[nome_grupo][0]][self.df_selecoes[nome_grupo][1]] = jogos[0][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][0]] = jogos[0][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][0]][self.df_selecoes[nome_grupo][1]] = jogos[0][0]
         
         # JOGO 2
-        df_jogos.loc[self.df_selecoes[nome_grupo][3]][self.df_selecoes[nome_grupo][2]] = jogos[1][0]
-        df_jogos.loc[self.df_selecoes[nome_grupo][2]][self.df_selecoes[nome_grupo][3]] = jogos[1][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][3]][self.df_selecoes[nome_grupo][2]] = jogos[1][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][2]][self.df_selecoes[nome_grupo][3]] = jogos[1][0]
         
         # JOGO 3
-        df_jogos.loc[self.df_selecoes[nome_grupo][2]][self.df_selecoes[nome_grupo][0]] = jogos[2][0]
-        df_jogos.loc[self.df_selecoes[nome_grupo][0]][self.df_selecoes[nome_grupo][2]] = jogos[2][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][2]][self.df_selecoes[nome_grupo][0]] = jogos[2][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][0]][self.df_selecoes[nome_grupo][2]] = jogos[2][0]
         
         # JOGO 4
-        df_jogos.loc[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][3]] = jogos[3][0]
-        df_jogos.loc[self.df_selecoes[nome_grupo][3]][self.df_selecoes[nome_grupo][1]] = jogos[3][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][3]] = jogos[3][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][3]][self.df_selecoes[nome_grupo][1]] = jogos[3][0]
         
         # JOGO 5
-        df_jogos.loc[self.df_selecoes[nome_grupo][0]][self.df_selecoes[nome_grupo][3]] = jogos[4][0]
-        df_jogos.loc[self.df_selecoes[nome_grupo][3]][self.df_selecoes[nome_grupo][0]] = jogos[4][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][0]][self.df_selecoes[nome_grupo][3]] = jogos[4][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][3]][self.df_selecoes[nome_grupo][0]] = jogos[4][0]
         
         # JOGO 6
-        df_jogos.loc[self.df_selecoes[nome_grupo][2]][self.df_selecoes[nome_grupo][1]] = jogos[5][0]
-        df_jogos.loc[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][2]] = jogos[5][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][2]][self.df_selecoes[nome_grupo][1]] = jogos[5][1]
+        df_jogos.loc[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][2]] = jogos[5][0]
         
         nome = 'dataset/' + nome_grupo + '.pkl'
+        
+        print(df_jogos)
         
         df_jogos.to_pickle(nome)
     
@@ -72,29 +74,10 @@ class DataSet():
         jogos[5][0] = df_jogos[self.df_selecoes[nome_grupo][2]][self.df_selecoes[nome_grupo][1]] 
         jogos[5][1] = df_jogos[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][2]] 
     
+        print('Retorno jogos ---> :')
+        print(jogos)
+        
         return jogos
-
-#    Grupo A         Grupo B         Grupo C    Grupo D     Grupo E   Grupo F   Grupo G        Grupo H
-# 1    Catar      Inglaterra       Argentina     França     Espanha   Bélgica    Brasil       Portugal
-# 2  Equador             Irã  Arábia Saudita  Austrália  Costa Rica    Canadá    Sérvia           Gana
-# 3  Senegal  Estados Unidos          México  Dinamarca    Alemanha  Marrocos     Suíça        Uruguai
-# 4  Holanda   País de Gales         Polônia    Tunísia       Japão   Croácia  Camarões  Coreia do Sul
-
-# JOGOS:
-# 0 -> 1x2
-# 1 -> 3x4
-# 2 -> 1x3
-# 3 -> 4x2
-# 4 -> 4x1
-# 5 -> 2x3
-
-# JOGOS:                            PONTOS:
-# 0 -> 1x2  Catar   0 x 1 Equador   Catar   -> 0 + 3 + 0 = 3
-# 1 -> 3x4  Senegal 1 x 1 Holanda   Equador -> 3 + 0 + 0 = 3
-# 2 -> 1x3  Catar   2 x 1 Senegal   Senegal -> 1 + 0 + 3 = 4
-# 3 -> 4x2  Holanda 3 x 2 Equador   Holanda -> 1 + 3 + 3 = 7
-# 4 -> 4x1  Holanda 5 x 4 Catar
-# 5 -> 2x3  Equador 4 x 5 Senegal
     
     def recuperando_grupos(self, grupo: str):
         nome_grupo = grupo.replace(' ', '')
@@ -135,7 +118,19 @@ class DataSet():
         grupo.teste()
         
         return grupo
+    
+    def recuperando_jogos_str(self, grupo: str):
+        jogos_int = self.recuperando_jogos(grupo)
         
+        jogos_str = [['',''] for i in range(6)]
+        
+        for i in range(len(jogos_int)):
+            for j in range(2):
+                if jogos_int[i][j] != -1:
+                    jogos_str[i][j] = str(jogos_int[i][j])
+        
+        return jogos_str
+    
     def criando_DataFrame(self, grupo: str):
         nome_grupo = grupo.replace(' ', '')
         

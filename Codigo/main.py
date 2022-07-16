@@ -60,7 +60,8 @@ def janela_grupos(a: Atualizacao):
                       [tratamento_dados(resultado41.get()), tratamento_dados(resultado42.get())],
                       [tratamento_dados(resultado51.get()), tratamento_dados(resultado52.get())],
                       [tratamento_dados(resultado61.get()), tratamento_dados(resultado62.get())]]
-
+        print('-----> Resultados: ', end=' ')
+        print(resultados)
 
         gravar = DataSet()
         
