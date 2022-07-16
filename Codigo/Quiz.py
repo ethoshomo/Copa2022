@@ -35,7 +35,6 @@ class Quiz():
     def teste(self):
         for i in range(8):
             i = self.proxima_pergunta()
-            print(i)
 
 if __name__ == '__main__':
     q = Quiz()

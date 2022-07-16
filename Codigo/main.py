@@ -77,14 +77,10 @@ def janela_grupos(a: Atualizacao):
                       [tratamento_dados(resultado41.get()), tratamento_dados(resultado42.get())],
                       [tratamento_dados(resultado51.get()), tratamento_dados(resultado52.get())],
                       [tratamento_dados(resultado61.get()), tratamento_dados(resultado62.get())]]
-        print('-----> Resultados: ', end=' ')
-        print(resultados)
 
         gravar = DataSet()
         gravar.salvando_grupo(a.grupo_nome.get(), resultados)
         grupo = gravar.recuperando_grupos(a.grupo_nome.get())
-        lista = gravar.recuperando_jogos(a.grupo_nome.get())
-        print(lista)
         grupo.atualizar(a)
 
 
@@ -92,7 +88,6 @@ def janela_grupos(a: Atualizacao):
         novo_grupo = Grupo(novo)
         novo_grupo.atualizar(atual)
         lista = data.recuperando_jogos_str(a.grupo_nome.get())
-        print(lista)
 
         # Recuperando valores para as caixas de entrada
         resultado11.delete(0)
@@ -341,7 +336,6 @@ def janela_grupos(a: Atualizacao):
     img3 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
     img4 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
     Label(jogos, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=linha2, column=0, padx=2)
-    # Tratamento Dinâmico da Imagem
     lbl3 = Label(jogos, bg='white', width=60, justify=LEFT)
     lbl3.configure(image=img3)
     lbl3.image = img3
@@ -351,7 +345,6 @@ def janela_grupos(a: Atualizacao):
     Label(jogos, bg='white', width=2, text='X').grid(row=linha2, column=3)
     resultado22 = Entry(jogos, bg='white', width=3)
     resultado22.grid(row=linha2, column=4, ipadx=2)
-    #Tratamento dinâmico da Imagem
     lbl4 = Label(jogos, bg='white', width=60, justify=RIGHT, image=img4)
     lbl4.configure(image=img4)
     lbl4.image = img4
@@ -526,7 +519,7 @@ def janela_grupos(a: Atualizacao):
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=6)
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=7)
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=8)
-    salvar()
+
     janela2.mainloop()
 
 def janela_quizz():
