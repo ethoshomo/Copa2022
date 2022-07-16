@@ -80,7 +80,7 @@ def perguntas_quiz():
                     'Mineiraço',
                     'Maracanaço',
                     'Maracanaço']
-    perguntas[5] = ['O Brasil é penta campeão mundial, em anos foram seus títulos?',
+    perguntas[5] = ['O Brasil é penta campeão mundial, em que anos foram seus títulos?',
                     '1958 1962 1970 1994 2002',
                     '1950 1966 1978 1998 2002',
                     '1950 1966 1974 1990 2014',
