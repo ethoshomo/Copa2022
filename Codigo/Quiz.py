@@ -4,7 +4,7 @@ from Pergunta import Pergunta
 
 class Quiz():
     def __init__(self):
-        df_perguntas = pd.read_pickle('dataset/perguntas.pkl')
+        df_perguntas = pd.read_pickle('dataset/Perguntas.pkl')
         
         colunas = df_perguntas.shape[1]
 
