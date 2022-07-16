@@ -542,6 +542,9 @@ def janela_quizz():
         # Coleta a próxima pergunta
         prox = quizz.proxima_pergunta()
 
+        if len(quizz.perguntas) == 0:
+            btn_avancar.configure(state=DISABLED)
+
         # Ativa o botão de verificar o gabarito
         btn_verificar_resposta.configure(state=ACTIVE)
 
