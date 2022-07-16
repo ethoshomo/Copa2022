@@ -84,8 +84,8 @@ def perguntas_quiz():
                     '1958 1962 1970 1994 2002',
                     '1950 1966 1978 1998 2002',
                     '1950 1966 1974 1990 2014',
-                    '1958 1962 1970 1994 2002',
-                    '1950 1967 1975 1991 2011']
+                    '1947 1960 1973 2012 2017',
+                    '1958 1962 1970 1994 2002']
     perguntas[6] = ['Na derrota humilhante do Brasil para Alemanha na Copa de 2014 por 7x1, quem marcou o gol brasileiro?',
                     'Neymar Jr.',
                     'Oscar',
@@ -133,7 +133,7 @@ def perguntas_quiz():
     
     df_pergutas.to_pickle('dataset/Perguntas.pkl')
     
-    print(df_pergutas)
+    print(df_pergutas[5])
     
 if __name__ == '__main__':
     nomes = nomes_por_grupo()
