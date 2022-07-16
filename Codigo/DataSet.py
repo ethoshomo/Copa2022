@@ -152,14 +152,16 @@ class DataSet():
     
 if __name__ == '__main__':
     ds = DataSet()
-    a_jogos = [[-1, -1], [-1, -1], [-1, -1], [-1, -1], [-1, -1], [-1, -1]]
-    ds.salvando_grupo('Grupo A', a_jogos)
-    d_jogos = ds.recuperando_jogos('Grupo A')
-    g = ds.recuperando_grupos('Grupo A')
-    g.teste()
-    print('Antes:  ', end='')
-    print(a_jogos)
-    print('Depois: ', end='')
-    print(d_jogos)
-    print()
+    g  = ds.recuperando_jogos('Grupo A')
+    print(g)
+    #a_jogos = [[-1, -1], [-1, -1], [-1, -1], [-1, -1], [-1, -1], [-1, -1]]
+    #ds.salvando_grupo('Grupo A', a_jogos)
+    #d_jogos = ds.recuperando_jogos('Grupo A')
+    #g = ds.recuperando_grupos('Grupo A')
+    #g.teste()
+    #print('Antes:  ', end='')
+    #print(a_jogos)
+    #print('Depois: ', end='')
+    #print(d_jogos)
+    #print()
     

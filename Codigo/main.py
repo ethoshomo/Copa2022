@@ -5,7 +5,8 @@ from PIL import Image, ImageTk
 import pygame
 import random
 from Grupo import Grupo
-from Codigo.DataSet import DataSet
+from DataSet import DataSet
+#from Codigo.DataSet import DataSet
 from Atualizacao import *
 
 
@@ -43,15 +44,15 @@ def janela_grupos(a: Atualizacao):
             digitado algum valor equivocado, pode-se retirar o resultado digitando "#" nas caixas de entrada.""")
 
     def salvar():
-        resultados = [[resultado11.get(), resultado12.get()],
-                      [resultado21.get(), resultado22.get()],
-                      [resultado31.get(), resultado32.get()],
-                      [resultado41.get(), resultado42.get()],
-                      [resultado51.get(), resultado52.get()],
-                      [resultado61.get(), resultado62.get()]]
-
-
+        resultados = [[int(resultado11.get()), int(resultado12.get())],
+                      [int(resultado21.get()), int(resultado22.get())],
+                      [int(resultado31.get()), int(resultado32.get())],
+                      [int(resultado41.get()), int(resultado42.get())],
+                      [int(resultado51.get()), int(resultado52.get())],
+                      [int(resultado61.get()), int(resultado62.get())]]
+        
         gravar = DataSet()
+        
         gravar.salvando_grupo(a.grupo_nome.get(), resultados)
         grupo = gravar.recuperando_grupos(a.grupo_nome.get())
         lista = gravar.recuperando_jogos(a.grupo_nome.get())
