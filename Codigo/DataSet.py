@@ -11,6 +11,8 @@ class DataSet():
         
         df_jogos = self.criando_DataFrame(nome_grupo)
 
+        df_jogos.loc[self.df_selecoes[nome_grupo][0]:self.df_selecoes[nome_grupo][3]]
+        
         # Quantos gols a seleção df_selecoes[grupo][1] fez em df_selecoes[grupo][0] e vice-versa 
         # JOGO 1
         df_jogos[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][0]] = jogos[0][0]
