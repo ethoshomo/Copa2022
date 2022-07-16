@@ -10,7 +10,7 @@ from DataSet import DataSet
 from Atualizacao import *
 
 
-#-----------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 # FUNÇOES AUXILIARES
 
 def quit(uma):
@@ -31,9 +31,12 @@ def prever(btn, cx1, cx2, res):
     pygame.mixer.music.stop()
 
 
-#-----------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 # JANELAS
 def janela_grupos(a: Atualizacao):
+
+    data = DataSet()
+    lista = data.recuperando_jogos_str(a.grupo_nome.get())
 
     # ------------------------------------------------------------------------------------------------------------------
     # Funções auxiliares
@@ -64,30 +67,55 @@ def janela_grupos(a: Atualizacao):
         print(resultados)
 
         gravar = DataSet()
-        
         gravar.salvando_grupo(a.grupo_nome.get(), resultados)
         grupo = gravar.recuperando_grupos(a.grupo_nome.get())
         lista = gravar.recuperando_jogos(a.grupo_nome.get())
         print(lista)
         grupo.atualizar(a)
 
-        # resultado11['text'] = lista[0][0]
-        # resultado12['text'] = lista[0][1]
-        # resultado21['text'] = lista[1][0]
-        # resultado22['text'] = lista[1][1]
-        # resultado31['text'] = lista[2][0]
-        # resultado32['text'] = lista[2][1]
-        # resultado41['text'] = lista[3][0]
-        # resultado42['text'] = lista[3][1]
-        # resultado51['text'] = lista[4][0]
-        # resultado52['text'] = lista[4][1]
-        # resultado61['text'] = lista[5][0]
-        # resultado62['text'] = lista[5][1]
-
 
     def atualizar_grupo(atual, novo):
         novo_grupo = Grupo(novo)
         novo_grupo.atualizar(atual)
+        lista = data.recuperando_jogos_str(a.grupo_nome.get())
+        print(lista)
+
+        # Recuperando valores para as caixas de entrada
+        resultado11.delete(0)
+        resultado11.insert(0, lista[0][0])
+
+        resultado12.delete(0)
+        resultado12.insert(0, lista[0][1])
+
+        resultado21.delete(0)
+        resultado21.insert(0, lista[1][0])
+
+        resultado22.delete(0)
+        resultado22.insert(0, lista[1][1])
+
+        resultado31.delete(0)
+        resultado31.insert(0, lista[2][0])
+
+        resultado32.delete(0)
+        resultado32.insert(0, lista[2][1])
+
+        resultado41.delete(0)
+        resultado41.insert(0, lista[3][0])
+
+        resultado42.delete(0)
+        resultado42.insert(0, lista[3][1])
+
+        resultado51.delete(0)
+        resultado51.insert(0, lista[4][0])
+
+        resultado52.delete(0)
+        resultado52.insert(0, lista[4][1])
+
+        resultado61.delete(0)
+        resultado61.insert(0, lista[5][1])
+
+        resultado62.delete(0)
+        resultado62.insert(0, lista[5][1])
 
         img1 = ImageTk.PhotoImage(Image.open(atual.s1_bandeira.get()).resize((50, 30)))
         lbl1.configure(image=img1)
@@ -171,7 +199,7 @@ def janela_grupos(a: Atualizacao):
                       pady=2,
                       bg="#405E38",
                       fg="white",
-                      command=lambda: atualizar_grupo(a, 'GrupoA'))
+                      command=lambda: atualizar_grupo(a, 'Grupo A'))
     btn_grupo_a.grid(row=0, column=0, padx=1)
 
     btn_grupo_b = Button(frame,
@@ -182,7 +210,7 @@ def janela_grupos(a: Atualizacao):
                         pady=2,
                         bg="#405E38",
                         fg="white",
-                        command=lambda: atualizar_grupo(a, 'GrupoB'))
+                        command=lambda: atualizar_grupo(a, 'Grupo B'))
     btn_grupo_b.grid(row=0, column=1, padx=1)
 
     btn_grupo_c = Button(frame,
@@ -193,7 +221,7 @@ def janela_grupos(a: Atualizacao):
                         pady=2,
                         bg="#405E38",
                         fg="white",
-                        command=lambda: atualizar_grupo(a, 'GrupoC'))
+                        command=lambda: atualizar_grupo(a, 'Grupo C'))
     btn_grupo_c.grid(row=0, column=2, padx=1)
 
     btn_grupo_d = Button(frame,
@@ -204,7 +232,7 @@ def janela_grupos(a: Atualizacao):
                         pady=2,
                         bg="#405E38",
                         fg="white",
-                        command=lambda: atualizar_grupo(a, 'GrupoD'))
+                        command=lambda: atualizar_grupo(a, 'Grupo D'))
     btn_grupo_d.grid(row=0, column=3, padx=1)
 
     btn_grupo_e = Button(frame,
@@ -215,7 +243,7 @@ def janela_grupos(a: Atualizacao):
                         pady=2,
                         bg="#405E38",
                         fg="white",
-                        command=lambda: atualizar_grupo(a, 'GrupoE'))
+                        command=lambda: atualizar_grupo(a, 'Grupo E'))
     btn_grupo_e.grid(row=0, column=4, padx=1)
 
     btn_grupo_f = Button(frame,
@@ -226,7 +254,7 @@ def janela_grupos(a: Atualizacao):
                         pady=2,
                         bg="#405E38",
                         fg="white",
-                        command=lambda: atualizar_grupo(a, 'GrupoF'))
+                        command=lambda: atualizar_grupo(a, 'Grupo F'))
     btn_grupo_f.grid(row=0, column=5, padx=1)
 
     btn_grupo_g = Button(frame,
@@ -237,7 +265,7 @@ def janela_grupos(a: Atualizacao):
                         pady=2,
                         bg="#405E38",
                         fg="white",
-                        command=lambda: atualizar_grupo(a, 'GrupoG'))
+                        command=lambda: atualizar_grupo(a, 'Grupo G'))
     btn_grupo_g.grid(row=0, column=6, padx=1)
 
     btn_grupo_h = Button(frame,
@@ -248,7 +276,7 @@ def janela_grupos(a: Atualizacao):
                         pady=2,
                         bg="#405E38",
                         fg="white",
-                        command=lambda: atualizar_grupo(a, 'GrupoH'))
+                        command=lambda: atualizar_grupo(a, 'Grupo H'))
     btn_grupo_h.grid(row=0, column=7, padx=1)
 
     btn_retornar = Button(frame,
@@ -397,11 +425,25 @@ def janela_grupos(a: Atualizacao):
     Label(jogos, bg='white', textvariable=a.s3_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=linha6, column=6, padx=2)
 
     # Salvar informações
-    btn_salvar = Button(jogos, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38", fg="white", command=salvar)
-    btn_salvar.grid(row=7, column=1, columnspan=2, padx=1)
+    btn_salvar = Button(jogos, font="Verdana 10 bold", text="ATUALIZAR TABELA", bd=0, padx=2, pady=2, bg="#405E38", fg="white", command=salvar)
+    btn_salvar.grid(row=7, column=1, columnspan=3, padx=1)
     # Ajuda
     btn_ajuda = Button(jogos, font="Verdana 10 bold", text="AJUDA", bd=0, padx=2, pady=2, bg="#405E38", fg="white", command=ajuda)
     btn_ajuda.grid(row=7, column=4, columnspan=2, padx=1)
+
+    # Recuperando valores para as caixas de entrada
+    resultado11.insert(0, lista[0][0])
+    resultado12.insert(0, lista[0][1])
+    resultado21.insert(0, lista[1][0])
+    resultado22.insert(0, lista[1][1])
+    resultado31.insert(0, lista[2][0])
+    resultado32.insert(0, lista[2][1])
+    resultado41.insert(0, lista[3][0])
+    resultado42.insert(0, lista[3][1])
+    resultado51.insert(0, lista[4][0])
+    resultado52.insert(0, lista[4][1])
+    resultado61.insert(0, lista[5][1])
+    resultado62.insert(0, lista[5][1])
 
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -471,6 +513,7 @@ def janela_grupos(a: Atualizacao):
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_gols_favoraveis, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=6)
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_gols_contrarios, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=7)
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_saldo_gols, width=6, padx=2, justify=LEFT, font="Verdana 9 bold").grid(row=5, column=8)
+    salvar()
     janela2.mainloop()
 
 
