@@ -17,7 +17,7 @@ class Atualizacao:
         self.s1_gols_favoraveis = StringVar(value=g.selecao1.gols_marcados)
         self.s1_gols_contrarios = StringVar(value=g.selecao1.gols_sofridos)
         self.s1_saldo_gols = StringVar(value=g.selecao1.saldo_de_gols)
-        self.s1_colocacao = g.selecao1.colocacao
+        self.s1_colocacao = StringVar(value=g.selecao1.colocacao)
 
         # Relativas à Seleção 2
         self.s2_nome = StringVar(value=g.selecao2.nome)
@@ -29,7 +29,7 @@ class Atualizacao:
         self.s2_gols_favoraveis = StringVar(value=g.selecao2.gols_marcados)
         self.s2_gols_contrarios = StringVar(value=g.selecao2.gols_sofridos)
         self.s2_saldo_gols = StringVar(value=g.selecao2.saldo_de_gols)
-        self.s2_colocacao = g.selecao2.colocacao
+        self.s2_colocacao = StringVar(value=g.selecao2.colocacao)
 
         # Relativas à Seleção 3
         self.s3_nome = StringVar(value=g.selecao3.nome)
@@ -41,7 +41,7 @@ class Atualizacao:
         self.s3_gols_favoraveis = StringVar(value=g.selecao3.gols_marcados)
         self.s3_gols_contrarios = StringVar(value=g.selecao3.gols_sofridos)
         self.s3_saldo_gols = StringVar(value=g.selecao3.saldo_de_gols)
-        self.s3_colocacao = g.selecao3.colocacao
+        self.s3_colocacao = StringVar(value=g.selecao3.colocacao)
 
         # Relativas à Seleção 4
         self.s4_nome = StringVar(value=g.selecao4.nome)
@@ -53,7 +53,7 @@ class Atualizacao:
         self.s4_gols_favoraveis = StringVar(value=g.selecao4.gols_marcados)
         self.s4_gols_contrarios = StringVar(value=g.selecao4.gols_sofridos)
         self.s4_saldo_gols = StringVar(value=g.selecao4.saldo_de_gols)
-        self.s4_colocacao = g.selecao4.colocacao
+        self.s4_colocacao = StringVar(value=g.selecao4.colocacao)
 
 
 class AtualizacaoResultados:
