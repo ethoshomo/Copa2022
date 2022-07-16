@@ -54,7 +54,22 @@ def janela_grupos(a: Atualizacao):
         gravar = DataSet()
         gravar.salvando_grupo(a.grupo_nome.get(), resultados)
         grupo = gravar.recuperando_grupos(a.grupo_nome.get())
+        lista = gravar.recuperando_jogos(a.grupo_nome.get())
+        print(lista)
         grupo.atualizar(a)
+
+        # resultado11['text'] = lista[0][0]
+        # resultado12['text'] = lista[0][1]
+        # resultado21['text'] = lista[1][0]
+        # resultado22['text'] = lista[1][1]
+        # resultado31['text'] = lista[2][0]
+        # resultado32['text'] = lista[2][1]
+        # resultado41['text'] = lista[3][0]
+        # resultado42['text'] = lista[3][1]
+        # resultado51['text'] = lista[4][0]
+        # resultado52['text'] = lista[4][1]
+        # resultado61['text'] = lista[5][0]
+        # resultado62['text'] = lista[5][1]
 
 
     def atualizar_grupo(atual, novo):
@@ -447,12 +462,12 @@ def janela_grupos(a: Atualizacao):
 
 
 def janela_quizz():
-    pergunta = str("Pergunta para o QUIZZ. Ficou boa a interface? Acho que devo fazer uma pergunta gigantesca para testar todas as possibilidades de erro.")
-    resposta1 = str("CLARO!!")
-    resposta2 = str("NÃO SEI AINDA!!")
-    resposta3 = str("ESTÁ MUITO PROFISSIONAL!! rs")
-    resposta4 = str("FICOU HORRÍVEL!!!")
-    pontuacao = str(10)
+
+    def verificar_resposta():
+        messagebox.showinfo("Ihuuuu", "Deu certo o botão!!")
+
+
+    # Abrir lista de listas aqui
 
     janela2 = Toplevel()
     janela2.title("SHOW DE BOLA - QUIZZ")
@@ -462,6 +477,14 @@ def janela_quizz():
     janela2.focus_force()
     janela2.grab_set()
     janela2.resizable(False, False)
+
+    pergunta = StringVar(value="Pergunta para o QUIZZ. Ficou boa a interface? Acho que devo fazer uma pergunta gigantesca para testar todas as possibilidades de erro.")
+    resposta1 = StringVar(value="CLARO!!")
+    resposta2 = StringVar(value="NÃO SEI AINDA!!")
+    resposta3 = StringVar(value="ESTÁ MUITO PROFISSIONAL!! rs")
+    resposta4 = StringVar(value="FICOU HORRÍVEL!!!")
+    pontuacao = str(0)
+
 
     # Personaliza o background
     bg = ImageTk.PhotoImage(Image.open('imagens/estadio.png').resize((800, 400)))
@@ -496,7 +519,7 @@ def janela_quizz():
     label_pergunta.grid(row=0, column=0, sticky=E)
 
     label_questao = Label(frame_quiz,
-                           text=pergunta,
+                           textvariable=pergunta,
                            font="Verdana 10 bold",
                            bg="#0E0405",
                            fg="white",
@@ -515,7 +538,7 @@ def janela_quizz():
                             value=1)
     radiobtn1.grid(row=1, column=0, sticky=E)
     label_resposta4 = Label(frame_quiz,
-                            text=resposta1,
+                            textvariable=resposta1,
                             font="Verdana 10 bold",
                             bg="#0E0405",
                             fg="white",
@@ -532,7 +555,7 @@ def janela_quizz():
                             value=2)
     radiobtn2.grid(row=2, column=0, sticky=E)
     label_resposta4 = Label(frame_quiz,
-                            text=resposta2,
+                            textvariable=resposta2,
                             font="Verdana 10 bold",
                             bg="#0E0405",
                             fg="white",
@@ -549,7 +572,7 @@ def janela_quizz():
                             value=3)
     radiobtn3.grid(row=3, column=0, sticky=E)
     label_resposta4 = Label(frame_quiz,
-                            text=resposta3,
+                            textvariable=resposta3,
                             font="Verdana 10 bold",
                             bg="#0E0405",
                             fg="white",
@@ -566,7 +589,7 @@ def janela_quizz():
                             value=4)
     radiobtn4.grid(row=4, column=0, sticky=E)
     label_resposta4 = Label(frame_quiz,
-                            text=resposta4,
+                            textvariable=resposta4,
                             font="Verdana 10 bold",
                             bg="#0E0405",
                             fg="white",
@@ -582,7 +605,7 @@ def janela_quizz():
                          pady=2,
                          bg="#911724",
                          fg="white",
-                         command=lambda: quit(janela2))
+                         command=lambda: verificar_resposta())
     btn_avancar.grid(row=6, columnspan=2, padx=2, pady=10)
 
     # Frame de Rodapé
