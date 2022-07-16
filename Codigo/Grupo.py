@@ -1,13 +1,11 @@
-from Atualizacao import *
-#from Codigo.Atualizacao import Atualizacao
+from Atualizacao import Atualizacao
 import pandas as pd
-#from Codigo.Selecao import Selecao
 from Selecao import Selecao
 
 class Grupo(Selecao):
     def __init__(self, grupo: str):
         nome_grupo = grupo.replace(' ', '')
-        
+
         df_selecoes   = pd.read_pickle('dataset/Selecoes.plk')
         self.selecao1 = Selecao(df_selecoes[nome_grupo][0])
         self.selecao2 = Selecao(df_selecoes[nome_grupo][1])
@@ -15,7 +13,7 @@ class Grupo(Selecao):
         self.selecao4 = Selecao(df_selecoes[nome_grupo][3])
 
         self.nome_grupo = grupo
-        
+
         self.selecao1.set_colocacao(2)
         self.selecao2.set_colocacao(3)
         self.selecao3.set_colocacao(4)
@@ -43,7 +41,7 @@ class Grupo(Selecao):
     def atualizar(self, atualizar: Atualizacao):
         # Atualizar nome do Grupo
         atualizar.grupo_nome.set(self.nome_grupo)
-        
+
         # Atualizando Selecao 1
         atualizar.s1_nome.set(self.selecao1.nome)
         atualizar.s1_bandeira.set(self.selecao1.bandeira)
@@ -54,8 +52,7 @@ class Grupo(Selecao):
         atualizar.s1_gols_favoraveis.set(self.selecao1.gols_marcados)
         atualizar.s1_gols_contrarios.set(self.selecao1.gols_sofridos)
         atualizar.s1_saldo_gols.set(self.selecao1.saldo_de_gols)
-        atualizar.s1_colocacao = self.selecao1.colocacao
-        
+
         # Atualizando Selecao 2
         atualizar.s2_nome.set(self.selecao2.nome)
         atualizar.s2_bandeira.set(self.selecao2.bandeira)
@@ -66,8 +63,7 @@ class Grupo(Selecao):
         atualizar.s2_gols_favoraveis.set(self.selecao2.gols_marcados)
         atualizar.s2_gols_contrarios.set(self.selecao2.gols_sofridos)
         atualizar.s2_saldo_gols.set(self.selecao2.saldo_de_gols)
-        atualizar.s2_colocacao = self.selecao2.colocacao
-        
+
         # Atualizando Selecao 3
         atualizar.s3_nome.set(self.selecao3.nome)
         atualizar.s3_bandeira.set(self.selecao3.bandeira)
@@ -78,8 +74,7 @@ class Grupo(Selecao):
         atualizar.s3_gols_favoraveis.set(self.selecao3.gols_marcados)
         atualizar.s3_gols_contrarios.set(self.selecao3.gols_sofridos)
         atualizar.s3_saldo_gols.set(self.selecao3.saldo_de_gols)
-        atualizar.s3_colocacao = self.selecao3.colocacao
-        
+
         # Atualizando Selecao 4
         atualizar.s4_nome.set(self.selecao4.nome)
         atualizar.s4_bandeira.set(self.selecao4.bandeira)
@@ -90,7 +85,7 @@ class Grupo(Selecao):
         atualizar.s4_gols_favoraveis.set(self.selecao4.gols_marcados)
         atualizar.s4_gols_contrarios.set(self.selecao4.gols_sofridos)
         atualizar.s4_saldo_gols.set(self.selecao4.saldo_de_gols)
-        atualizar.s4_colocacao = self.selecao4.colocacao
+
 
 if __name__ == "__main__":
     gA = Grupo('Grupo A')

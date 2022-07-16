@@ -1,5 +1,5 @@
-#from tkinter import StringVar
-#from Grupo import *
+from tkinter import StringVar
+from Grupo import *
 
 class Atualizacao:
 

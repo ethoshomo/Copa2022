@@ -51,11 +51,11 @@ class Selecao():
     def get_bandeira(self):
         return self.bandeira
 
-    def att_gols_marcados(self, gols_marcados: int):
-        self.gols_marcados += gols_marcados
+    def att_gols_marcados(self, gols_marcados):
+        self.gols_marcados += int(gols_marcados)
 
-    def att_gols_sofridos(self, gols_sofridos: int):
-        self.gols_sofridos += gols_sofridos
+    def att_gols_sofridos(self, gols_sofridos):
+        self.gols_sofridos += int(gols_sofridos)
 
     def att_jogo(self, gols_favoraveis, gols_contra):
         # Atualiza dados da Tabela
@@ -72,13 +72,13 @@ class Selecao():
         elif gols_contra > gols_favoraveis:
             self.derrotas += 1
 
-        self.saldo_de_gols += gols_favoraveis - gols_contra
+        self.saldo_de_gols += int(gols_favoraveis) - int(gols_contra)
 
         # Pontos Ganhos
         self.att_pontos()
 
     def att_pontos(self):
-        self.set_pontos(self.get_vitorias()*3+self.get_empates()*1)
+        self.set_pontos(int(self.get_vitorias())*3+int(self.get_empates())*1)
 
     def __str__(self) -> str:
         s  = str(self.nome) + ' saldo de gols: ' + str(self.saldo_de_gols) + ' pontos: ' + str(self.pontos) + ' colocação: ' + str(self.colocacao)
