@@ -1,5 +1,5 @@
 import pandas as pd
-
+import os
 from Grupo import Grupo
 
 class DataSet():
@@ -42,8 +42,18 @@ class DataSet():
         
         df_jogos.to_pickle(nome)
     
+    def cria_arq(self, grupo: str):
+        nome_grupo = grupo.replace(' ', '')
+        nome_data  = 'dataset/' + nome_grupo + '.pkl'
+        
+        if not os.path.exists(nome_data):
+            df = self.criando_DataFrame(grupo) 
+            df.to_pickle(nome_data)    
+    
     def recuperando_jogos(self, grupo: str):
         nome_grupo = grupo.replace(' ', '')
+        
+        self.cria_arq(grupo)
         
         jogos = [['-','-'] for i in range(6)]
         nome = 'dataset/' + nome_grupo + '.pkl'
@@ -74,7 +84,7 @@ class DataSet():
         jogos[5][0] = df_jogos[self.df_selecoes[nome_grupo][2]][self.df_selecoes[nome_grupo][1]] 
         jogos[5][1] = df_jogos[self.df_selecoes[nome_grupo][1]][self.df_selecoes[nome_grupo][2]] 
     
-        print('Retorno jogos ---> :')
+        print('Retorno jogos int ---> : ', end='')
         print(jogos)
         
         return jogos
@@ -129,6 +139,9 @@ class DataSet():
                 if jogos_int[i][j] != -1:
                     jogos_str[i][j] = str(jogos_int[i][j])
         
+        print('Retorno jogos str ---> : ', end='')
+        print(jogos_str)     
+        
         return jogos_str
     
     def criando_DataFrame(self, grupo: str):
@@ -147,16 +160,6 @@ class DataSet():
     
 if __name__ == '__main__':
     ds = DataSet()
-    g  = ds.recuperando_jogos('Grupo A')
-    print(g)
-    #a_jogos = [[-1, -1], [-1, -1], [-1, -1], [-1, -1], [-1, -1], [-1, -1]]
-    #ds.salvando_grupo('Grupo A', a_jogos)
-    #d_jogos = ds.recuperando_jogos('Grupo A')
-    #g = ds.recuperando_grupos('Grupo A')
-    #g.teste()
-    #print('Antes:  ', end='')
-    #print(a_jogos)
-    #print('Depois: ', end='')
-    #print(d_jogos)
-    #print()
+    g  = ds.recuperando_jogos_str('Grupo F')
+    
     
