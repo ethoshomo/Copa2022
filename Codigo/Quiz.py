@@ -15,27 +15,23 @@ import pandas as pd
 from Pergunta import Pergunta
 
 class Quiz():
+    # Faz a leitura de todas as perguntas e inicia os objetos 
+    # do tipo pergunta, que contém uma questão, 4 resposta e 
+    # um gabarito
     def __init__(self):
         df_perguntas = pd.read_pickle('dataset/Perguntas.pkl')
 
-        colunas = df_perguntas.shape[1]
+        colunas = df_perguntas.shape[1] # Número de perguntas
 
         self.perguntas = []
 
-        for i in range(colunas):
+        for i in range(colunas): # Adiciona os objetos numa lista
             self.perguntas.append(Pergunta(df_perguntas[i]))
 
-        random.shuffle(self.perguntas)
+        random.shuffle(self.perguntas) # Mudança da ordem
 
         self.pontuacao = 0
 
+    # Retira uma pergunta para não houver repetição
     def proxima_pergunta(self):
         return self.perguntas.pop(0)
-
-    def teste(self):
-        for i in range(8):
-            i = self.proxima_pergunta()
-
-if __name__ == '__main__':
-    q = Quiz()
-    q.teste()

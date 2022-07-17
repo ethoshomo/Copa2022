@@ -17,7 +17,7 @@ from PIL import Image, ImageTk
 import pygame
 import random
 
-from Codigo.Quiz import Quiz
+#from Codigo.Quiz import Quiz
 from Grupo import Grupo
 from DataSet import DataSet
 from Atualizacao import *
@@ -856,7 +856,7 @@ def janela_sobre():
 
 
 # Criação do Grupo Inicial que será usado na opção Grupos
-g_inicial = Grupo('GrupoA')
+g_inicial = Grupo('Grupo A')
 
 # Criação da Janela do Menu e suas Configurações
 janela = Tk()

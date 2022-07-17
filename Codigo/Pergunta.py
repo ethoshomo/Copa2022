@@ -11,6 +11,7 @@ DISCENTES:
     PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
 """
 class Pergunta():
+    # Incia o objeto pergunta com seus repectivas informações
     def __init__(self, campos: list):
         self.questao   = campos[0]
         self.resposta1 = campos[1]
@@ -36,7 +37,3 @@ class Pergunta():
 
     def get_gabarito(self):
         return self.gabarito
-
-    def __str__(self):
-        s = self.get_questao() + ' ---> ' + self.get_gabarito()
-        return s

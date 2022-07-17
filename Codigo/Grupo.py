@@ -15,36 +15,40 @@ import pandas as pd
 from Selecao import Selecao
 
 class Grupo(Selecao):
+    # Inicia um grupo com as seleções contidas nele
     def __init__(self, grupo: str):
-        nome_grupo = grupo.replace(' ', '')
+        nome_grupo = grupo.replace(' ', '') # Formatação
 
+        # A partir do nome do grupo, acessa as seleções contida
+        # nele e cria os objetos do tipo seleção com seus nomes
         df_selecoes   = pd.read_pickle('dataset/Selecoes.plk')
         self.selecao1 = Selecao(df_selecoes[nome_grupo][0])
         self.selecao2 = Selecao(df_selecoes[nome_grupo][1])
         self.selecao3 = Selecao(df_selecoes[nome_grupo][2])
         self.selecao4 = Selecao(df_selecoes[nome_grupo][3])
 
-        self.nome_grupo = grupo
+        print(grupo)
+        self.nome_grupo = grupo # Nome do grupo com ' '
 
+        # Inicia as colocações das seleções na tabela
         self.selecao1.set_colocacao(1)
         self.selecao2.set_colocacao(2)
         self.selecao3.set_colocacao(3)
         self.selecao4.set_colocacao(4)
 
-    def teste(self):
-        print(self.selecao1)
-        print(self.selecao2)
-        print(self.selecao3)
-        print(self.selecao4)
-        print()
-
+    # A partir dos dados das seleções, faz a ordenação das colocações no grupo
+    # segundo a ordem estabeleciada pela classificação da FIFA, que segue a 
+    # seguinte prioridade: pontos, saldo de gols e vitórias
     def organizando_grupos(self):
+        # Cria lista para ser ordenada
         lista_grupos = [self.selecao1, self.selecao2, self.selecao3, self.selecao4]
 
+        # Ordena os grupos com a ordem de prioridae
         lista_grupos.sort(key=lambda x: x.vitorias     , reverse=True)
         lista_grupos.sort(key=lambda x: x.saldo_de_gols, reverse=True)
         lista_grupos.sort(key=lambda x: x.pontos       , reverse=True)
 
+        # Seta a colocação da seleção com a posição dela no vetor
         self.selecao1.set_colocacao(lista_grupos.index(self.selecao1)+1)
         self.selecao2.set_colocacao(lista_grupos.index(self.selecao2)+1)
         self.selecao3.set_colocacao(lista_grupos.index(self.selecao3)+1)
@@ -104,25 +108,3 @@ class Grupo(Selecao):
         atualizar.s4_gols_contrarios.set(self.selecao4.gols_sofridos)
         atualizar.s4_saldo_gols.set(self.selecao4.saldo_de_gols)
         atualizar.s4_colocacao.set(self.selecao4.colocacao)
-
-
-if __name__ == "__main__":
-    gA = Grupo('Grupo A')
-    gA.teste()
-    gA.selecao1.att_jogo(2,1)
-    gA.selecao2.att_jogo(1,2)
-    gA.organizando_grupos()
-    gA.teste()
-
-
-    gB = Grupo('Grupo B')
-    gB.teste()
-
-    gB = Grupo('Grupo C')
-    gB.teste()
-
-    gC = Grupo('Grupo D')
-    gC.teste()
-
-    gC = Grupo('Grupo E')
-    gC.teste()

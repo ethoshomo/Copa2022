@@ -74,7 +74,7 @@ def perguntas_quiz():
                     'Miroslav Klose',
                     'Cristiano Ronaldo',
                     'Miroslav Klose']
-    perguntas[2] = ['"A mão de deus", é um gol histótico da Copa do Mundo, Maradona marcou esse gol contra a seleção:',
+    perguntas[2] = ['"A mão de deus", é um gol histótico da Copa do Mundo, Maradona marcou esse gol contra qual seleção?',
                     'Inglaterra',
                     'Brasil',
                     'Itália',
@@ -86,7 +86,7 @@ def perguntas_quiz():
                     'Espanhã',
                     'Senegal',
                     'África do Sul']
-    perguntas[4] = ['Em 1950 a seleção barsileira buscava seu primiero campeonato, porém sofreu uma derrtoa, em casa, por 2x1 para a seleção uruguaia, este episódio é conhecido como:',
+    perguntas[4] = ['Em 1950 a seleção barsileira buscava seu primiero campeonato, porém sofreu uma derrota, em casa, por 2x1 para a seleção uruguaia, este episódio é conhecido como?',
                     'A derrota',
                     'A derrocada',
                     'Mineiraço',
