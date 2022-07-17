@@ -27,7 +27,6 @@ class Grupo(Selecao):
         self.selecao3 = Selecao(df_selecoes[nome_grupo][2])
         self.selecao4 = Selecao(df_selecoes[nome_grupo][3])
 
-        print(grupo)
         self.nome_grupo = grupo # Nome do grupo com ' '
 
         # Inicia as colocações das seleções na tabela
