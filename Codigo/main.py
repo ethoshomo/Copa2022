@@ -18,6 +18,7 @@ import pygame
 import random
 
 #from Codigo.Quiz import Quiz
+from Quiz import Quiz
 from Grupo import Grupo
 from DataSet import DataSet
 from Atualizacao import *
