@@ -57,7 +57,7 @@ def janela_grupos():
                                      "resultados somente serão salvos se a tabela for atualizada.\nb) os placares "
                                      "somente aceitam valores de números inteiros maiores ou iguais a zero.")
 
-    # Função atualizar tabela realiza a gravação dos resultados inseridos pelo usuário e atualiza  a tabela do grupo.
+    # Função atualizar tabela realiza a gravação dos resultados inseridos pelo usuário e atualiza a tabela do grupo.
     def atualizar_tabela():
         resultados = [[tratamento_dados(resultado11.get()), tratamento_dados(resultado12.get())],
                       [tratamento_dados(resultado21.get()), tratamento_dados(resultado22.get())],
