@@ -145,13 +145,7 @@ def perguntas_quiz():
 
     df_pergutas.to_pickle('dataset/Perguntas.pkl')
 
-    print(df_pergutas[5])
+    print(df_pergutas[7])
 
 if __name__ == '__main__':
-    nomes = nomes_por_grupo()
-
-    print(nomes)
-
-    t = pd.read_pickle('dataset/Selecoes.plk')
-
     perguntas_quiz()
