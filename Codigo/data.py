@@ -14,6 +14,18 @@ from click import password_option
 from Grupo import Grupo
 import pandas as pd
 
+
+
+"""
+                            OBSERVAÇÕES RELEVANTES
+
+Este arquivo teve a utilidade de criar um banco de dados relacionado às seleções e às perguntas do
+Quizz. Desse modo, os arquivos Perguntas.pkl e Selecoes.plk não devem ser deletados, sob pena de
+ocorrência de erros na execução do programa. Caso tenham sido removidos por qualquer motivo,
+basta executar esse arquivo para que sejam criados novos arquivos.
+
+"""
+
 def criando_pkl_jogos(nomes):
     lista_zeros = ['---' for i in range(4)]
 
