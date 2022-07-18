@@ -550,7 +550,11 @@ def janela_quizz():
 
         # Verifica igualdade
         if str(resposta.get()) == str(gabarito.get()):
+            messagebox.showinfo("CERTA RESPOSTA!!", "Você acertou!")
             pontuacao.set(str(int(pontuacao.get()) + 10))
+        else:
+            messagebox.showerror("RESPOSTA ERRADA!!", "Tente novamente!")
+
 
         # Desabilita botão de verificar
         btn_verificar_resposta.configure(state=DISABLED)
