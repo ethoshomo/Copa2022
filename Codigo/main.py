@@ -26,8 +26,22 @@ from Atualizacao import *
 
 # ----------------------------------------------------------------------------------------------------------------------
 # FUNÇOES AUXILIARES COMUNS A TODAS AS JANELAS
+# Função que fecha janelas
 def quit(uma):
     uma.destroy()
+
+
+# Função que verifica se as informações dos placares são consistentes
+def tratamento_dados(valor):
+    # Verifica valores de entrada
+    if valor.isdigit() and valor != '' and int(valor) >= 0:
+        return int(valor)
+    elif valor == '':
+        return -1
+    else:
+        messagebox.showerror("ERRO", "Por favor, digite somente valores inteiros maiores"
+                                     " ou iguais a zero.") # parent=janela2
+        return -1
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -39,18 +53,6 @@ def janela_grupos():
 
     # ------------------------------------------------------------------------------------------------------------------
     # Funções auxiliares
-
-    # Função que verifica se as informações dos placares são consistentes
-    def tratamento_dados(valor):
-        # Verifica valores de entrada
-        if valor.isdigit() and valor != '' and int(valor) >= 0:
-            return int(valor)
-        elif valor == '':
-            return -1
-        else:
-            messagebox.showerror("ERRO", "Por favor, digite somente valores inteiros maiores"
-                                         " ou iguais a zero.", parent=janela2)
-            return -1
 
     # Função que exibe uma caixa de informações de ajuda para orientar o usuário.
     def ajuda():
@@ -168,7 +170,7 @@ def janela_grupos():
     # -------------------------------------------------------------------------------------------------------------------
     # Cria a janela de Fase de Grupos
     janela2 = Toplevel()
-    janela2.title("SHOW DE BOLA - QUIZZ")
+    janela2.title("SHOW DE BOLA - GRUPOS")
     janela2.configure(background='#405E38')
     janela2.geometry("800x500+200+200")
     janela2.transient(janela)
@@ -232,7 +234,7 @@ def janela_grupos():
 
     # Label que exibe o nome do Grupo
     Label(jogos, padx=2, justify=CENTER, textvariable=a.grupo_nome, font="Verdana 12 bold", bg="white",
-          fg="#405E38", ).grid(row=0, column=0, columnspan=7, padx=2)
+          fg="#405E38").grid(row=0, column=0, columnspan=7, padx=2)
 
     # Cada linha existente no frame representa um jogo e utiliza os seguintes widgets para exibir informações:
     #   Label: informar nome da seleção 1
@@ -252,7 +254,7 @@ def janela_grupos():
     img1 = ImageTk.PhotoImage(Image.open(a.s1_bandeira.get()).resize((50, 30)))
     img2 = ImageTk.PhotoImage(Image.open(a.s2_bandeira.get()).resize((50, 30)))
 
-    # Label que exibe o nome da eeleção 1 (possui propriedades dinâmicas)
+    # Label que exibe o nome da Seleção 1 (possui propriedades dinâmicas)
     Label(jogos, bg='white', textvariable=a.s1_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=1,
                                                                                                          column=0,
                                                                                                          padx=2)
@@ -541,6 +543,542 @@ def janela_grupos():
     Label(frame_grupos, bg='white', fg='black', textvariable=a.s4_saldo_gols, width=6, padx=2, justify=LEFT,
           font="Verdana 9 bold").grid(row=5, column=8)
 
+    janela2.mainloop()
+
+
+def janela_fase_final():
+
+    def salvar_oitavas():
+        print("Salvar Oitavas")
+        resul_oitavas = [[tratamento_dados(oitavas11.get()), tratamento_dados(oitavas12.get())],
+                         [tratamento_dados(oitavas21.get()), tratamento_dados(oitavas22.get())],
+                         [tratamento_dados(oitavas31.get()), tratamento_dados(oitavas32.get())],
+                         [tratamento_dados(oitavas41.get()), tratamento_dados(oitavas42.get())],
+                         [tratamento_dados(oitavas51.get()), tratamento_dados(oitavas52.get())],
+                         [tratamento_dados(oitavas61.get()), tratamento_dados(oitavas62.get())],
+                         [tratamento_dados(oitavas71.get()), tratamento_dados(oitavas72.get())],
+                         [tratamento_dados(oitavas81.get()), tratamento_dados(oitavas82.get())]]
+
+
+    def salvar_quartas():
+        print("Salvar Quartas")
+        resul_quartas = [[tratamento_dados(quartas11.get()), tratamento_dados(quartas12.get())],
+                         [tratamento_dados(quartas21.get()), tratamento_dados(quartas22.get())],
+                         [tratamento_dados(quartas31.get()), tratamento_dados(quartas32.get())],
+                         [tratamento_dados(quartas41.get()), tratamento_dados(quartas42.get())],
+                         [tratamento_dados(semifinais11.get()), tratamento_dados(semifinais12.get())],
+                         [tratamento_dados(semifinais21.get()), tratamento_dados(semifinais22.get())]]
+
+
+    def salvar_final():
+        print("Salvar Final")
+
+        resul_final = [[tratamento_dados(final11.get()), tratamento_dados(final12.get())], # Disputa pelo primeiro
+                      [tratamento_dados(final21.get()), tratamento_dados(final22.get())]] # Disputa pelo terceiro
+
+        #data.salvando_grupo(a.grupo_nome.get(), resultados)
+        #grupo = data.recuperando_grupos(a.grupo_nome.get())
+        #grupo.atualizar(a)
+
+    def oitavas_final():
+        frame_oitavas.place(x=50, y=50, width=700, height=430)  # posição de exibição
+        frame_quartas_semifinais.place(x=50, y=600, width=700, height=430)  # posição de exibição
+        frame_final.place(x=600, y=600, width=700, height=430)  # posição de exibição
+        print("Oitavas")
+
+    def quartas_semifinais():
+        frame_quartas_semifinais.place(x=50, y=50, width=700, height=430)  # posição de exibição
+        frame_oitavas.place(x=50, y=600, width=700, height=430)  # posição de exibição
+        frame_final.place(x=600, y=600, width=700, height=430)  # posição de exibição
+        print("Quartas - Semifinais")
+
+    def final():
+        frame_final.place(x=50, y=50, width=700, height=430)  # posição de exibição
+        frame_quartas_semifinais.place(x=50, y=600, width=700, height=430)  # posição de exibição
+        frame_oitavas.place(x=600, y=600, width=700, height=430)  # posição de exibição
+        print("Final")
+
+
+    # -------------------------------------------------------------------------------------------------------------------
+    # Cria a janela de Fase de Eliminatórias
+    janela2 = Toplevel()
+    janela2.title("SHOW DE BOLA - ELIMINATÓRIAS")
+    janela2.configure(background='#405E38')
+    janela2.geometry("800x500+200+200") #800x500 no começo
+    janela2.transient(janela)
+    janela2.focus_force()
+    janela2.grab_set()
+    janela2.resizable(True, True)
+
+    # Personaliza o background
+    bg = ImageTk.PhotoImage(Image.open('imagens/campo.png').resize((800, 500)))
+    canvas = Canvas(janela2, width=800, height=600)
+    canvas.pack(fill="both", expand=True)
+    canvas.create_image(0, 0, image=bg, anchor="nw")
+
+
+    # -------------------------------------------------------------------------------------------------------------------
+    # Frame das Etapas das Eliminatórias (Recebe os botões para alterar as fases)
+    frame = Frame(janela2, bg="white")
+    frame.grid_anchor(CENTER)
+    frame.place(x=50, y=10, width=700, height=30)
+
+    # Códigos acerca dos Botões dos Grupos-----------------------------------
+
+    # Criação dos objetos Botões que serão posicionados no frame
+    btn_oitavas = Button(frame, font="Verdana 10 bold", text="OITAVAS DE FINAL", bd=0, padx=2, pady=2, bg="#405E38", fg="white",
+                         command=oitavas_final)
+    btn_quartas_semifinais= Button(frame, font="Verdana 10 bold", text="QUARTAS E SEMIFINAIS", bd=0, padx=2, pady=2, bg="#405E38", fg="white",
+                         command=quartas_semifinais)
+    btn_final = Button(frame, font="Verdana 10 bold", text="FINAL", bd=0, padx=2, pady=2, bg="#405E38", fg="white",
+                         command=final)
+    btn_retornar = Button(frame, font="Verdana 10 bold", text="MENU PRINCIPAL", bd=0, padx=2, pady=2, bg="#405E38",
+                          fg="white", command=lambda: quit(janela2))
+
+    # Posicionamento dos objetos na tela utilizando a formatação grid
+    btn_oitavas.grid(row=0, column=0, padx=1)
+    btn_quartas_semifinais.grid(row=0, column=1, padx=1)
+    btn_final.grid(row=0, column=2, padx=1)
+    btn_retornar.grid(row=0, column=3, padx=1)
+
+
+    # Exibindo por padrão as Oitavas de Final
+    # -------------------------------------------------------------------------------------------------------------------
+    # Frames das Eliminatórias (Recebe os botões para alterar os grupos exibidos no frame jogos)
+    frame_oitavas = Frame(janela2, bg="white")
+    frame_quartas_semifinais = Frame(janela2, bg="white")
+    frame_final = Frame(janela2, bg="white")
+
+    # Configurações de posicionamento nos Frames
+    frame_oitavas.grid_anchor(CENTER)
+    frame_quartas_semifinais.grid_anchor(CENTER)
+    frame_final.grid_anchor(CENTER)
+
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Montagem do Frame de Oitavas de Final
+
+    # Título do Frame
+    Label(frame_oitavas, fg="#405E38", bg="white", font="Verdana 12 bold", text="OITAVAS DE FINAL").grid(row=0, column=0, columnspan=7)
+    Label(frame_oitavas, bg='white').grid(row=1, column=0)
+
+    # Primeiro jogo------------------------------------------------------------------------------------------------------
+    oitava1 = 2
+    img1 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img2 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_oitavas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=oitava1, column=0, padx=2)
+    lbl1 = Label(frame_oitavas, bg='white', width=60, justify=LEFT)
+    lbl1.configure(image=img1)
+    lbl1.image = img1
+    lbl1.grid(row=oitava1, column=1)
+    oitavas11 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas11.grid(row=oitava1, column=2, ipadx=2)
+    Label(frame_oitavas, bg='white', width=2, text='X').grid(row=oitava1, column=3)
+    oitavas12 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas12.grid(row=oitava1, column=4, ipadx=2)
+    lbl2 = Label(frame_oitavas, bg='white', width=60, justify=RIGHT)
+    lbl2.configure(image=img2)
+    lbl2.image = img2
+    lbl2.grid(row=oitava1, column=5)
+    Label(frame_oitavas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=oitava1, column=6, padx=2)
+
+    # Segundo jogo------------------------------------------------------------------------------------------------------
+    oitava2 = 3
+    img3 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img4 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_oitavas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=oitava2, column=0, padx=2)
+    lbl3 = Label(frame_oitavas, bg='white', width=60, justify=LEFT)
+    lbl3.configure(image=img3)
+    lbl3.image = img3
+    lbl3.grid(row=oitava2, column=1)
+    oitavas21 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas21.grid(row=oitava2, column=2, ipadx=2)
+    Label(frame_oitavas, bg='white', width=2, text='X').grid(row=oitava2, column=3)
+    oitavas22 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas22.grid(row=oitava2, column=4, ipadx=2)
+    lbl4 = Label(frame_oitavas, bg='white', width=60, justify=RIGHT)
+    lbl4.configure(image=img4)
+    lbl4.image = img4
+    lbl4.grid(row=oitava2, column=5)
+    Label(frame_oitavas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=oitava2, column=6, padx=2)
+
+
+    # Terceiro jogo ----------------------------------------------------------------------------------------------------
+    oitava3 = 4
+    img5 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img6 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_oitavas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=oitava3, column=0, padx=2)
+    lbl5 = Label(frame_oitavas, bg='white', width=60, justify=LEFT)
+    lbl5.configure(image=img5)
+    lbl5.image = img5
+    lbl5.grid(row=oitava3, column=1)
+    oitavas31 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas31.grid(row=oitava3, column=2, ipadx=2)
+    Label(frame_oitavas, bg='white', width=2, text='X').grid(row=oitava3, column=3)
+    oitavas32 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas32.grid(row=oitava3, column=4, ipadx=2)
+    lbl6 = Label(frame_oitavas, bg='white', width=60, justify=RIGHT)
+    lbl6.configure(image=img6)
+    lbl6.image = img6
+    lbl6.grid(row=oitava3, column=5)
+    Label(frame_oitavas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=oitava3, column=6, padx=2)
+
+    # Quarto jogo------------------------------------------------------------------------------------------------------
+    oitava4 = 5
+    img7 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img8 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_oitavas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=oitava4, column=0, padx=2)
+    lbl7 = Label(frame_oitavas, bg='white', width=60, justify=LEFT)
+    lbl7.configure(image=img7)
+    lbl7.image = img7
+    lbl7.grid(row=oitava4, column=1)
+    oitavas41 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas41.grid(row=oitava4, column=2, ipadx=2)
+    Label(frame_oitavas, bg='white', width=2, text='X').grid(row=oitava4, column=3)
+    oitavas42 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas42.grid(row=oitava4, column=4, ipadx=2)
+    lbl8 = Label(frame_oitavas, bg='white', width=60, justify=RIGHT)
+    lbl8.configure(image=img8)
+    lbl8.image = img8
+    lbl8.grid(row=oitava4, column=5)
+    Label(frame_oitavas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=oitava4, column=6, padx=2)
+
+
+    # Quinto jogo ------------------------------------------------------------------------------------------------------
+    oitava5 = 6
+    img9 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img10 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_oitavas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=oitava5, column=0, padx=2)
+    lbl9 = Label(frame_oitavas, bg='white', width=60, justify=LEFT)
+    lbl9.configure(image=img9)
+    lbl9.image = img9
+    lbl9.grid(row=oitava5, column=1)
+    oitavas51 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas51.grid(row=oitava5, column=2, ipadx=2)
+    Label(frame_oitavas, bg='white', width=2, text='X').grid(row=oitava5, column=3)
+    oitavas52 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas52.grid(row=oitava5, column=4, ipadx=2)
+    lbl10 = Label(frame_oitavas, bg='white', width=60, justify=RIGHT)
+    lbl10.configure(image=img10)
+    lbl10.image = img10
+    lbl10.grid(row=oitava5, column=5)
+    Label(frame_oitavas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=oitava5, column=6, padx=2)
+
+    # Sexto jogo------------------------------------------------------------------------------------------------------
+    oitava6 = 7
+    img11 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img12 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_oitavas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=oitava6, column=0, padx=2)
+    lbl11 = Label(frame_oitavas, bg='white', width=60, justify=LEFT)
+    lbl11.configure(image=img11)
+    lbl11.image = img11
+    lbl11.grid(row=oitava6, column=1)
+    oitavas61 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas61.grid(row=oitava6, column=2, ipadx=2)
+    Label(frame_oitavas, bg='white', width=2, text='X').grid(row=oitava6, column=3)
+    oitavas62 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas62.grid(row=oitava6, column=4, ipadx=2)
+    lbl12 = Label(frame_oitavas, bg='white', width=60, justify=RIGHT)
+    lbl12.configure(image=img12)
+    lbl12.image = img12
+    lbl12.grid(row=oitava6, column=5)
+    Label(frame_oitavas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=oitava6, column=6, padx=2)
+
+
+    # Sétimo jogo ------------------------------------------------------------------------------------------------------
+    oitava7 = 8
+    img13 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img14 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_oitavas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=oitava7, column=0, padx=2)
+    lbl13 = Label(frame_oitavas, bg='white', width=60, justify=LEFT)
+    lbl13.configure(image=img13)
+    lbl13.image = img13
+    lbl13.grid(row=oitava7, column=1)
+    oitavas71 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas71.grid(row=oitava7, column=2, ipadx=2)
+    Label(frame_oitavas, bg='white', width=2, text='X').grid(row=oitava7, column=3)
+    oitavas72 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas72.grid(row=oitava7, column=4, ipadx=2)
+    lbl14 = Label(frame_oitavas, bg='white', width=60, justify=RIGHT)
+    lbl14.configure(image=img14)
+    lbl14.image = img14
+    lbl14.grid(row=oitava7, column=5)
+    Label(frame_oitavas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=oitava7, column=6, padx=2)
+
+    # Oitavo jogo------------------------------------------------------------------------------------------------------
+    oitava8 = 9
+    img15 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img16 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_oitavas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=oitava8, column=0, padx=2)
+    lbl15 = Label(frame_oitavas, bg='white', width=60, justify=LEFT)
+    lbl15.configure(image=img15)
+    lbl15.image = img15
+    lbl15.grid(row=oitava8, column=1)
+    oitavas81 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas81.grid(row=oitava8, column=2, ipadx=2)
+    Label(frame_oitavas, bg='white', width=2, text='X').grid(row=oitava8, column=3)
+    oitavas82 = Entry(frame_oitavas, bg='white', width=3)
+    oitavas82.grid(row=oitava8, column=4, ipadx=2)
+    lbl16 = Label(frame_oitavas, bg='white', width=60, justify=RIGHT)
+    lbl16.configure(image=img16)
+    lbl16.image = img16
+    lbl16.grid(row=oitava8, column=5)
+    Label(frame_oitavas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=oitava8, column=6, padx=2)
+
+    # Botão de salvar resultados
+    Label(frame_oitavas, bg='white').grid(row=14, column=0)
+    Button(frame_oitavas, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38", fg="white", command=salvar_oitavas).grid(row=15, column=0, columnspan=7)
+
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Montagem do Frame de Quartas e Semifinal (PRINCIPAL)
+
+
+    frame_quartas_semifinais_interno = Frame(frame_quartas_semifinais, bg="white")
+    frame_quartas_semifinais_interno.grid_anchor(CENTER)
+    frame_quartas_semifinais_interno.grid(row=2, column=0)
+
+    Label(frame_quartas_semifinais, bg='white').grid(row=3, column=0)
+    Button(frame_quartas_semifinais, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38", fg="white", command=salvar_quartas).grid(row=4, column=0)
+
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Montagem do Frame de Quartas
+    frame_quartas = Frame(frame_quartas_semifinais_interno, bg="white")
+    frame_quartas.grid_anchor(CENTER)
+    frame_quartas.grid(row=0, column=0)
+
+    Label(frame_quartas, fg="#405E38", bg="white", font="Verdana 12 bold", text="QUARTAS DE FINAIS").grid(row=0, column=0, columnspan=7)
+    Label(frame_quartas, bg='white').grid(row=1, column=0)
+
+    # Primeiro jogo------------------------------------------------------------------------------------------------------
+    quartas1 = 2
+    img17 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img18 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_quartas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=quartas1, column=0, padx=2)
+    lbl17 = Label(frame_quartas, bg='white', width=60, justify=LEFT)
+    lbl17.configure(image=img17)
+    lbl17.image = img17
+    lbl17.grid(row=quartas1, column=1)
+    quartas11 = Entry(frame_quartas, bg='white', width=3)
+    quartas11.grid(row=quartas1, column=2, ipadx=2)
+    Label(frame_quartas, bg='white', width=2, text='X').grid(row=quartas1, column=3)
+    quartas12 = Entry(frame_quartas, bg='white', width=3)
+    quartas12.grid(row=quartas1, column=4, ipadx=2)
+    lbl18 = Label(frame_quartas, bg='white', width=60, justify=RIGHT)
+    lbl18.configure(image=img18)
+    lbl18.image = img18
+    lbl18.grid(row=quartas1, column=5)
+    Label(frame_quartas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=quartas1, column=6, padx=2)
+
+    # Segundo jogo------------------------------------------------------------------------------------------------------
+    quartas2 = 3
+    img19 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img20 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_quartas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=quartas2, column=0, padx=2)
+    lbl19 = Label(frame_quartas, bg='white', width=60, justify=LEFT)
+    lbl19.configure(image=img19)
+    lbl19.image = img19
+    lbl19.grid(row=quartas2, column=1)
+    quartas21 = Entry(frame_quartas, bg='white', width=3)
+    quartas21.grid(row=quartas2, column=2, ipadx=2)
+    Label(frame_quartas, bg='white', width=2, text='X').grid(row=quartas2, column=3)
+    quartas22 = Entry(frame_quartas, bg='white', width=3)
+    quartas22.grid(row=quartas2, column=4, ipadx=2)
+    lbl20 = Label(frame_quartas, bg='white', width=60, justify=RIGHT)
+    lbl20.configure(image=img20)
+    lbl20.image = img20
+    lbl20.grid(row=quartas2, column=5)
+    Label(frame_quartas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=quartas2, column=6, padx=2)
+
+    # Terceiro jogo ----------------------------------------------------------------------------------------------------
+    quartas3 = 4
+    img21 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img22 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_quartas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=quartas3, column=0, padx=2)
+    lbl21 = Label(frame_quartas, bg='white', width=60, justify=LEFT)
+    lbl21.configure(image=img21)
+    lbl21.image = img21
+    lbl21.grid(row=quartas3, column=1)
+    quartas31 = Entry(frame_quartas, bg='white', width=3)
+    quartas31.grid(row=quartas3, column=2, ipadx=2)
+    Label(frame_quartas, bg='white', width=2, text='X').grid(row=quartas3, column=3)
+    quartas32 = Entry(frame_quartas, bg='white', width=3)
+    quartas32.grid(row=quartas3, column=4, ipadx=2)
+    lbl22 = Label(frame_quartas, bg='white', width=60, justify=RIGHT)
+    lbl22.configure(image=img22)
+    lbl22.image = img22
+    lbl22.grid(row=quartas3, column=5)
+    Label(frame_quartas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=quartas3, column=6, padx=2)
+
+    # Quarto jogo------------------------------------------------------------------------------------------------------
+    quartas4 = 5
+    img23 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img24 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_quartas, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=quartas4, column=0, padx=2)
+    lbl23 = Label(frame_quartas, bg='white', width=60, justify=LEFT)
+    lbl23.configure(image=img23)
+    lbl23.image = img23
+    lbl23.grid(row=quartas4, column=1)
+    quartas41 = Entry(frame_quartas, bg='white', width=3)
+    quartas41.grid(row=quartas4, column=2, ipadx=2)
+    Label(frame_quartas, bg='white', width=2, text='X').grid(row=quartas4, column=3)
+    quartas42 = Entry(frame_quartas, bg='white', width=3)
+    quartas42.grid(row=quartas4, column=4, ipadx=2)
+    lbl24 = Label(frame_quartas, bg='white', width=60, justify=RIGHT)
+    lbl24.configure(image=img24)
+    lbl24.image = img24
+    lbl24.grid(row=quartas4, column=5)
+    Label(frame_quartas, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=quartas4, column=6, padx=2)
+
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Divide os dois frames (frame_quartas e frame_semifinais)
+    Label(frame_quartas_semifinais_interno, bg='white').grid(row=1, column=0)
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Montagem do Frame de Semifinal
+    frame_semifinais = Frame(frame_quartas_semifinais_interno, bg="white")
+    frame_semifinais.grid_anchor(CENTER)
+    frame_semifinais.grid(row=2, column=0)
+
+    Label(frame_semifinais, fg="#405E38", bg="white", font="Verdana 12 bold", text="SEMIFINAIS").grid(row=0, column=0, columnspan=7)
+    Label(frame_semifinais, bg='white').grid(row=1, column=0)
+
+
+    # Primeiro jogo ----------------------------------------------------------------------------------------------------
+    semifinal1 = 2
+    img25 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img26 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_semifinais, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=semifinal1, column=0, padx=2)
+    lbl25 = Label(frame_semifinais, bg='white', width=60, justify=LEFT)
+    lbl25.configure(image=img25)
+    lbl25.image = img25
+    lbl25.grid(row=semifinal1, column=1)
+    semifinais11 = Entry(frame_semifinais, bg='white', width=3)
+    semifinais11.grid(row=semifinal1, column=2, ipadx=2)
+    Label(frame_semifinais, bg='white', width=2, text='X').grid(row=semifinal1, column=3)
+    semifinais12 = Entry(frame_semifinais, bg='white', width=3)
+    semifinais12.grid(row=semifinal1, column=4, ipadx=2)
+    lbl26 = Label(frame_semifinais, bg='white', width=60, justify=RIGHT)
+    lbl26.configure(image=img26)
+    lbl26.image = img26
+    lbl26.grid(row=semifinal1, column=5)
+    Label(frame_semifinais, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=semifinal1, column=6, padx=2)
+
+    # Sexto jogo------------------------------------------------------------------------------------------------------
+    semifinal2 = 3
+    img27 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img28 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_semifinais, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=semifinal2, column=0, padx=2)
+    lbl27 = Label(frame_semifinais, bg='white', width=60, justify=LEFT)
+    lbl27.configure(image=img27)
+    lbl27.image = img27
+    lbl27.grid(row=semifinal2, column=1)
+    semifinais21 = Entry(frame_semifinais, bg='white', width=3)
+    semifinais21.grid(row=semifinal2, column=2, ipadx=2)
+    Label(frame_semifinais, bg='white', width=2, text='X').grid(row=semifinal2, column=3)
+    semifinais22 = Entry(frame_semifinais, bg='white', width=3)
+    semifinais22.grid(row=semifinal2, column=4, ipadx=2)
+    lbl28 = Label(frame_semifinais, bg='white', width=60, justify=RIGHT)
+    lbl28.configure(image=img28)
+    lbl28.image = img28
+    lbl28.grid(row=semifinal2, column=5)
+    Label(frame_semifinais, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=semifinal2, column=6, padx=2)
+
+
+
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Montagem do Frame da FINAL!
+    # A final possui dois frames: 1) disputa terceiro e quarto Lugar; 2) disputa primeiro e segundo.
+
+    # Título do Frame
+    Label(frame_final, fg="#405E38", bg="white", font="Verdana 12 bold", text="FINAL").grid(row=0, column=0)
+    Label(frame_final, bg='white').grid(row=1, column=0)
+
+    #Os frames de disputa de primeiro (linha 2) e terceiro lugar (linha 3) foram ampliados abaixo.
+
+    frame_podio = Frame(frame_final, bg="white", width=400, height=100)
+    frame_podio.grid_anchor(CENTER)
+    frame_podio.grid(row=4, column=0)
+
+    # Botão de salvar resultados
+    Label(frame_final, bg='white').grid(row=5, column=0)
+    Button(frame_final, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38", fg="white", command=salvar_final).grid(row=6, column=0)
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Montagem do frame de disputa de primeiro
+
+    frame_disputa_primeiro = Frame(frame_final, bg="white", width=400, height=100)
+    frame_disputa_primeiro.grid_anchor(CENTER)
+    frame_disputa_primeiro.grid(row=2, column=0)
+
+    Label(frame_disputa_primeiro, fg="#405E38", bg="white", font="Verdana 12 bold", text="DISPUTA DE PRIMEIRO LUGAR").grid(row=0, column=0, columnspan=7)
+    Label(frame_disputa_primeiro, bg='white').grid(row=1, column=0)
+
+    # Jogo
+    final1 = 2
+    img29 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img30 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_disputa_primeiro, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=final1, column=0, padx=2)
+    lbl29 = Label(frame_disputa_primeiro, bg='white', width=60, justify=LEFT)
+    lbl29.configure(image=img29)
+    lbl29.image = img29
+    lbl29.grid(row=final1, column=1)
+    final11 = Entry(frame_disputa_primeiro, bg='white', width=3)
+    final11.grid(row=final1, column=2, ipadx=2)
+    Label(frame_disputa_primeiro, bg='white', width=2, text='X').grid(row=final1, column=3)
+    final12 = Entry(frame_disputa_primeiro, bg='white', width=3)
+    final12.grid(row=final1, column=4, ipadx=2)
+    lbl30 = Label(frame_disputa_primeiro, bg='white', width=60, justify=RIGHT)
+    lbl30.configure(image=img30)
+    lbl30.image = img30
+    lbl30.grid(row=final1, column=5)
+    Label(frame_disputa_primeiro, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=final1, column=6, padx=2)
+
+
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Montagem do frame de disputa de terceiro
+
+    frame_disputa_terceiro = Frame(frame_final, bg="white", width=400, height=100)
+    frame_disputa_terceiro.grid_anchor(CENTER)
+    frame_disputa_terceiro.grid(row=3, column=0)
+
+    Label(frame_disputa_terceiro, bg='white').grid(row=0, column=0)
+    Label(frame_disputa_terceiro, bg='white').grid(row=1, column=0)
+    Label(frame_disputa_terceiro, fg="#405E38", bg="white", font="Verdana 12 bold", text="DISPUTA DE TERCEIRO LUGAR").grid(row=2, column=0, columnspan=7)
+    Label(frame_disputa_terceiro, bg='white').grid(row=3, column=0)
+
+    # Jogo
+    final2 = 4
+    img31 = ImageTk.PhotoImage(Image.open(a.s3_bandeira.get()).resize((50, 30)))
+    img32 = ImageTk.PhotoImage(Image.open(a.s4_bandeira.get()).resize((50, 30)))
+    Label(frame_disputa_terceiro, bg='white', textvariable=a.s3_nome, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=final2, column=0, padx=2)
+    lbl31 = Label(frame_disputa_terceiro, bg='white', width=60, justify=LEFT)
+    lbl31.configure(image=img31)
+    lbl31.image = img31
+    lbl31.grid(row=final2, column=1)
+    final21 = Entry(frame_disputa_terceiro, bg='white', width=3)
+    final21.grid(row=final2, column=2, ipadx=2)
+    Label(frame_disputa_terceiro, bg='white', width=2, text='X').grid(row=final2, column=3)
+    final22 = Entry(frame_disputa_terceiro, bg='white', width=3)
+    final22.grid(row=final2, column=4, ipadx=2)
+    lbl32 = Label(frame_disputa_terceiro, bg='white', width=60, justify=RIGHT)
+    lbl32.configure(image=img32)
+    lbl32.image = img32
+    lbl32.grid(row=final2, column=5)
+    Label(frame_disputa_terceiro, bg='white', textvariable=a.s4_nome, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=final2, column=6, padx=2)
+
+
+    # ------------------------------------------------------------------------------------------------------------------
+
+    # Retornando à janela principal:
+    # Por padrão, inicia com oitavas de final
+    oitavas_final()
+
+    # Montagem dos elementos estáticos
     janela2.mainloop()
 
 
@@ -883,18 +1421,21 @@ canvas.create_image(0, 0, image=bg, anchor="nw")
 # Botões do menu (criação de seus objetos)
 button1 = Button(janela, text="GRUPOS", bg='white', fg='black', width=7, height=1, bd=3, relief=SOLID, anchor=CENTER,
                  font="bold", command=janela_grupos)
-button2 = Button(janela, text="QUIZZ", bg='white', fg='black', width=7, height=1, bd=3, relief=SOLID, anchor=CENTER,
+button2 = Button(janela, text="FASE FINAL", bg='white', fg='black', width=9, height=1, bd=3, relief=SOLID, anchor=CENTER,
+                 font="bold", command=janela_fase_final)
+button3 = Button(janela, text="QUIZZ", bg='white', fg='black', width=7, height=1, bd=3, relief=SOLID, anchor=CENTER,
                  font="bold", command=janela_quizz)
-button3 = Button(janela, text="VIDENTE", bg='white', fg='black', width=7, height=1, bd=3, relief=SOLID, anchor=CENTER,
+button4 = Button(janela, text="VIDENTE", bg='white', fg='black', width=7, height=1, bd=3, relief=SOLID, anchor=CENTER,
                  font="bold", command=janela_vidente)
-button4 = Button(janela, text="SOBRE", bg='white', fg='black', width=7, height=1, bd=3, relief=SOLID, anchor=CENTER,
+button5 = Button(janela, text="SOBRE", bg='white', fg='black', width=7, height=1, bd=3, relief=SOLID, anchor=CENTER,
                  font="bold", command=janela_sobre)
 
 # Exibição dos botões na tela
-button1_canvas = canvas.create_window(72, 150, anchor="nw", window=button1)
-button2_canvas = canvas.create_window(177, 150, anchor="nw", window=button2)
-button3_canvas = canvas.create_window(282, 150, anchor="nw", window=button3)
-button4_canvas = canvas.create_window(387, 150, anchor="nw", window=button4)
+button1_canvas = canvas.create_window(15, 150, anchor="nw", window=button1)
+button2_canvas = canvas.create_window(120, 150, anchor="nw", window=button2)
+button3_canvas = canvas.create_window(245, 150, anchor="nw", window=button3)
+button4_canvas = canvas.create_window(350, 150, anchor="nw", window=button4)
+button5_canvas = canvas.create_window(455, 150, anchor="nw", window=button5)
 
 # Mensagem no rodapé do programa
 label = Label(janela, font="Verdana 8 bold", text="Copyright ® - Todos os direitos reservados", anchor=S,
