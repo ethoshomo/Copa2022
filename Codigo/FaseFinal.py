@@ -1,4 +1,5 @@
 from DataSet import DataSet
+import pandas as pd
 
 class FaseFinal():
     def __init__(self):
@@ -55,16 +56,18 @@ class FaseFinal():
             self.grupoH[0].set_nome('-')
             self.grupoH[1].set_nome('-')
         
-        oitavas = [[self.grupoA[0].get_nome(), self.grupoB[1].get_nome()],
-                   [self.grupoC[0].get_nome(), self.grupoD[1].get_nome()],
-                   [self.grupoE[0].get_nome(), self.grupoF[1].get_nome()],
-                   [self.grupoG[0].get_nome(), self.grupoH[1].get_nome()],
-                   [self.grupoB[0].get_nome(), self.grupoA[1].get_nome()],
-                   [self.grupoD[0].get_nome(), self.grupoC[1].get_nome()],
-                   [self.grupoF[0].get_nome(), self.grupoE[1].get_nome()],
-                   [self.grupoH[0].get_nome(), self.grupoG[1].get_nome()]]
+        oitavas = {0:[self.grupoA[0].get_nome(), self.grupoB[1].get_nome()],
+                   1:[self.grupoC[0].get_nome(), self.grupoD[1].get_nome()],
+                   2:[self.grupoE[0].get_nome(), self.grupoF[1].get_nome()],
+                   3:[self.grupoG[0].get_nome(), self.grupoH[1].get_nome()],
+                   4:[self.grupoB[0].get_nome(), self.grupoA[1].get_nome()],
+                   5:[self.grupoD[0].get_nome(), self.grupoC[1].get_nome()],
+                   6:[self.grupoF[0].get_nome(), self.grupoE[1].get_nome()],
+                   7:[self.grupoH[0].get_nome(), self.grupoG[1].get_nome()]}
         
-        return oitavas
+        df_oitavas = pd.DataFrame(oitavas, index=[0, 1])
+
+        df_oitavas.to_pickle('dataset/Oitavas.pkl')    
     
     def checando_jogos(self, jogos):
         for i in range(len(jogos)):
@@ -75,14 +78,7 @@ class FaseFinal():
 
 if __name__ == '__main__':
     ff = FaseFinal()
-    
-    oitavas = ff.formando_oitavas()
+    ff.formando_oitavas()
     
     ds = DataSet()
-    
-    ds.salvando_oitavas(oitavas, [[2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1]])
-    
-    aux = ds.recuperando_oitavas()
-
-    for i in aux:
-        print(i)
+    ds.salvando_oitavas([[2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1]])

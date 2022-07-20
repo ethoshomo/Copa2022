@@ -12,6 +12,7 @@ DISCENTES:
 """
 import os
 from select import select
+from time import time
 import pandas as pd
 from Grupo import Grupo
 
@@ -191,36 +192,16 @@ class DataSet():
         
         return aux.organizando_grupos()
     
-    def salvando_oitavas(self, oitavas: list, jogos: list):
+    def salvando_oitavas(self, jogos: list):
         # ------------------------ SELEÇÕES
+        oitavas = pd.read_pickle('dataset/Oitavas.pkl')
+        
         times = []
         
         for i in range(8):
             for j in range(2):
                 times.append(oitavas[i][j])
-        
-        
-        data_oitavas = {0:times[0],
-                        1:times[1],
-                        2:times[2],
-                        3:times[3],
-                        4:times[4],
-                        5:times[5],
-                        6:times[6],
-                        7:times[7],
-                        8:times[8],
-                        9:times[9],
-                        10:times[10],
-                        11:times[11],
-                        12:times[12],
-                        13:times[13],
-                        14:times[14],
-                        15:times[15]}
 
-        df_oitavas = pd.DataFrame(data_oitavas, index=[0])
-
-        df_oitavas.to_pickle('dataset/Oitavas.pkl')
-    
         #------------------------ JOGOS
         inicio = [-1 for i in range(16)]
                 
@@ -242,7 +223,7 @@ class DataSet():
                    times[15]:inicio}
         
         df_ff = pd.DataFrame(data_ff, index=times)
-
+        
         # JOGO 1
         if times[0] != '-' and times[1] != '-':
             df_ff.loc[times[0]][times[1]] = jogos[0][1]
