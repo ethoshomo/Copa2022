@@ -548,6 +548,7 @@ def janela_grupos():
 
 def janela_fase_final():
 
+
     def salvar_oitavas():
         print("Salvar Oitavas")
         resul_oitavas = [[tratamento_dados(oitavas11.get()), tratamento_dados(oitavas12.get())],
@@ -577,11 +578,14 @@ def janela_fase_final():
                       [tratamento_dados(final21.get()), tratamento_dados(final22.get())]] # Disputa pelo terceiro
 
 
-
     def oitavas_final():
         frame_oitavas.place(x=50, y=50, width=700, height=430)  # posição de exibição
         frame_quartas_semifinais.place(x=50, y=600, width=700, height=430)  # posição de exibição
         frame_final.place(x=600, y=600, width=700, height=430)  # posição de exibição
+
+        # dados = DataSet()
+        # global
+        #dados_oitavas.atualizar(dados.recuperar_dados_oitavas())
 
         # Recupera dados do banco de dados (lista de listas).
         # A lista externa serão compostas de listas que representam seleções.
@@ -589,24 +593,180 @@ def janela_fase_final():
         # Por exemplo: oitavas, 16; quartas, 8; semifinais, 4; final, 4.
         # As listas internas possuem 3 variaveis: (string, bandeira, gols).
 
-        global dados_oitavas
 
-        # dados_oitavas.atualizar( <Preciso da lista para atualizar> )
+        # Recupera valores para preenchimento dos placares
+        oitavas11.delete(0)
+        oitavas12.delete(0)
+        oitavas21.delete(0)
+        oitavas22.delete(0)
+        oitavas31.delete(0)
+        oitavas32.delete(0)
+        oitavas41.delete(0)
+        oitavas42.delete(0)
+        oitavas51.delete(0)
+        oitavas52.delete(0)
+        oitavas61.delete(0)
+        oitavas62.delete(0)
+        oitavas71.delete(0)
+        oitavas72.delete(0)
+        oitavas81.delete(0)
+        oitavas82.delete(0)
+        oitavas11.insert(0, dados_oitavas.s[1][2])
+        oitavas12.insert(0, dados_oitavas.s[2][2])
+        oitavas21.insert(0, dados_oitavas.s[3][2])
+        oitavas22.insert(0, dados_oitavas.s[4][2])
+        oitavas31.insert(0, dados_oitavas.s[5][2])
+        oitavas32.insert(0, dados_oitavas.s[6][2])
+        oitavas41.insert(0, dados_oitavas.s[7][2])
+        oitavas42.insert(0, dados_oitavas.s[8][2])
+        oitavas51.insert(0, dados_oitavas.s[9][2])
+        oitavas52.insert(0, dados_oitavas.s[10][2])
+        oitavas61.insert(0, dados_oitavas.s[11][2])
+        oitavas62.insert(0, dados_oitavas.s[12][2])
+        oitavas71.insert(0, dados_oitavas.s[13][2])
+        oitavas72.insert(0, dados_oitavas.s[14][2])
+        oitavas81.insert(0, dados_oitavas.s[15][2])
+        oitavas82.insert(0, dados_oitavas.s[16][2])
 
-
-
+        # Para recuperar imagens dinamicamente, é necessário o seguinte código
+        img1 = ImageTk.PhotoImage(Image.open(dados_oitavas.s1_band.get()).resize((50, 30)))
+        img2 = ImageTk.PhotoImage(Image.open(dados_oitavas.s2_band.get()).resize((50, 30)))
+        img3 = ImageTk.PhotoImage(Image.open(dados_oitavas.s3_band.get()).resize((50, 30)))
+        img4 = ImageTk.PhotoImage(Image.open(dados_oitavas.s4_band.get()).resize((50, 30)))
+        img5 = ImageTk.PhotoImage(Image.open(dados_oitavas.s5_band.get()).resize((50, 30)))
+        img6 = ImageTk.PhotoImage(Image.open(dados_oitavas.s6_band.get()).resize((50, 30)))
+        img7 = ImageTk.PhotoImage(Image.open(dados_oitavas.s7_band.get()).resize((50, 30)))
+        img8 = ImageTk.PhotoImage(Image.open(dados_oitavas.s8_band.get()).resize((50, 30)))
+        img9 = ImageTk.PhotoImage(Image.open(dados_oitavas.s9_band.get()).resize((50, 30)))
+        img10 = ImageTk.PhotoImage(Image.open(dados_oitavas.s10_band.get()).resize((50, 30)))
+        img11 = ImageTk.PhotoImage(Image.open(dados_oitavas.s11_band.get()).resize((50, 30)))
+        img12 = ImageTk.PhotoImage(Image.open(dados_oitavas.s12_band.get()).resize((50, 30)))
+        img13 = ImageTk.PhotoImage(Image.open(dados_oitavas.s13_band.get()).resize((50, 30)))
+        img14 = ImageTk.PhotoImage(Image.open(dados_oitavas.s14_band.get()).resize((50, 30)))
+        img15 = ImageTk.PhotoImage(Image.open(dados_oitavas.s15_band.get()).resize((50, 30)))
+        img16 = ImageTk.PhotoImage(Image.open(dados_oitavas.s16_band.get()).resize((50, 30)))
+        lbl1.configure(image=img1)
+        lbl2.configure(image=img2)
+        lbl3.configure(image=img3)
+        lbl4.configure(image=img4)
+        lbl5.configure(image=img5)
+        lbl6.configure(image=img6)
+        lbl7.configure(image=img7)
+        lbl8.configure(image=img8)
+        lbl9.configure(image=img9)
+        lbl10.configure(image=img10)
+        lbl11.configure(image=img11)
+        lbl12.configure(image=img12)
+        lbl13.configure(image=img13)
+        lbl14.configure(image=img14)
+        lbl15.configure(image=img15)
+        lbl16.configure(image=img16)
+        lbl1.image = img1
+        lbl2.image = img2
+        lbl3.image = img3
+        lbl4.image = img4
+        lbl5.image = img5
+        lbl6.image = img6
+        lbl7.image = img7
+        lbl8.image = img8
+        lbl9.image = img9
+        lbl10.image = img10
+        lbl11.image = img11
+        lbl12.image = img12
+        lbl13.image = img13
+        lbl14.image = img14
+        lbl15.image = img15
+        lbl16.image = img16
         print("Oitavas")
+
 
     def quartas_semifinais():
         frame_quartas_semifinais.place(x=50, y=50, width=700, height=430)  # posição de exibição
         frame_oitavas.place(x=50, y=600, width=700, height=430)  # posição de exibição
         frame_final.place(x=600, y=600, width=700, height=430)  # posição de exibição
+
+        # dados = DataSet()
+        # global
+        # dados_quartas.atualizar(dados.recuperar_dados_quartas())
+
+        img17 = ImageTk.PhotoImage(Image.open(dados_quartas.s1_band.get()).resize((50, 30)))
+        img18 = ImageTk.PhotoImage(Image.open(dados_quartas.s2_band.get()).resize((50, 30)))
+        img19 = ImageTk.PhotoImage(Image.open(dados_quartas.s3_band.get()).resize((50, 30)))
+        img20 = ImageTk.PhotoImage(Image.open(dados_quartas.s4_band.get()).resize((50, 30)))
+        img21 = ImageTk.PhotoImage(Image.open(dados_quartas.s5_band.get()).resize((50, 30)))
+        img22 = ImageTk.PhotoImage(Image.open(dados_quartas.s6_band.get()).resize((50, 30)))
+        img23 = ImageTk.PhotoImage(Image.open(dados_quartas.s7_band.get()).resize((50, 30)))
+        img24 = ImageTk.PhotoImage(Image.open(dados_quartas.s8_band.get()).resize((50, 30)))
+        lbl17.configure(image=img17)
+        lbl18.configure(image=img18)
+        lbl19.configure(image=img19)
+        lbl20.configure(image=img20)
+        lbl21.configure(image=img21)
+        lbl22.configure(image=img22)
+        lbl23.configure(image=img23)
+        lbl24.configure(image=img24)
+        lbl17.image = img17
+        lbl18.image = img18
+        lbl19.image = img19
+        lbl20.image = img20
+        lbl21.image = img21
+        lbl22.image = img22
+        lbl23.image = img23
+        lbl24.image = img24
+
+        quartas11.delete(0)
+        quartas12.delete(0)
+        quartas21.delete(0)
+        quartas22.delete(0)
+        quartas31.delete(0)
+        quartas32.delete(0)
+        quartas41.delete(0)
+        quartas42.delete(0)
+        quartas11.insert(0, dados_quartas.s[1][2])
+        quartas12.insert(0, dados_quartas.s[2][2])
+        quartas21.insert(0, dados_quartas.s[3][2])
+        quartas22.insert(0, dados_quartas.s[4][2])
+        quartas31.insert(0, dados_quartas.s[5][2])
+        quartas32.insert(0, dados_quartas.s[6][2])
+        quartas41.insert(0, dados_quartas.s[7][2])
+        quartas42.insert(0, dados_quartas.s[8][2])
+
         print("Quartas - Semifinais")
+
 
     def final():
         frame_final.place(x=50, y=50, width=700, height=430)  # posição de exibição
         frame_quartas_semifinais.place(x=50, y=600, width=700, height=430)  # posição de exibição
         frame_oitavas.place(x=600, y=600, width=700, height=430)  # posição de exibição
+
+        # dados = DataSet()
+        # global
+        #dados_finais.atualizar(dados.recuperar_dados_final())
+
+        # Recuperando valores para as caixas de entrada dos placares
+        final11.delete(0)
+        final12.delete(0)
+        final21.delete(0)
+        final22.delete(0)
+        final11.insert(0, dados_finais.s[1][2])
+        final12.insert(0, dados_finais.s[2][2])
+        final21.insert(0, dados_finais.s[3][2])
+        final22.insert(0, dados_finais.s[4][2])
+
+        # Para recuperar imagens dinamicamente, é necessário o seguinte código
+        img29 = ImageTk.PhotoImage(Image.open(dados_finais.s1_band.get()).resize((50, 30)))
+        img30 = ImageTk.PhotoImage(Image.open(dados_finais.s2_band.get()).resize((50, 30)))
+        img31 = ImageTk.PhotoImage(Image.open(dados_finais.s3_band.get()).resize((50, 30)))
+        img32 = ImageTk.PhotoImage(Image.open(dados_finais.s4_band.get()).resize((50, 30)))
+        lbl29.configure(image=img29)
+        lbl30.configure(image=img30)
+        lbl31.configure(image=img31)
+        lbl32.configure(image=img32)
+        lbl29.image = img29
+        lbl30.image = img30
+        lbl31.image = img31
+        lbl32.image = img32
+
         print("Final")
 
 
