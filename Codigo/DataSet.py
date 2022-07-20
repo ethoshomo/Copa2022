@@ -281,13 +281,19 @@ class DataSet():
                 aux[i+1][1] = 'imagens/bandeiras/' + self.converte_palavra(df_oitavas[i+1][0]) + '.png'
                 
             if df_oitavas[i][0]  != '-' and df_oitavas[i+1][0] != '-':
-                aux[i][2]   = df_ff[df_oitavas[i][0]][df_oitavas[i+1][0]]
-                aux[i+1][2] = df_ff[df_oitavas[i+1][0]][df_oitavas[i][0]]
+                res1 = aux[i][2]   = df_ff[df_oitavas[i][0]][df_oitavas[i+1][0]]
+                res2 = aux[i+1][2] = df_ff[df_oitavas[i+1][0]][df_oitavas[i][0]]
                 
-                if aux[i][2] == -1:
+                if res1 == -1:
                     aux[i][2] = ''
-                if aux[i+1][2] == -1:
+                else:
+                    aux[i][2] = str(res1)
+                    
+                if res2 == -1:
                     aux[i+1][2] = ''
+                else:
+                    aux[i+1][2] = str(res2)
+                    
         return aux
     
         
