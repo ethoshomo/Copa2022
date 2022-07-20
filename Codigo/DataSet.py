@@ -11,6 +11,7 @@ DISCENTES:
     PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
 """
 import os
+from select import select
 import pandas as pd
 from Grupo import Grupo
 
@@ -18,7 +19,8 @@ class DataSet():
     # Inicia a classe com um draframe contendo todos os nomes das seleções
     def __init__(self):
         self.df_selecoes = pd.read_pickle('dataset/Selecoes.plk')
-
+        self.oitavas = []
+        
     # A partir dos jogos realizados pelas seleções de um grupo, salva eles 
     # em arquivos do tipo pkl
     def salvando_grupo(self, grupo :str, jogos: list):
@@ -183,3 +185,140 @@ class DataSet():
         if not os.path.exists(nome_data):
             df = self.criando_DataFrame(grupo)
             df.to_pickle(nome_data)
+            
+    def recuperando_grupos_lista(self, grupo: str):
+        aux = self.recuperando_grupos(grupo)
+        
+        return aux.organizando_grupos()
+    
+    def salvando_oitavas(self, oitavas: list, jogos: list):
+        # ------------------------ SELEÇÕES
+        times = []
+        
+        for i in range(8):
+            for j in range(2):
+                times.append(oitavas[i][j])
+        
+        
+        data_oitavas = {0:times[0],
+                        1:times[1],
+                        2:times[2],
+                        3:times[3],
+                        4:times[4],
+                        5:times[5],
+                        6:times[6],
+                        7:times[7],
+                        8:times[8],
+                        9:times[9],
+                        10:times[10],
+                        11:times[11],
+                        12:times[12],
+                        13:times[13],
+                        14:times[14],
+                        15:times[15]}
+
+        df_oitavas = pd.DataFrame(data_oitavas, index=[0])
+
+        df_oitavas.to_pickle('dataset/Oitavas.pkl')
+    
+        #------------------------ JOGOS
+        inicio = [-1 for i in range(16)]
+                
+        data_ff = {times[0]:inicio,
+                   times[1]:inicio,
+                   times[2]:inicio,
+                   times[3]:inicio,
+                   times[4]:inicio,
+                   times[5]:inicio,
+                   times[6]:inicio,
+                   times[7]:inicio,
+                   times[8]:inicio,
+                   times[9]:inicio,
+                   times[10]:inicio,
+                   times[11]:inicio,
+                   times[12]:inicio,
+                   times[13]:inicio,
+                   times[14]:inicio,
+                   times[15]:inicio}
+        
+        df_ff = pd.DataFrame(data_ff, index=times)
+
+        # JOGO 1
+        if times[0] != '-' and times[1] != '-':
+            df_ff.loc[times[0]][times[1]] = jogos[0][1]
+            df_ff.loc[times[1]][times[0]] = jogos[0][0]
+        
+        # JOGO 2
+        if times[2] != '-' and times[3] != '-':
+            df_ff.loc[times[2]][times[3]] = jogos[1][1]
+            df_ff.loc[times[3]][times[2]] = jogos[1][0]
+        
+        # JOGO 3
+        if times[4] != '-' and times[5] != '-':
+            df_ff.loc[times[4]][times[5]] = jogos[2][1]
+            df_ff.loc[times[5]][times[4]] = jogos[2][0]
+        
+        # JOGO 4
+        if times[6] != '-' and times[7] != '-':
+            df_ff.loc[times[6]][times[7]] = jogos[3][1]
+            df_ff.loc[times[7]][times[6]] = jogos[3][0]
+        
+        # JOGO 5
+        if times[8] != '-' and times[9] != '-':
+            df_ff.loc[times[8]][times[9]] = jogos[4][1]
+            df_ff.loc[times[9]][times[8]] = jogos[4][0]
+        
+        # JOGO 6
+        if times[10] != '-' and times[11] != '-':
+            df_ff.loc[times[10]][times[11]] = jogos[5][1]
+            df_ff.loc[times[11]][times[10]] = jogos[5][0]
+        
+        # JOGO 7
+        if times[12] != '-' and times[13] != '-':
+            df_ff.loc[times[12]][times[13]] = jogos[6][1]
+            df_ff.loc[times[13]][times[12]] = jogos[6][0]
+        
+        # JOGO 8
+        if times[14] != '-' and times[15] != '-':
+            df_ff.loc[times[14]][times[15]] = jogos[7][1]
+            df_ff.loc[times[15]][times[14]] = jogos[7][0]       
+        
+        df_ff.to_pickle('dataset/FaseFinal.pkl')
+        
+    def recuperando_oitavas(self):
+        aux = [['-', 'imagens/bandeira.png', ''] for i in range(16)]
+        
+        df_oitavas = pd.read_pickle('dataset/Oitavas.pkl')
+        df_ff      = pd.read_pickle('dataset/FaseFinal.pkl')
+        
+        for i in range(0, 16, 2):
+            if df_oitavas[i][0] != '-':
+                aux[i][0] = df_oitavas[i][0]
+                aux[i][1] = 'dataset/' + self.converte_palavra(df_oitavas[i][0]) + '.png'
+            
+            if df_oitavas[i+1][0] != '-':
+                aux[i+1][0] = df_oitavas[i+1][0]
+                aux[i+1][1] = 'dataset/' + self.converte_palavra(df_oitavas[i+1][0]) + '.png'
+                
+            if df_oitavas[i][0]  != '-' and df_oitavas[i+1][0] != '-':
+                aux[i][2] = df_ff[df_oitavas[i][0]][df_oitavas[i+1][0]]
+                aux[i+1][2] = df_ff[df_oitavas[i+1][0]][df_oitavas[i][0]]
+                
+        return aux
+    
+        
+    def converte_palavra(self, palavra):
+        palavra = palavra.lower()
+        palavra = palavra.replace(" ", "_")
+        palavra = palavra.replace("á", "a")
+        palavra = palavra.replace("ã", "a")
+        palavra = palavra.replace("â", "a")
+        palavra = palavra.replace("é", "e")
+        palavra = palavra.replace("ê", "e")
+        palavra = palavra.replace("ó", "o")
+        palavra = palavra.replace("õ", "o")
+        palavra = palavra.replace("ô", "o")
+        palavra = palavra.replace("í", "i")
+        palavra = palavra.replace("ú", "u")
+        palavra = palavra.replace("ç", "c")
+        return palavra

@@ -53,6 +53,8 @@ class Grupo(Selecao):
         self.selecao3.set_colocacao(lista_grupos.index(self.selecao3)+1)
         self.selecao4.set_colocacao(lista_grupos.index(self.selecao4)+1)
 
+        return lista_grupos
+
     def atualizar(self, atualizar: Atualizacao):
         # Atualiza posicoes
         self.organizando_grupos()
