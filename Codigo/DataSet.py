@@ -286,23 +286,23 @@ class DataSet():
         df_ff.to_pickle('dataset/FaseFinal.pkl')
         
     def recuperando_oitavas(self):
-        aux = [['-', 'imagens/bandeira.png', ''] for i in range(17)]
+        aux = [['-', 'imagens/bandeira.png', ''] for i in range(16)]
         
         df_oitavas = pd.read_pickle('dataset/Oitavas.pkl')
         df_ff      = pd.read_pickle('dataset/FaseFinal.pkl')
         
         for i in range(0, 16, 2):
             if df_oitavas[i][0] != '-':
-                aux[i+1][0] = df_oitavas[i][0]
-                aux[i+1][1] = 'imagens/bandeiras/' + self.converte_palavra(df_oitavas[i][0]) + '.png'
+                aux[i][0] = df_oitavas[i][0]
+                aux[i][1] = 'imagens/bandeiras/' + self.converte_palavra(df_oitavas[i][0]) + '.png'
             
             if df_oitavas[i+1][0] != '-':
-                aux[i+2][0] = df_oitavas[i+1][0]
-                aux[i+2][1] = 'imagens/bandeiras/' + self.converte_palavra(df_oitavas[i+1][0]) + '.png'
+                aux[i+1][0] = df_oitavas[i+1][0]
+                aux[i+1][1] = 'imagens/bandeiras/' + self.converte_palavra(df_oitavas[i+1][0]) + '.png'
                 
             if df_oitavas[i][0]  != '-' and df_oitavas[i+1][0] != '-':
-                aux[i+1][2] = df_ff[df_oitavas[i][0]][df_oitavas[i+1][0]]
-                aux[i+2][2] = df_ff[df_oitavas[i+1][0]][df_oitavas[i][0]]
+                aux[i][2] = df_ff[df_oitavas[i][0]][df_oitavas[i+1][0]]
+                aux[i+1][2] = df_ff[df_oitavas[i+1][0]][df_oitavas[i][0]]
                 
         return aux
     
