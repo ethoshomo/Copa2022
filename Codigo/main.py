@@ -560,6 +560,9 @@ def janela_fase_final():
                          [tratamento_dados(oitavas71.get()), tratamento_dados(oitavas72.get())],
                          [tratamento_dados(oitavas81.get()), tratamento_dados(oitavas82.get())]]
 
+        # dados = DataSet()
+        # dados.salvar_dados_oitavas(resul_oitavas)
+
 
     def salvar_quartas():
         print("Salvar Quartas")
@@ -570,12 +573,18 @@ def janela_fase_final():
                          [tratamento_dados(semifinais11.get()), tratamento_dados(semifinais12.get())],
                          [tratamento_dados(semifinais21.get()), tratamento_dados(semifinais22.get())]]
 
+        # dados = DataSet()
+        # dados.salvar_dados_quartas(resul_quartas)
+
 
     def salvar_final():
         print("Salvar Final")
 
         resul_final = [[tratamento_dados(final11.get()), tratamento_dados(final12.get())], # Disputa pelo primeiro
                       [tratamento_dados(final21.get()), tratamento_dados(final22.get())]] # Disputa pelo terceiro
+
+        # dados = DataSet()
+        # dados.salvar_dados_final(resulta_final)
 
 
     def oitavas_final():
