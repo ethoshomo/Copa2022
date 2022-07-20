@@ -611,9 +611,9 @@ def janela_fase_final():
 
 
     # -------------------------------------------------------------------------------------------------------------------
-    # Cria a janela de Fase de Eliminatórias
+    # Cria a janela de Fase Final
     janela2 = Toplevel()
-    janela2.title("SHOW DE BOLA - ELIMINATÓRIAS")
+    janela2.title("SHOW DE BOLA - FASE FINAL")
     janela2.configure(background='#405E38')
     janela2.geometry("800x500+200+200") #800x500 no começo
     janela2.transient(janela)
