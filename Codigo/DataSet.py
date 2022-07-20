@@ -198,10 +198,9 @@ class DataSet():
         
         times = []
         
-        for i in range(8):
-            for j in range(2):
-                times.append(oitavas[i][j])
-
+        for i in range(16):
+            times.append(oitavas[i][0])
+        
         #------------------------ JOGOS
         inicio = [-1 for i in range(16)]
                 
