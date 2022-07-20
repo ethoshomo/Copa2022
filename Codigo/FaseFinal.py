@@ -65,8 +65,6 @@ class FaseFinal():
                    [self.grupoH[0].get_nome(), self.grupoG[1].get_nome()]]
         
         return oitavas
-
-    
     
     def checando_jogos(self, jogos):
         for i in range(len(jogos)):
@@ -80,16 +78,11 @@ if __name__ == '__main__':
     
     oitavas = ff.formando_oitavas()
     
-    for i in oitavas:
-        print(i)
-        
-    print('\n\n')
-    
     ds = DataSet()
     
     ds.salvando_oitavas(oitavas, [[2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1]])
     
     aux = ds.recuperando_oitavas()
-    
+
     for i in aux:
         print(i)
