@@ -68,7 +68,11 @@ class FaseFinal():
         df_oitavas = pd.DataFrame(oitavas, index=[0, 1])
 
         df_oitavas.to_pickle('dataset/Oitavas.pkl')    
-    
+        
+        ds = DataSet()
+        ds.salvando_oitavas([[-1, -1], [-1, -1], [-1, -1], [-1, -1], 
+                             [-1, -1], [-1, -1], [-1, -1], [-1, -1]])
+           
     def checando_jogos(self, jogos):
         for i in range(len(jogos)):
             for j in range(2):
@@ -79,6 +83,3 @@ class FaseFinal():
 if __name__ == '__main__':
     ff = FaseFinal()
     ff.formando_oitavas()
-    
-    ds = DataSet()
-    ds.salvando_oitavas([[2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1], [2, 1]])
