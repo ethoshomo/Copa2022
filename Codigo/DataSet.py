@@ -460,6 +460,9 @@ class DataSet():
             
         return aux
     
+    def recuperando_quartassemis(self):
+        return self.recuperando_quartas_str() + self.recuperando_semifinais_str()
+    
     def salvando_finais(self, jogos: list):
         # ----------- TIMES
         finais      = pd.read_pickle('dataset/Finais.pkl')

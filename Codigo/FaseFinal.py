@@ -197,16 +197,16 @@ class FaseFinal():
         if self.checando_semifinais(times) == True:
             return
         
-        quartas = {0:times[0],
-                   1:times[1],
-                   2:times[2],
-                   3:times[3]}
+        semis = {0:times[0],
+                 1:times[1],
+                 2:times[2],
+                 3:times[3]}
         
-        df_quartas = pd.DataFrame(quartas, index=[0])
+        df_quartas = pd.DataFrame(semis, index=[0])
         
         df_quartas.to_pickle('dataset/Semifinais.pkl')
         
-        self.ds.salvando_quartas([[-1, -1, -1, -1], [-1, -1, -1, -1],
+        self.ds.salvando_semifinais([[-1, -1, -1, -1], [-1, -1, -1, -1],
                                   [-1, -1, -1, -1], [-1, -1, -1, -1]])
 
     def checando_semifinais(self, novos):
@@ -220,43 +220,43 @@ class FaseFinal():
         return False
 
     def formando_finais(self):
-        quartas = self.ds.recuperando_semifinais()
+        semis = self.ds.recuperando_semifinais()
         
         times = [['-'] for i in range(4)]
         
         for i in range(0, 4, 2):
-            if quartas[i][0] != '-' and quartas[i+1][0] != '-':
+            if semis[i][0] != '-' and semis[i+1][0] != '-':
                 
-                if quartas[i][2] > quartas[i+1][2]:
-                    times[int(i/2)] = quartas[i][0]
-                    times[int(i/2)+2] = quartas[i+1][0]
+                if semis[i][2] > semis[i+1][2]:
+                    times[int(i/2)] = semis[i][0]
+                    times[int(i/2)+2] = semis[i+1][0]
                     
                     
-                elif quartas[i][2] < quartas[i+1][2]:
-                    times[int(i/2)] = quartas[i+1][0]
-                    times[int(i/2)+1] = quartas[i][0]
+                elif semis[i][2] < semis[i+1][2]:
+                    times[int(i/2)] = semis[i+1][0]
+                    times[int(i/2)+1] = semis[i][0]
                     
-                elif quartas[i][3] != -1 and quartas[i+1][3] != -1:
-                    if quartas[i][3] > quartas[i+1][3]:
-                        times[int(i/2)] = quartas[i][0]
-                        times[int(i/2)+2] = quartas[i+1][0]
+                elif semis[i][3] != -1 and semis[i+1][3] != -1:
+                    if semis[i][3] > semis[i+1][3]:
+                        times[int(i/2)] = semis[i][0]
+                        times[int(i/2)+2] = semis[i+1][0]
                     else:
-                        times[int(i/2)] = quartas[i+1][0]
-                        times[int(i/2)+2] = quartas[i][0]
+                        times[int(i/2)] = semis[i+1][0]
+                        times[int(i/2)+2] = semis[i][0]
        
         if self.checando_finais(times) == True:
             return
         
-        quartas = {0:times[0],
+        semis = {0:times[0],
                    1:times[1],
                    2:times[2],
                    3:times[3]}
         
-        df_quartas = pd.DataFrame(quartas, index=[0])
+        df_semis = pd.DataFrame(semis, index=[0])
         
-        df_quartas.to_pickle('dataset/Finais.pkl')
+        df_semis.to_pickle('dataset/Finais.pkl')
         
-        self.ds.salvando_quartas([[-1, -1, -1, -1], [-1, -1, -1, -1],
+        self.ds.salvando_finais([[-1, -1, -1, -1], [-1, -1, -1, -1],
                                   [-1, -1, -1, -1], [-1, -1, -1, -1]])
         
     def checando_finais(self, novos):
@@ -274,30 +274,35 @@ if __name__ == '__main__':
     ds = DataSet()
     
     ff.formando_oitavas()
-    ds.salvando_oitavas([[3, 1, 0, 1], [3, 1, 0, 1], [3, 1, 0, 1], [3, 1, 0, 1],
-                         [3, 1, 0, 1], [3, 1, 0, 1], [3, 1, 0, 1], [3, 1, 0, 1]])
+    # ds.salvando_oitavas([[7, 7, 1, 0], [3, 1, 0, 1], [3, 1, 0, 1], [3, 1, 0, 1],
+                        # [3, 1, 0, 1], [3, 1, 0, 1], [3, 1, 0, 1], [3, 1, 0, 1]])
     oitavas = ds.recuperando_oitavas()
     for i in oitavas:
         print(i)
     print('\n')
     
     ff.formando_quartas()
-    ds.salvando_quartas([[3, 1, 0, 1], [3, 1, 0, 1],
-                         [3, 1, 0, 1], [3, 1, 0, 1]])
+    # ds.salvando_quartas([[3, 1, 0, 1], [3, 1, 0, 1],
+                        # [3, 1, 0, 1], [3, 1, 0, 1]])
     quartas = ds.recuperando_quartas()
     for i in quartas:
         print(i)
     print('\n')
     
     ff.formando_semifinais()
-    ds.salvando_semifinais([[3, 1, 1, 0], [3, 1, 1, 0]])
+    # ds.salvando_semifinais([[3, 1, 1, 0], [3, 1, 1, 0]])
     semifinais = ds.recuperando_semifinais()
     for i in semifinais:
         print(i)
     print('\n')
         
     ff.formando_finais()
-    ds.salvando_finais([[3, 1, 1, 0], [3, 1, 1, 0]])
+    # ds.salvando_finais([[3, 1, 1, 0], [3, 1, 1, 0]])
     finais = ds.recuperando_finais()
     for i in finais:
+        print(i)
+    print('\n\n')
+    
+    teste = ds.recuperando_quartassemis()
+    for i in teste:
         print(i)
