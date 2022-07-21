@@ -27,6 +27,10 @@ class FaseFinal():
         self.jogosF = self.ds.recuperando_jogos('Grupo F')
         self.jogosG = self.ds.recuperando_jogos('Grupo G')
         self.jogosH = self.ds.recuperando_jogos('Grupo H')
+        self.formando_oitavas()
+        self.formando_quartas()
+        self.formando_semifinais()
+        self.formando_finais()
 
     def formando_oitavas(self):
 
@@ -209,7 +213,7 @@ class FaseFinal():
         df_quartas.to_pickle('dataset/Semifinais.pkl')
 
         self.ds.salvando_semifinais([[-1, -1, -1, -1], [-1, -1, -1, -1],
-                                  [-1, -1, -1, -1], [-1, -1, -1, -1]])
+                                     [-1, -1, -1, -1], [-1, -1, -1, -1]])
 
     def checando_semifinais(self, novos):
         if os.path.exists('dataset/Semifinais.pkl'):
@@ -259,7 +263,7 @@ class FaseFinal():
         df_finais.to_pickle('dataset/Finais.pkl')
 
         self.ds.salvando_finais([[-1, -1, -1, -1], [-1, -1, -1, -1],
-                                  [-1, -1, -1, -1], [-1, -1, -1, -1]])
+                                 [-1, -1, -1, -1], [-1, -1, -1, -1]])
 
     def checando_finais(self, novos):
         if os.path.exists('dataset/Finais.pkl'):
