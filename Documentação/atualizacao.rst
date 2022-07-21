@@ -1,7 +1,7 @@
-Atualizacao module
+atualizacao module
 ==================
 
-.. automodule:: Atualizacao
+.. automodule:: atualizacao
    :members:
    :undoc-members:
    :show-inheritance:
