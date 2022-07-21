@@ -73,7 +73,7 @@ class Atualizacao:
 
 class AtualizarOitavas:
 
-    def __init__(self, dados:list):
+    def __init__(self, dados: list):
 
         self.s1_str = StringVar(value=dados[0][0])
         self.s1_band = StringVar(value=dados[0][1])
@@ -210,121 +210,116 @@ class AtualizarOitavas:
 class AutalizarQuartas:
 
 
-    s = []
+    def __init__(self, dados: list):
 
-    def __init__(self):
+        self.s1_str = StringVar(value=dados[0][0])
+        self.s1_band = StringVar(value=dados[0][1])
+        self.s1_gol = StringVar(value=dados[0][2])
 
-        self.s = [['-', 'imagens/bandeira.png', ''] for i in range(9)]
+        self.s2_str = StringVar(value=dados[1][0])
+        self.s2_band = StringVar(value=dados[1][1])
+        self.s2_gol = StringVar(value=dados[1][2])
 
-        self.s1_str = StringVar(value=self.s[1][0])
-        self.s1_band = StringVar(value=self.s[1][1])
-        self.s1_gol = StringVar(value=self.s[1][2])
+        self.s3_str = StringVar(value=dados[2][0])
+        self.s3_band = StringVar(value=dados[2][1])
+        self.s3_gol = StringVar(value=dados[2][2])
 
-        self.s2_str = StringVar(value=self.s[2][0])
-        self.s2_band = StringVar(value=self.s[2][1])
-        self.s2_gol = StringVar(value=self.s[2][2])
+        self.s4_str = StringVar(value=dados[3][0])
+        self.s4_band = StringVar(value=dados[3][1])
+        self.s4_gol = StringVar(value=dados[3][2])
 
-        self.s3_str = StringVar(value=self.s[3][0])
-        self.s3_band = StringVar(value=self.s[3][1])
-        self.s3_gol = StringVar(value=self.s[3][2])
+        self.s5_str = StringVar(value=dados[4][0])
+        self.s5_band = StringVar(value=dados[4][1])
+        self.s5_gol = StringVar(value=dados[4][2])
 
-        self.s4_str = StringVar(value=self.s[4][0])
-        self.s4_band = StringVar(value=self.s[4][1])
-        self.s4_gol = StringVar(value=self.s[4][2])
+        self.s6_str = StringVar(value=dados[5][0])
+        self.s6_band = StringVar(value=dados[5][1])
+        self.s6_gol = StringVar(value=dados[5][2])
 
-        self.s5_str = StringVar(value=self.s[5][0])
-        self.s5_band = StringVar(value=self.s[5][1])
-        self.s5_gol = StringVar(value=self.s[5][2])
+        self.s7_str = StringVar(value=dados[6][0])
+        self.s7_band = StringVar(value=dados[6][1])
+        self.s7_gol = StringVar(value=dados[6][2])
 
-        self.s6_str = StringVar(value=self.s[6][0])
-        self.s6_band = StringVar(value=self.s[6][1])
-        self.s6_gol = StringVar(value=self.s[6][2])
-
-        self.s7_str = StringVar(value=self.s[7][0])
-        self.s7_band = StringVar(value=self.s[7][1])
-        self.s7_gol = StringVar(value=self.s[7][2])
-
-        self.s8_str = StringVar(value=self.s[8][0])
-        self.s8_band = StringVar(value=self.s[8][1])
-        self.s8_gol = StringVar(value=self.s[8][2])
+        self.s8_str = StringVar(value=dados[7][0])
+        self.s8_band = StringVar(value=dados[7][1])
+        self.s8_gol = StringVar(value=dados[7][2])
 
 
     def atualizar(self, dados: list):
 
-        self.s1_str.set(value=dados[1][0])
-        self.s1_band.set(value=dados[1][1])
-        self.s1_gol.set(value=dados[1][2])
+        print(dados)
+        self.s1_str.set(value=dados[0][0])
+        self.s1_band.set(value=dados[0][1])
+        self.s1_gol.set(value=dados[0][2])
 
-        self.s2_str.set(value=dados[2][0])
-        self.s2_band.set(value=dados[2][1])
-        self.s2_gol.set(value=dados[2][2])
+        self.s2_str.set(value=dados[1][0])
+        self.s2_band.set(value=dados[1][1])
+        self.s2_gol.set(value=dados[1][2])
 
-        self.s3_str.set(value=dados[3][0])
-        self.s3_band.set(value=dados[3][1])
-        self.s3_gol.set(value=dados[3][2])
+        self.s3_str.set(value=dados[2][0])
+        self.s3_band.set(value=dados[2][1])
+        self.s3_gol.set(value=dados[2][2])
 
-        self.s4_str.set(value=dados[4][0])
-        self.s4_band.set(value=dados[4][1])
-        self.s4_gol.set(value=dados[4][2])
+        self.s4_str.set(value=dados[3][0])
+        self.s4_band.set(value=dados[3][1])
+        self.s4_gol.set(value=dados[3][2])
 
-        self.s5_str.set(value=dados[5][0])
-        self.s5_band.set(value=dados[5][1])
-        self.s5_gol.set(value=dados[5][2])
+        self.s5_str.set(value=dados[4][0])
+        self.s5_band.set(value=dados[4][1])
+        self.s5_gol.set(value=dados[4][2])
 
-        self.s6_str.set(value=dados[6][0])
-        self.s6_band.set(value=dados[6][1])
-        self.s6_gol.set(value=dados[6][2])
+        self.s6_str.set(value=dados[5][0])
+        self.s6_band.set(value=dados[5][1])
+        self.s6_gol.set(value=dados[5][2])
 
-        self.s7_str.set(value=dados[7][0])
-        self.s7_band.set(value=dados[7][1])
-        self.s7_gol.set(value=dados[7][2])
+        self.s7_str.set(value=dados[6][0])
+        self.s7_band.set(value=dados[6][1])
+        self.s7_gol.set(value=dados[6][2])
 
-        self.s8_str.set(value=dados[8][0])
-        self.s8_band.set(value=dados[8][1])
-        self.s8_gol.set(value=dados[8][2])
+        self.s8_str.set(value=dados[7][0])
+        self.s8_band.set(value=dados[7][1])
+        self.s8_gol.set(value=dados[7][2])
 
 
 
 class AtualizarFinalSemi:
 
 
-    s = []
+    def __init__(self, dados : list):
 
-    def __init__(self):
+        print(dados)
+        self.s1_str = StringVar(value=dados[0][0])
+        self.s1_band = StringVar(value=dados[0][1])
+        self.s1_gol = StringVar(value=dados[0][2])
 
-        self.s = [['-', 'imagens/bandeira.png', ''] for i in range(5)]
+        self.s2_str = StringVar(value=dados[1][0])
+        self.s2_band = StringVar(value=dados[1][1])
+        self.s2_gol = StringVar(value=dados[1][2])
 
-        self.s1_str = StringVar(value=self.s[1][0])
-        self.s1_band = StringVar(value=self.s[1][1])
-        self.s1_gol = StringVar(value=self.s[1][2])
+        self.s3_str = StringVar(value=dados[2][0])
+        self.s3_band = StringVar(value=dados[2][1])
+        self.s3_gol = StringVar(value=dados[2][2])
 
-        self.s2_str = StringVar(value=self.s[2][0])
-        self.s2_band = StringVar(value=self.s[2][1])
-        self.s2_gol = StringVar(value=self.s[2][2])
-
-        self.s3_str = StringVar(value=self.s[3][0])
-        self.s3_band = StringVar(value=self.s[3][1])
-        self.s3_gol = StringVar(value=self.s[3][2])
-
-        self.s4_str = StringVar(value=self.s[4][0])
-        self.s4_band = StringVar(value=self.s[4][1])
-        self.s4_gol = StringVar(value=self.s[4][2])
+        self.s4_str = StringVar(value=dados[3][0])
+        self.s4_band = StringVar(value=dados[3][1])
+        self.s4_gol = StringVar(value=dados[3][2])
 
 
     def atualizar(self, dados: list):
+        print("Atualizando Finais:")
+        print(dados)
+        self.s1_str.set(value=dados[0][0])
+        self.s1_band.set(value=dados[0][1])
+        self.s1_gol.set(value=dados[0][2])
 
-        self.s1_str.set(value=dados[1][0])
-        self.s1_band.set(value=dados[1][1])
-        self.s1_gol.set(value=dados[1][2])
+        self.s2_str.set(value=dados[1][0])
+        self.s2_band.set(value=dados[1][1])
+        self.s2_gol.set(value=dados[1][2])
 
-        self.s2_str.set(value=dados[2][0])
-        self.s2_band.set(value=dados[2][1])
-        self.s2_gol.set(value=dados[2][2])
+        self.s3_str.set(value=dados[2][0])
+        self.s3_band.set(value=dados[2][1])
+        self.s3_gol.set(value=dados[2][2])
 
-        self.s3_str.set(value=dados[3][0])
-        self.s3_band.set(value=dados[3][1])
-        self.s3_gol.set(value=dados[3][2])
-
-        self.s4_str.set(value=dados[4][0])
-        self.s4_band.set(value=dados[4][1])
-        self.s4_gol.set(value=dados[4][2])
+        self.s4_str.set(value=dados[3][0])
+        self.s4_band.set(value=dados[3][1])
+        self.s4_gol.set(value=dados[3][2])

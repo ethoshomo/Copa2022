@@ -550,6 +550,14 @@ def janela_grupos():
 
 def janela_fase_final():
 
+    def informacoes():
+        messagebox.showinfo("INFORMAÇÕES", "Na Fase Final, é importante saber que os dados são atualizados"
+                                           " de forma automática, objetivando modificar as próximas fases. Por isso, esteja"
+                                           " atento nas alterações dos resultados anteriores (por exemplo, modificar dados"
+                                           " das oitavas quando já se tem dados da quartas e das semifinais), pois sua "
+                                           " atualização implicará no apagamento das informações posteriores (quartas de"
+                                           " finais e semifinais). Além disso, caso haja erros de informações, é "
+                                           "possível corrigir os equívocos, ressaltando-se as observações acima.")
 
     def salvar_oitavas():
 
@@ -655,33 +663,149 @@ def janela_fase_final():
                 resul_oitavas[7][2] = 0
                 resul_oitavas[7][3] = 1
 
+        print("Resultado das oitavas:")
+        print(resul_oitavas)
 
-        data = DataSet()
         data.salvando_oitavas(resul_oitavas)
+        fase_final.formando_quartas()
+        fase_final.formando_semifinais()
+        fase_final.formando_finais()
 
 
     def salvar_quartas():
         print("Salvar Quartas")
-        resul_quartas = [[tratamento_dados(quartas11.get()), tratamento_dados(quartas12.get())],
-                         [tratamento_dados(quartas21.get()), tratamento_dados(quartas22.get())],
-                         [tratamento_dados(quartas31.get()), tratamento_dados(quartas32.get())],
-                         [tratamento_dados(quartas41.get()), tratamento_dados(quartas42.get())],
-                         [tratamento_dados(semifinais11.get()), tratamento_dados(semifinais12.get())],
-                         [tratamento_dados(semifinais21.get()), tratamento_dados(semifinais22.get())]]
+        resul_quartas = [[tratamento_dados(quartas11.get()), tratamento_dados(quartas12.get()), -1, -1],
+                         [tratamento_dados(quartas21.get()), tratamento_dados(quartas22.get()), -1, -1],
+                         [tratamento_dados(quartas31.get()), tratamento_dados(quartas32.get()), -1, -1],
+                         [tratamento_dados(quartas41.get()), tratamento_dados(quartas42.get()), -1, -1]]
 
-        # dados = DataSet()
-        # dados.salvar_dados_quartas(resul_quartas)
+
+        if resul_quartas[0][0] == resul_quartas[0][1] and resul_quartas[0][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_quartas.s1_str.get() +
+                                      " empatou com a seleção " + dados_quartas.s2_str.get() + ". A " +
+                                      dados_quartas.s1_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_quartas[0][2] = 1
+                resul_quartas[0][3] = 0
+            else:
+                resul_quartas[0][2] = 0
+                resul_quartas[0][3] = 1
+
+        if resul_quartas[1][0] == resul_quartas[1][1] and resul_quartas[1][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_quartas.s3_str.get() +
+                                      " empatou com a seleção " + dados_quartas.s4_str.get() + ". A " +
+                                      dados_quartas.s3_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_quartas[1][2] = 1
+                resul_quartas[1][3] = 0
+            else:
+                resul_quartas[1][2] = 0
+                resul_quartas[1][3] = 1
+
+        if resul_quartas[2][0] == resul_quartas[2][1] and resul_quartas[2][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_quartas.s5_str.get() +
+                                      " empatou com a seleção " + dados_quartas.s6_str.get() + ". A " +
+                                      dados_quartas.s5_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_quartas[2][2] = 1
+                resul_quartas[2][3] = 0
+            else:
+                resul_quartas[2][2] = 0
+                resul_quartas[2][3] = 1
+
+        if resul_quartas[3][0] == resul_quartas[3][1] and resul_quartas[3][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_quartas.s7_str.get() +
+                                      " empatou com a seleção " + dados_quartas.s8_str.get() + ". A " +
+                                      dados_quartas.s7_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_quartas[3][2] = 1
+                resul_quartas[3][3] = 0
+            else:
+                resul_quartas[3][2] = 0
+                resul_quartas[3][3] = 1
+
+
+        data.salvando_quartas(resul_quartas)
+        dados_quartas.atualizar(data.recuperando_quartas_str())
+        fase_final.formando_semifinais()
+        atualizar_semifinais()
+
+
+    def salvar_semifinais():
+
+        resul_semifinais = [[tratamento_dados(semifinais11.get()), tratamento_dados(semifinais12.get()), -1, -1],
+                            [tratamento_dados(semifinais21.get()), tratamento_dados(semifinais22.get()), -1, -1]]
+
+
+        if resul_semifinais[0][0] == resul_semifinais[0][1] and resul_semifinais[0][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_semifinal.s1_str.get() +
+                                      " empatou com a seleção " + dados_semifinal.s2_str.get() + ". A " +
+                                      dados_semifinal.s1_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_semifinais[0][2] = 1
+                resul_semifinais[0][3] = 0
+            else:
+                resul_semifinais[0][2] = 0
+                resul_semifinais[0][3] = 1
+
+        if resul_semifinais[1][0] == resul_semifinais[1][1] and resul_semifinais[1][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_semifinal.s3_str.get() +
+                                      " empatou com a seleção " + dados_semifinal.s4_str.get() + ". A " +
+                                      dados_semifinal.s3_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_semifinais[1][2] = 1
+                resul_semifinais[1][3] = 0
+            else:
+                resul_semifinais[1][2] = 0
+                resul_semifinais[1][3] = 1
+
+        data.salvando_semifinais(resul_semifinais)
+        dados_semifinal.atualizar(data.recuperando_semifinais_str())
+        fase_final.formando_finais()
 
 
     def salvar_final():
-        print("Salvar Final")
 
-        resul_final = [[tratamento_dados(final11.get()), tratamento_dados(final12.get())], # Disputa pelo primeiro
-                      [tratamento_dados(final21.get()), tratamento_dados(final22.get())]] # Disputa pelo terceiro
 
+        resul_finais = [[tratamento_dados(final11.get()), tratamento_dados(final12.get()), -1, -1],
+                        [tratamento_dados(final21.get()), tratamento_dados(final22.get()), -1, -1]]
+
+
+        if resul_finais[1][0] == resul_finais[1][1] and resul_finais[1][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_finais.s3_str.get() +
+                                      " empatou com a seleção " + dados_finais.s4_str.get() + ". A " +
+                                      dados_finais.s3_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_finais[1][2] = 1
+                resul_finais[1][3] = 0
+            else:
+                resul_finais[1][2] = 0
+                resul_finais[1][3] = 1
+
+
+        if resul_finais[0][0] != -1 and resul_finais[0][1] != -1:
+            if resul_finais[0][0] > resul_finais[0][1]:
+                messagebox.showinfo("CAMPEÃ!!!", "A seleção da " + dados_finais.s1_str.get() + " é a campeã!!!")
+            elif resul_finais[0][0] < resul_finais[0][1]:
+                messagebox.showinfo("CAMPEÃ!!!", "A seleção da " + dados_finais.s2_str.get() + " é a campeã!!!")
+            else:
+                msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_finais.s1_str.get() +
+                                            " empatou com a seleção " + dados_finais.s2_str.get() + ". A " +
+                                            dados_finais.s1_str.get() + " venceu nos penaltis?")
+                if msg:
+                    messagebox.showinfo("CAMPEÃ!!!", "A seleção da " + dados_finais.s1_str.get() + " é a campeã!!!")
+                    resul_finais[0][2] = 1
+                    resul_finais[0][3] = 0
+                else:
+                    messagebox.showinfo("CAMPEÃ!!!", "A seleção da " + dados_finais.s2_str.get() + " é a campeã!!!")
+                    resul_finais[0][2] = 0
+                    resul_finais[0][3] = 1
+
+        data.salvando_finais(resul_finais)
 
 
     def oitavas_final():
+
         frame_oitavas.place(x=50, y=50, width=700, height=430)  # posição de exibição
         frame_quartas_semifinais.place(x=50, y=600, width=700, height=430)  # posição de exibição
         frame_final.place(x=600, y=600, width=700, height=430)  # posição de exibição
@@ -780,9 +904,16 @@ def janela_fase_final():
         frame_oitavas.place(x=50, y=600, width=700, height=430)  # posição de exibição
         frame_final.place(x=600, y=600, width=700, height=430)  # posição de exibição
 
-        # dados = DataSet()
-        # global
-        # dados_quartas.atualizar(dados.recuperar_dados_quartas())
+        atualizar_quartas()
+        atualizar_semifinais()
+        print("Quartas - Semifinais")
+
+    def atualizar_quartas():
+
+        recuperado = data.recuperando_quartas_str()
+        print("Atualizando Quartas")
+        print(recuperado)
+        dados_quartas.atualizar(recuperado)
 
         img17 = ImageTk.PhotoImage(Image.open(dados_quartas.s1_band.get()).resize((50, 30)))
         img18 = ImageTk.PhotoImage(Image.open(dados_quartas.s2_band.get()).resize((50, 30)))
@@ -809,6 +940,7 @@ def janela_fase_final():
         lbl23.image = img23
         lbl24.image = img24
 
+        # Recupera valores para preenchimento dos placares
         quartas11.delete(0)
         quartas12.delete(0)
         quartas21.delete(0)
@@ -817,36 +949,64 @@ def janela_fase_final():
         quartas32.delete(0)
         quartas41.delete(0)
         quartas42.delete(0)
-        quartas11.insert(0, dados_quartas.s[1][2])
-        quartas12.insert(0, dados_quartas.s[2][2])
-        quartas21.insert(0, dados_quartas.s[3][2])
-        quartas22.insert(0, dados_quartas.s[4][2])
-        quartas31.insert(0, dados_quartas.s[5][2])
-        quartas32.insert(0, dados_quartas.s[6][2])
-        quartas41.insert(0, dados_quartas.s[7][2])
-        quartas42.insert(0, dados_quartas.s[8][2])
+        quartas11.insert(0, dados_quartas.s1_gol.get())
+        quartas12.insert(0, dados_quartas.s2_gol.get())
+        quartas21.insert(0, dados_quartas.s3_gol.get())
+        quartas22.insert(0, dados_quartas.s4_gol.get())
+        quartas31.insert(0, dados_quartas.s5_gol.get())
+        quartas32.insert(0, dados_quartas.s6_gol.get())
+        quartas41.insert(0, dados_quartas.s7_gol.get())
+        quartas42.insert(0, dados_quartas.s8_gol.get())
+        print("Atualizou Quartas")
 
-        print("Quartas - Semifinais")
+    def atualizar_semifinais():
+        recuperado = data.recuperando_semifinais_str()
+        print("Atualizando semifinais")
+        print(recuperado)
+        dados_semifinal.atualizar(recuperado)
 
+        img25 = ImageTk.PhotoImage(Image.open(dados_semifinal.s1_band.get()).resize((50, 30)))
+        img26 = ImageTk.PhotoImage(Image.open(dados_semifinal.s2_band.get()).resize((50, 30)))
+        img27 = ImageTk.PhotoImage(Image.open(dados_semifinal.s3_band.get()).resize((50, 30)))
+        img28 = ImageTk.PhotoImage(Image.open(dados_semifinal.s4_band.get()).resize((50, 30)))
+        lbl25.configure(image=img25)
+        lbl26.configure(image=img26)
+        lbl27.configure(image=img27)
+        lbl28.configure(image=img28)
+        lbl25.image = img25
+        lbl26.image = img26
+        lbl27.image = img27
+        lbl28.image = img28
+
+        semifinais11.delete(0)
+        semifinais12.delete(0)
+        semifinais21.delete(0)
+        semifinais22.delete(0)
+        semifinais11.insert(0, dados_semifinal.s1_gol.get())
+        semifinais12.insert(0, dados_semifinal.s2_gol.get())
+        semifinais21.insert(0, dados_semifinal.s3_gol.get())
+        semifinais22.insert(0, dados_semifinal.s4_gol.get())
+        print("Atualizou Semifinais")
 
     def final():
         frame_final.place(x=50, y=50, width=700, height=430)  # posição de exibição
         frame_quartas_semifinais.place(x=50, y=600, width=700, height=430)  # posição de exibição
         frame_oitavas.place(x=600, y=600, width=700, height=430)  # posição de exibição
 
-        # dados = DataSet()
-        # global
-        #dados_finais.atualizar(dados.recuperar_dados_final())
+        recuperado = data.recuperando_finais_str()
+        print(recuperado)
+
+        dados_finais.atualizar(recuperado)
 
         # Recuperando valores para as caixas de entrada dos placares
         final11.delete(0)
         final12.delete(0)
         final21.delete(0)
         final22.delete(0)
-        final11.insert(0, dados_finais.s[1][2])
-        final12.insert(0, dados_finais.s[2][2])
-        final21.insert(0, dados_finais.s[3][2])
-        final22.insert(0, dados_finais.s[4][2])
+        final11.insert(0, dados_finais.s1_gol.get())
+        final12.insert(0, dados_finais.s2_gol.get())
+        final21.insert(0, dados_finais.s3_gol.get())
+        final22.insert(0, dados_finais.s4_gol.get())
 
         # Para recuperar imagens dinamicamente, é necessário o seguinte código
         img29 = ImageTk.PhotoImage(Image.open(dados_finais.s1_band.get()).resize((50, 30)))
@@ -887,11 +1047,13 @@ def janela_fase_final():
     fase_final = FaseFinal()
     fase_final.formando_oitavas()
 
+
     # Criar objetos com as variáveis usadas nos frames
+    padrao = [['-', 'imagens/bandeira.png', ''] for i in range(17)]
     dados_oitavas = AtualizarOitavas(data.recuperando_oitavas())
-    dados_quartas = AutalizarQuartas()
-    dados_semifinal = AtualizarFinalSemi()
-    dados_finais = AtualizarFinalSemi()
+    dados_quartas = AutalizarQuartas(padrao)
+    dados_semifinal = AtualizarFinalSemi(padrao)
+    dados_finais = AtualizarFinalSemi(padrao)
 
 
     # -------------------------------------------------------------------------------------------------------------------
@@ -903,6 +1065,8 @@ def janela_fase_final():
     # Códigos acerca dos Botões dos Grupos-----------------------------------
 
     # Criação dos objetos Botões que serão posicionados no frame
+    btn_informacoes = Button(frame, font="Verdana 10 bold", text="INFORMACOES", bd=0, padx=2, pady=2, bg="#405E38", fg="white",
+                         command=informacoes)
     btn_oitavas = Button(frame, font="Verdana 10 bold", text="OITAVAS DE FINAL", bd=0, padx=2, pady=2, bg="#405E38", fg="white",
                          command=oitavas_final)
     btn_quartas_semifinais= Button(frame, font="Verdana 10 bold", text="QUARTAS E SEMIFINAIS", bd=0, padx=2, pady=2, bg="#405E38", fg="white",
@@ -913,10 +1077,11 @@ def janela_fase_final():
                           fg="white", command=lambda: quit(janela2))
 
     # Posicionamento dos objetos na tela utilizando a formatação grid
-    btn_oitavas.grid(row=0, column=0, padx=1)
-    btn_quartas_semifinais.grid(row=0, column=1, padx=1)
-    btn_final.grid(row=0, column=2, padx=1)
-    btn_retornar.grid(row=0, column=3, padx=1)
+    btn_informacoes.grid(row=0, column=0, padx=1)
+    btn_oitavas.grid(row=0, column=1, padx=1)
+    btn_quartas_semifinais.grid(row=0, column=2, padx=1)
+    btn_final.grid(row=0, column=3, padx=1)
+    btn_retornar.grid(row=0, column=4, padx=1)
 
 
     # Exibindo por padrão as Oitavas de Final
@@ -1113,9 +1278,6 @@ def janela_fase_final():
     frame_quartas_semifinais_interno.grid_anchor(CENTER)
     frame_quartas_semifinais_interno.grid(row=2, column=0)
 
-    Label(frame_quartas_semifinais, bg='white').grid(row=3, column=0)
-    Button(frame_quartas_semifinais, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38", fg="white", command=salvar_quartas).grid(row=4, column=0)
-
 
     # ------------------------------------------------------------------------------------------------------------------
     # Montagem do Frame de Quartas
@@ -1206,14 +1368,20 @@ def janela_fase_final():
     lbl24.grid(row=quartas4, column=5)
     Label(frame_quartas, bg='white', textvariable=dados_quartas.s8_str, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=quartas4, column=6, padx=2)
 
-    quartas11.insert(0, dados_quartas.s[1][2])
-    quartas12.insert(0, dados_quartas.s[2][2])
-    quartas21.insert(0, dados_quartas.s[3][2])
-    quartas22.insert(0, dados_quartas.s[4][2])
-    quartas31.insert(0, dados_quartas.s[5][2])
-    quartas32.insert(0, dados_quartas.s[6][2])
-    quartas41.insert(0, dados_quartas.s[7][2])
-    quartas42.insert(0, dados_quartas.s[8][2])
+    # Botão de salvar resultados
+    Label(frame_quartas, bg='white').grid(row=6, column=0)
+    Button(frame_quartas, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38", fg="white",
+           command=salvar_quartas).grid(row=7, column=0, columnspan=7)
+
+
+    quartas11.insert(0, dados_quartas.s1_gol.get())
+    quartas12.insert(0, dados_quartas.s2_gol.get())
+    quartas21.insert(0, dados_quartas.s3_gol.get())
+    quartas22.insert(0, dados_quartas.s4_gol.get())
+    quartas31.insert(0, dados_quartas.s5_gol.get())
+    quartas32.insert(0, dados_quartas.s6_gol.get())
+    quartas41.insert(0, dados_quartas.s7_gol.get())
+    quartas42.insert(0, dados_quartas.s8_gol.get())
 
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -1250,7 +1418,7 @@ def janela_fase_final():
     lbl26.grid(row=semifinal1, column=5)
     Label(frame_semifinais, bg='white', textvariable=dados_semifinal.s2_str, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=semifinal1, column=6, padx=2)
 
-    # Sexto jogo------------------------------------------------------------------------------------------------------
+    # Segundo jogo------------------------------------------------------------------------------------------------------
     semifinal2 = 3
     img27 = ImageTk.PhotoImage(Image.open(dados_semifinal.s3_band.get()).resize((50, 30)))
     img28 = ImageTk.PhotoImage(Image.open(dados_semifinal.s4_band.get()).resize((50, 30)))
@@ -1270,10 +1438,15 @@ def janela_fase_final():
     lbl28.grid(row=semifinal2, column=5)
     Label(frame_semifinais, bg='white', textvariable=dados_semifinal.s4_str, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=semifinal2, column=6, padx=2)
 
-    semifinais11.insert(0, dados_semifinal.s[1][2])
-    semifinais12.insert(0, dados_semifinal.s[2][2])
-    semifinais21.insert(0, dados_semifinal.s[3][2])
-    semifinais22.insert(0, dados_semifinal.s[4][2])
+    Label(frame_quartas_semifinais, bg='white').grid(row=7, column=0)
+    Button(frame_quartas_semifinais, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38",
+           fg="white", command=salvar_semifinais).grid(row=8, column=0, columnspan=7)
+
+
+    semifinais11.insert(0, dados_semifinal.s1_gol.get())
+    semifinais12.insert(0, dados_semifinal.s2_gol.get())
+    semifinais21.insert(0, dados_semifinal.s3_gol.get())
+    semifinais22.insert(0, dados_semifinal.s4_gol.get())
 
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -1281,7 +1454,7 @@ def janela_fase_final():
     # A final possui dois frames: 1) disputa terceiro e quarto Lugar; 2) disputa primeiro e segundo.
 
     # Título do Frame
-    Label(frame_final, fg="#405E38", bg="white", font="Verdana 12 bold", text="FINAL").grid(row=0, column=0)
+    Label(frame_final, fg="#405E38", bg="white", font="Verdana 18 bold", text="FINAL").grid(row=0, column=0)
     Label(frame_final, bg='white').grid(row=1, column=0)
 
     #Os frames de disputa de primeiro (linha 2) e terceiro lugar (linha 3) foram ampliados abaixo.
@@ -1289,6 +1462,7 @@ def janela_fase_final():
     frame_podio = Frame(frame_final, bg="white", width=400, height=100)
     frame_podio.grid_anchor(CENTER)
     frame_podio.grid(row=4, column=0)
+
 
     # Botão de salvar resultados
     Label(frame_final, bg='white').grid(row=5, column=0)
@@ -1308,7 +1482,7 @@ def janela_fase_final():
     final1 = 2
     img29 = ImageTk.PhotoImage(Image.open(dados_finais.s1_band.get()).resize((50, 30)))
     img30 = ImageTk.PhotoImage(Image.open(dados_finais.s2_band.get()).resize((50, 30)))
-    Label(frame_disputa_primeiro, bg='white', textvariable=dados_semifinal.s1_str, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=final1, column=0, padx=2)
+    Label(frame_disputa_primeiro, bg='white', textvariable=dados_finais.s1_str, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=final1, column=0, padx=2)
     lbl29 = Label(frame_disputa_primeiro, bg='white', width=60, justify=LEFT)
     lbl29.configure(image=img29)
     lbl29.image = img29
@@ -1322,7 +1496,7 @@ def janela_fase_final():
     lbl30.configure(image=img30)
     lbl30.image = img30
     lbl30.grid(row=final1, column=5)
-    Label(frame_disputa_primeiro, bg='white', textvariable=dados_semifinal.s2_str, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=final1, column=6, padx=2)
+    Label(frame_disputa_primeiro, bg='white', textvariable=dados_finais.s2_str, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=final1, column=6, padx=2)
 
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -1341,7 +1515,7 @@ def janela_fase_final():
     final2 = 4
     img31 = ImageTk.PhotoImage(Image.open(dados_finais.s3_band.get()).resize((50, 30)))
     img32 = ImageTk.PhotoImage(Image.open(dados_finais.s4_band.get()).resize((50, 30)))
-    Label(frame_disputa_terceiro, bg='white', textvariable=dados_semifinal.s3_str, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=final2, column=0, padx=2)
+    Label(frame_disputa_terceiro, bg='white', textvariable=dados_finais.s3_str, padx=2, justify=RIGHT, font="Verdana 10 bold").grid(row=final2, column=0, padx=2)
     lbl31 = Label(frame_disputa_terceiro, bg='white', width=60, justify=LEFT)
     lbl31.configure(image=img31)
     lbl31.image = img31
@@ -1355,12 +1529,13 @@ def janela_fase_final():
     lbl32.configure(image=img32)
     lbl32.image = img32
     lbl32.grid(row=final2, column=5)
-    Label(frame_disputa_terceiro, bg='white', textvariable=dados_semifinal.s4_str, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=final2, column=6, padx=2)
+    Label(frame_disputa_terceiro, bg='white', textvariable=dados_finais.s4_str, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=final2, column=6, padx=2)
 
-    final11.insert(0, dados_finais.s[1][2])
-    final12.insert(0, dados_finais.s[2][2])
-    final21.insert(0, dados_finais.s[3][2])
-    final22.insert(0, dados_finais.s[4][2])
+    final11.insert(0, dados_finais.s1_gol.get())
+    final12.insert(0, dados_finais.s2_gol.get())
+    final21.insert(0, dados_finais.s3_gol.get())
+    final22.insert(0, dados_finais.s4_gol.get())
+
 
     # ------------------------------------------------------------------------------------------------------------------
 
