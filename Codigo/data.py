@@ -98,7 +98,7 @@ def perguntas_quiz():
                     'Espanhã',
                     'Senegal',
                     'África do Sul']
-    perguntas[4] = ['Em 1950, a seleção barsileira buscava seu primiero campeonato, porém sofreu uma derrota por 2x1 para a seleção do Uruguai. Como ficou conhecido esse episódio?',
+    perguntas[4] = ['Em 1950, a seleção brasileira buscava seu primiero campeonato, porém sofreu uma derrota por 2x1 para a seleção do Uruguai. Como ficou conhecido esse episódio?',
                     'A derrota',
                     'A derrocada',
                     'Mineiraço',

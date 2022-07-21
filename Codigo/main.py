@@ -550,7 +550,9 @@ def janela_grupos():
 
 def janela_fase_final():
 
+    # Função destinada a mostrar informações ao usuário
     def informacoes():
+        # Exibe uma janela de mensagens na tela com as informações.
         messagebox.showinfo("INFORMAÇÕES", "Na Fase Final, é importante saber que os dados são atualizados"
                                            " de forma automática, objetivando modificar as próximas fases. Por isso, esteja"
                                            " atento nas alterações dos resultados anteriores (por exemplo, modificar dados"
@@ -559,8 +561,11 @@ def janela_fase_final():
                                            " finais e semifinais). Além disso, caso haja erros de informações, é "
                                            "possível corrigir os equívocos, ressaltando-se as observações acima.")
 
+
+    # Salva o resultado das oitavas (lembrando que pode acontecer empate que é resolvido por penaltis).
     def salvar_oitavas():
 
+        #criação de uma lista com dados devidamente tratados que serão salvos no banco de dados.
         resul_oitavas = [[tratamento_dados(oitavas11.get()), tratamento_dados(oitavas12.get()), -1, -1],
                          [tratamento_dados(oitavas21.get()), tratamento_dados(oitavas22.get()), -1, -1],
                          [tratamento_dados(oitavas31.get()), tratamento_dados(oitavas32.get()), -1, -1],
@@ -570,6 +575,9 @@ def janela_fase_final():
                          [tratamento_dados(oitavas71.get()), tratamento_dados(oitavas72.get()), -1, -1],
                          [tratamento_dados(oitavas81.get()), tratamento_dados(oitavas82.get()), -1, -1]]
 
+
+        # Bloco que analisa os resultados das partidas e verifica se houve penaltis.
+        # Infelizmente não foi possível essa verificação em uma função devido a espeficidades das variáveis dinâmicas.
         if resul_oitavas[0][0] == resul_oitavas[0][1] and resul_oitavas[0][0] != -1:
             msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_oitavas.s1_str.get() +
                                       " empatou com a seleção da(o) " + dados_oitavas.s2_str.get() + ". O(A) " +
@@ -663,23 +671,26 @@ def janela_fase_final():
                 resul_oitavas[7][2] = 0
                 resul_oitavas[7][3] = 1
 
-        print("Resultado das oitavas:")
-        print(resul_oitavas)
-
+        # Salva os resultados dos jogos e forma os grupos das quartas, seminfinais e finais
         data.salvando_oitavas(resul_oitavas)
         fase_final.formando_quartas()
         fase_final.formando_semifinais()
         fase_final.formando_finais()
 
 
+    # Salvamento das quartas de finais. Isso acontece quando há o clique no botão "Salvar" na interface gráfica.
     def salvar_quartas():
-        print("Salvar Quartas")
+
+        # Os valores são passados ao banco de dados por meio de uma lista de listas.
+        # Os primeiros dois valores são relacionados com o placar dos jogos, enquanto os segundos são preenchidos
+        # em caso de penalties.
         resul_quartas = [[tratamento_dados(quartas11.get()), tratamento_dados(quartas12.get()), -1, -1],
                          [tratamento_dados(quartas21.get()), tratamento_dados(quartas22.get()), -1, -1],
                          [tratamento_dados(quartas31.get()), tratamento_dados(quartas32.get()), -1, -1],
                          [tratamento_dados(quartas41.get()), tratamento_dados(quartas42.get()), -1, -1]]
 
 
+        # Verifica se os resultados são empates. Caso sejam, pergunta sobre os vencedores nos penalties.
         if resul_quartas[0][0] == resul_quartas[0][1] and resul_quartas[0][0] != -1:
             msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_quartas.s1_str.get() +
                                       " empatou com a seleção da(o) " + dados_quartas.s2_str.get() + ". O(A) " +
@@ -724,19 +735,23 @@ def janela_fase_final():
                 resul_quartas[3][2] = 0
                 resul_quartas[3][3] = 1
 
-
+        # Realiza o salvamento dos resultados das quartas de finais, atualiza variáveis e forma semifinais
+        # Logo, em seguida, faz o seu salvamento.
         data.salvando_quartas(resul_quartas)
         dados_quartas.atualizar(data.recuperando_quartas_str())
         fase_final.formando_semifinais()
         atualizar_semifinais()
 
-
+    # Realiza o salvamento dos resultados quando o botão "Salvar" é clicado na interface.
     def salvar_semifinais():
 
+        # Os resultados são armazenados na forma de lista de listas, representando o placar do jogo e o resultado
+        # dos penalties, quando ocorrer empates.
         resul_semifinais = [[tratamento_dados(semifinais11.get()), tratamento_dados(semifinais12.get()), -1, -1],
                             [tratamento_dados(semifinais21.get()), tratamento_dados(semifinais22.get()), -1, -1]]
 
 
+        # Verifica a ocorrência de penalties e providencia respostas.
         if resul_semifinais[0][0] == resul_semifinais[0][1] and resul_semifinais[0][0] != -1:
             msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_semifinal.s1_str.get() +
                                       " empatou com a seleção da(o) " + dados_semifinal.s2_str.get() + ". O(A) " +
@@ -759,11 +774,12 @@ def janela_fase_final():
                 resul_semifinais[1][2] = 0
                 resul_semifinais[1][3] = 1
 
+        # Salva os valores todos atualizados e forma as finais.
         data.salvando_semifinais(resul_semifinais)
         dados_semifinal.atualizar(data.recuperando_semifinais_str())
         fase_final.formando_finais()
 
-
+    # Realiza o salvamento da final e apresenta o campeão, quando o o botão for clicado.
     def salvar_final():
 
 
@@ -771,6 +787,7 @@ def janela_fase_final():
                         [tratamento_dados(final21.get()), tratamento_dados(final22.get()), -1, -1]]
 
 
+        # Verifica a ocorrência de penalties na disputa por terceiro e quarto lugar.
         if resul_finais[1][0] == resul_finais[1][1] and resul_finais[1][0] != -1:
             msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_finais.s3_str.get() +
                                       " empatou com a seleção da(o) " + dados_finais.s4_str.get() + ". O(A) " +
@@ -782,7 +799,8 @@ def janela_fase_final():
                 resul_finais[1][2] = 0
                 resul_finais[1][3] = 1
 
-
+        # Verifica resultado da disputa de primeiro e segundo lugar na final. Caso seja empate, o vencedor
+        # será decidido nos penalties.
         if resul_finais[0][0] != -1 and resul_finais[0][1] != -1:
             if resul_finais[0][0] > resul_finais[0][1]:
                 messagebox.showinfo("CAMPEÃ!!!", "A seleção da(o) " + dados_finais.s1_str.get() + " é a campeã!!!")
@@ -801,18 +819,20 @@ def janela_fase_final():
                     resul_finais[0][2] = 0
                     resul_finais[0][3] = 1
 
+        # Salva os dados das finais.
         data.salvando_finais(resul_finais)
 
-
+    # Essa função tem a finalidade de atualizar todas as variáveis dinâmicas da interface gráfica.
     def oitavas_final():
 
         frame_oitavas.place(x=50, y=50, width=700, height=430)  # posição de exibição
         frame_quartas_semifinais.place(x=50, y=600, width=700, height=430)  # posição de exibição
         frame_final.place(x=600, y=600, width=700, height=430)  # posição de exibição
 
+        # Recupera os dados salvos na memória e atualiza valores das variáveis.
         dados_oitavas.atualizar(data.recuperando_oitavas_str())
 
-        # Recupera valores para preenchimento dos placares
+        # Apaga os valores do placar existente nos placares e recupera valores para preenchimento dos placares
         oitavas11.delete(0)
         oitavas12.delete(0)
         oitavas21.delete(0)
@@ -829,7 +849,6 @@ def janela_fase_final():
         oitavas72.delete(0)
         oitavas81.delete(0)
         oitavas82.delete(0)
-
         oitavas11.insert(0, dados_oitavas.s1_gol.get())
         oitavas12.insert(0, dados_oitavas.s2_gol.get())
         oitavas21.insert(0, dados_oitavas.s3_gol.get())
@@ -847,7 +866,8 @@ def janela_fase_final():
         oitavas81.insert(0, dados_oitavas.s15_gol.get())
         oitavas82.insert(0, dados_oitavas.s16_gol.get())
 
-        # Para recuperar imagens dinamicamente, é necessário o seguinte código
+        # Para recuperar imagens dinamicamente, é necessário mostrar ao programa a alteração dos valores
+        # das variáveis dinâmicas. Por isso, exige o código abaixo.
         img1 = ImageTk.PhotoImage(Image.open(dados_oitavas.s1_band.get()).resize((50, 30)))
         img2 = ImageTk.PhotoImage(Image.open(dados_oitavas.s2_band.get()).resize((50, 30)))
         img3 = ImageTk.PhotoImage(Image.open(dados_oitavas.s3_band.get()).resize((50, 30)))
@@ -896,25 +916,27 @@ def janela_fase_final():
         lbl14.image = img14
         lbl15.image = img15
         lbl16.image = img16
-        print("Oitavas")
 
 
+    # Função interna que serve para colocar o frame das quartas e das semifinais em foco e realizar a atualização
+    # das variáveis das quartas e das semifinais.
     def quartas_semifinais():
+        # Coloca o frame das quartas_semifinais em foco na tela.
         frame_quartas_semifinais.place(x=50, y=50, width=700, height=430)  # posição de exibição
         frame_oitavas.place(x=50, y=600, width=700, height=430)  # posição de exibição
         frame_final.place(x=600, y=600, width=700, height=430)  # posição de exibição
 
+        # Atualiza as variáveis dinâmicas relacionadas com as quartas de finais e com as semifinais.
         atualizar_quartas()
         atualizar_semifinais()
-        print("Quartas - Semifinais")
 
+    # Função que atualiza os valores das variáveis
     def atualizar_quartas():
 
-        recuperado = data.recuperando_quartas_str()
-        print("Atualizando Quartas")
-        print(recuperado)
-        dados_quartas.atualizar(recuperado)
+        # Recupera valores das quartas de finais.
+        dados_quartas.atualizar(data.recuperando_quartas_str())
 
+        # Provoca a alteração dos valores das imagens e atualiza as variáveis dinâmicas.
         img17 = ImageTk.PhotoImage(Image.open(dados_quartas.s1_band.get()).resize((50, 30)))
         img18 = ImageTk.PhotoImage(Image.open(dados_quartas.s2_band.get()).resize((50, 30)))
         img19 = ImageTk.PhotoImage(Image.open(dados_quartas.s3_band.get()).resize((50, 30)))
@@ -940,7 +962,7 @@ def janela_fase_final():
         lbl23.image = img23
         lbl24.image = img24
 
-        # Recupera valores para preenchimento dos placares
+        # Apaga os valores das caixas de entrada e recupera valores para preenchimento dos placares
         quartas11.delete(0)
         quartas12.delete(0)
         quartas21.delete(0)
@@ -957,14 +979,15 @@ def janela_fase_final():
         quartas32.insert(0, dados_quartas.s6_gol.get())
         quartas41.insert(0, dados_quartas.s7_gol.get())
         quartas42.insert(0, dados_quartas.s8_gol.get())
-        print("Atualizou Quartas")
 
+
+    # Função interna que serve para atualizar os dados das semifinais.
     def atualizar_semifinais():
-        recuperado = data.recuperando_semifinais_str()
-        print("Atualizando semifinais")
-        print(recuperado)
-        dados_semifinal.atualizar(recuperado)
 
+        # Recupera os dados existentes no banco de dados.
+        dados_semifinal.atualizar(data.recuperando_semifinais_str())
+
+        # Provoca a alteração dos conteúdos das variáveis dinâmicas.
         img25 = ImageTk.PhotoImage(Image.open(dados_semifinal.s1_band.get()).resize((50, 30)))
         img26 = ImageTk.PhotoImage(Image.open(dados_semifinal.s2_band.get()).resize((50, 30)))
         img27 = ImageTk.PhotoImage(Image.open(dados_semifinal.s3_band.get()).resize((50, 30)))
@@ -978,6 +1001,7 @@ def janela_fase_final():
         lbl27.image = img27
         lbl28.image = img28
 
+        # Apaga os valores das caixas de texto e reescreve os valores recuperados do banco de dados.
         semifinais11.delete(0)
         semifinais12.delete(0)
         semifinais21.delete(0)
@@ -986,19 +1010,21 @@ def janela_fase_final():
         semifinais12.insert(0, dados_semifinal.s2_gol.get())
         semifinais21.insert(0, dados_semifinal.s3_gol.get())
         semifinais22.insert(0, dados_semifinal.s4_gol.get())
-        print("Atualizou Semifinais")
 
+
+    # Função interna que serva para posicionar o frame da final em foco, bem como recuperar os dados
+    # do banco de dados.
     def final():
+
+        # Coloca em foco o frame da final.
         frame_final.place(x=50, y=50, width=700, height=430)  # posição de exibição
         frame_quartas_semifinais.place(x=50, y=600, width=700, height=430)  # posição de exibição
         frame_oitavas.place(x=600, y=600, width=700, height=430)  # posição de exibição
 
-        recuperado = data.recuperando_finais_str()
-        print(recuperado)
+        # Recupera os dados das finais do banco de daos.
+        dados_finais.atualizar(data.recuperando_finais_str())
 
-        dados_finais.atualizar(recuperado)
-
-        # Recuperando valores para as caixas de entrada dos placares
+        # Apaga os valores das caixas de texto e recupera os valores e entrada dos placares do banco de dados.
         final11.delete(0)
         final12.delete(0)
         final21.delete(0)
@@ -1022,7 +1048,6 @@ def janela_fase_final():
         lbl31.image = img31
         lbl32.image = img32
 
-        print("Final")
 
 
     # -------------------------------------------------------------------------------------------------------------------
@@ -1042,13 +1067,13 @@ def janela_fase_final():
     canvas.pack(fill="both", expand=True)
     canvas.create_image(0, 0, image=bg, anchor="nw")
 
-    # Formando as oitavas de final
+    # Inicializa objetos para manipular o banco de dados e informações do back-end da Fase Final.
+    # Por exemplo, a formação das oitavas de final com os dados dos grupos é realizada nesse momento.
     data = DataSet()
     fase_final = FaseFinal()
     fase_final.formando_oitavas()
 
-
-    # Criar objetos com as variáveis usadas nos frames
+    # Criar objetos para atualização das variáveis dinâmicas com valores padrões.
     padrao = [['-', 'imagens/bandeira.png', ''] for i in range(17)]
     dados_oitavas = AtualizarOitavas(data.recuperando_oitavas())
     dados_quartas = AutalizarQuartas(padrao)
@@ -1373,7 +1398,7 @@ def janela_fase_final():
     Button(frame_quartas, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38", fg="white",
            command=salvar_quartas).grid(row=7, column=0, columnspan=7)
 
-
+    # Preenche as caixas de texto com os valores dos placares recuperadas do banco de dados ou valores padrão.
     quartas11.insert(0, dados_quartas.s1_gol.get())
     quartas12.insert(0, dados_quartas.s2_gol.get())
     quartas21.insert(0, dados_quartas.s3_gol.get())
@@ -1442,7 +1467,7 @@ def janela_fase_final():
     Button(frame_quartas_semifinais, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38",
            fg="white", command=salvar_semifinais).grid(row=8, column=0, columnspan=7)
 
-
+    # Preenche as caixas de texto com os valores dos placares recuperadas do banco de dados ou com valores padrão.
     semifinais11.insert(0, dados_semifinal.s1_gol.get())
     semifinais12.insert(0, dados_semifinal.s2_gol.get())
     semifinais21.insert(0, dados_semifinal.s3_gol.get())
@@ -1531,6 +1556,7 @@ def janela_fase_final():
     lbl32.grid(row=final2, column=5)
     Label(frame_disputa_terceiro, bg='white', textvariable=dados_finais.s4_str, padx=5, justify=LEFT, font="Verdana 10 bold").grid(row=final2, column=6, padx=2)
 
+    # Preenche as caixas de texto com os valores dos placares recuperadas do banco de dados ou com valores padrão.
     final11.insert(0, dados_finais.s1_gol.get())
     final12.insert(0, dados_finais.s2_gol.get())
     final21.insert(0, dados_finais.s3_gol.get())
