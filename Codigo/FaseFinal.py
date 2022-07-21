@@ -128,7 +128,7 @@ class FaseFinal():
     def formando_quartas(self):
         oitavas = self.ds.recuperando_oitavas()
         df_ff   = pd.read_pickle('dataset/FaseFinalJogos.pkl')
-        print(oitavas)
+        
         times = [['-'] for i in range(8)]
         
         for i in range(0, 16, 2):
@@ -222,42 +222,41 @@ class FaseFinal():
         return False
 
     def formando_finais(self):
-        semis = self.ds.recuperando_semifinais()
+        finais = self.ds.recuperando_semifinais()
         df_ff = pd.read_pickle('dataset/FaseFinalJogos.pkl')
         
         times = [['-'] for i in range(4)]
         
         for i in range(0, 4, 2):
-            if semis[i][0] != '-' and semis[i+1][0] != '-' and df_ff[semis[i][0]][semis[i+1][0]] != -1 and df_ff[semis[i+1][0]][semis[i][0]] != -1:
+            if finais[i][0] != '-' and finais[i+1][0] != '-' and df_ff[finais[i][0]][finais[i+1][0]] != -1 and df_ff[finais[i+1][0]][finais[i][0]] != -1:
                 
-                if semis[i][2] > semis[i+1][2]:
-                    times[int(i/2)] = semis[i][0]
-                    times[int(i/2)+2] = semis[i+1][0]
+                if finais[i][2] > finais[i+1][2]:
+                    times[int(i/2)] = finais[i][0]
+                    times[int(i/2)+2] = finais[i+1][0]
                     
+                elif finais[i][2] < finais[i+1][2]:
+                    times[int(i/2)] = finais[i+1][0]
+                    times[int(i/2)+2] = finais[i][0]
                     
-                elif semis[i][2] < semis[i+1][2]:
-                    times[int(i/2)] = semis[i+1][0]
-                    times[int(i/2)+1] = semis[i][0]
-                    
-                elif semis[i][3] != -1 and semis[i+1][3] != -1:
-                    if semis[i][3] > semis[i+1][3]:
-                        times[int(i/2)] = semis[i][0]
-                        times[int(i/2)+2] = semis[i+1][0]
+                elif finais[i][3] != -1 and finais[i+1][3] != -1:
+                    if finais[i][3] > finais[i+1][3]:
+                        times[int(i/2)] = finais[i][0]
+                        times[int(i/2)+2] = finais[i+1][0]
                     else:
-                        times[int(i/2)] = semis[i+1][0]
-                        times[int(i/2)+2] = semis[i][0]
-       
+                        times[int(i/2)] = finais[i+1][0]
+                        times[int(i/2)+2] = finais[i][0]
+        
         if self.checando_finais(times) == True:
             return
         
-        semis = {0:times[0],
-                   1:times[1],
-                   2:times[2],
-                   3:times[3]}
+        finais = {0:times[0],
+                 1:times[1],
+                 2:times[2],
+                 3:times[3]}
         
-        df_semis = pd.DataFrame(semis, index=[0])
+        df_finais = pd.DataFrame(finais, index=[0])
         
-        df_semis.to_pickle('dataset/Finais.pkl')
+        df_finais.to_pickle('dataset/Finais.pkl')
         
         self.ds.salvando_finais([[-1, -1, -1, -1], [-1, -1, -1, -1],
                                   [-1, -1, -1, -1], [-1, -1, -1, -1]])
@@ -275,3 +274,8 @@ class FaseFinal():
 if __name__ == '__main__':
     ff = FaseFinal()
     ff.formando_quartas()
+    
+    ds = DataSet()
+    ds.salvando_semifinais([[100, 1, 1, 0], [2, 1, 1, 0]])
+    
+    ff.formando_finais()

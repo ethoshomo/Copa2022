@@ -475,7 +475,7 @@ class DataSet():
             times.append(finais[i][0])
         
         # ---------- JOGOS
-                # JOGO 1
+        # JOGO 1
         if times[0] != '-' and times[1] != '-':
             df_ff.loc[times[0]][times[1]] = jogos[0][1]
             df_ff.loc[times[1]][times[0]] = jogos[0][0]
