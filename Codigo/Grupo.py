@@ -21,7 +21,7 @@ class Grupo(Selecao):
 
         # A partir do nome do grupo, acessa as seleções contida
         # nele e cria os objetos do tipo seleção com seus nomes
-        df_selecoes   = pd.read_pickle('/home/pedrohenrique/Documentos/GitHub/Copa2022/Codigo/dataset/Selecoes.plk')
+        df_selecoes   = pd.read_pickle('dataset/Selecoes.plk')
         self.selecao1 = Selecao(df_selecoes[nome_grupo][0])
         self.selecao2 = Selecao(df_selecoes[nome_grupo][1])
         self.selecao3 = Selecao(df_selecoes[nome_grupo][2])
