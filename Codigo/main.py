@@ -18,7 +18,8 @@ import pygame
 import random
 
 #from Codigo.Quiz import Quiz
-from Codigo.FaseFinal import FaseFinal
+#from Codigo.FaseFinal import FaseFinal
+from FaseFinal import FaseFinal
 from Quiz import Quiz
 from Grupo import Grupo
 from DataSet import DataSet

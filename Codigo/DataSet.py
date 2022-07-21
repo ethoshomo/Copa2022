@@ -300,31 +300,231 @@ class DataSet():
                 aux[i+1][1] = 'imagens/bandeiras/' + self.converte_palavra(df_oitavas[i+1][0]) + '.png'
                 
             if df_oitavas[i][0]  != '-' and df_oitavas[i+1][0] != '-':
-                res1 = df_ff[df_oitavas[i][0]][df_oitavas[i+1][0]]
-                res2 = df_ff[df_oitavas[i+1][0]][df_oitavas[i][0]]
+                aux[i][2]   = df_ff[df_oitavas[i][0]][df_oitavas[i+1][0]]
+                aux[i+1][2] = df_ff[df_oitavas[i+1][0]][df_oitavas[i][0]]
                 aux[i][3]   = df_penaltis[df_oitavas[i][0]][df_oitavas[i+1][0]]
                 aux[i+1][3] = df_penaltis[df_oitavas[i+1][0]][df_oitavas[i][0]]
-                
-                if res1 == -1:
-                    aux[i][2] = ''
-                else:
-                    aux[i][2] = res1
-                    
-                if res2 == -1:
-                    aux[i+1][2] = ''
-                else:
-                    aux[i+1][2] = res2
-                    
+        
         return aux
     
     def recuperando_oitavas_str(self):
         aux = self.recuperando_oitavas()
         
         for i in range(16):
-            aux[i][2] = str(aux[i][2]) 
-
+            if aux[i][2] == -1:
+                aux[i][2] = ''
+            else:
+                aux[i][2] = str(aux[i][2]) 
+            
         return aux
         
+    def salvando_quartas(self, jogos: list):
+        # ----------- TIMES
+        quartas     = pd.read_pickle('dataset/Quartas.pkl')
+        df_ff       = pd.read_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis = pd.read_pickle('dataset/FaseFinalPenaltis.pkl')
+        
+        times = []
+        
+        for i in range(8):
+            times.append(quartas[i][0])
+        
+        # ---------- JOGOS
+                # JOGO 1
+        if times[0] != '-' and times[1] != '-':
+            df_ff.loc[times[0]][times[1]] = jogos[0][1]
+            df_ff.loc[times[1]][times[0]] = jogos[0][0]
+            df_penaltis.loc[times[0]][times[1]] = jogos[0][3]
+            df_penaltis.loc[times[1]][times[0]] = jogos[0][2]
+        
+        # JOGO 2
+        if times[2] != '-' and times[3] != '-':
+            df_ff.loc[times[2]][times[3]] = jogos[1][1]
+            df_ff.loc[times[3]][times[2]] = jogos[1][0]
+            df_penaltis.loc[times[2]][times[3]] = jogos[1][3]
+            df_penaltis.loc[times[3]][times[2]] = jogos[1][2]
+        
+        # JOGO 3
+        if times[4] != '-' and times[5] != '-':
+            df_ff.loc[times[4]][times[5]] = jogos[2][1]
+            df_ff.loc[times[5]][times[4]] = jogos[2][0]
+            df_penaltis.loc[times[4]][times[5]] = jogos[2][3]
+            df_penaltis.loc[times[5]][times[4]] = jogos[2][2]
+        
+        # JOGO 4
+        if times[6] != '-' and times[7] != '-':
+            df_ff.loc[times[6]][times[7]] = jogos[3][1]
+            df_ff.loc[times[7]][times[6]] = jogos[3][0]
+            df_penaltis.loc[times[6]][times[7]] = jogos[3][3]
+            df_penaltis.loc[times[7]][times[6]] = jogos[3][2]
+        
+        df_ff.to_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis.to_pickle('dataset/FaseFinalPenaltis.pkl')
+
+    def recuperando_quartas(self):
+        aux = [['-', 'imagens/bandeira.png', '', ''] for i in range(8)]
+        
+        df_quartas  = pd.read_pickle('dataset/Quartas.pkl')
+        df_ff       = pd.read_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis = pd.read_pickle('dataset/FaseFinalPenaltis.pkl') 
+        
+        for i in range(0, 8, 2):
+            if df_quartas[i][0] != '-':
+                aux[i][0] = df_quartas[i][0]
+                aux[i][1] = 'imagens/bandeiras/' + self.converte_palavra(df_quartas[i][0]) + '.png'
+            
+            if df_quartas[i+1][0] != '-':
+                aux[i+1][0] = df_quartas[i+1][0]
+                aux[i+1][1] = 'imagens/bandeiras/' + self.converte_palavra(df_quartas[i+1][0]) + '.png'
+                
+            if df_quartas[i][0]  != '-' and df_quartas[i+1][0] != '-':
+                aux[i][2]   = df_ff[df_quartas[i][0]][df_quartas[i+1][0]]
+                aux[i+1][2] = df_ff[df_quartas[i+1][0]][df_quartas[i][0]]
+                aux[i][3]   = df_penaltis[df_quartas[i][0]][df_quartas[i+1][0]]
+                aux[i+1][3] = df_penaltis[df_quartas[i+1][0]][df_quartas[i][0]]
+                
+        return aux
+    
+    def recuperando_quartas_str(self):
+        aux = self.recuperando_quartas()
+        
+        for i in range(8):
+            if aux[i][2] == -1:
+                aux[i][2] = ''
+            else:
+                aux[i][2] = str(aux[i][2]) 
+            
+        return aux
+    
+    def salvando_semifinais(self, jogos: list):
+        # ----------- TIMES
+        semifinais  = pd.read_pickle('dataset/Semifinais.pkl')
+        df_ff       = pd.read_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis = pd.read_pickle('dataset/FaseFinalPenaltis.pkl')
+        
+        times = []
+        
+        for i in range(4):
+            times.append(semifinais[i][0])
+        
+        # ---------- JOGOS
+                # JOGO 1
+        if times[0] != '-' and times[1] != '-':
+            df_ff.loc[times[0]][times[1]] = jogos[0][1]
+            df_ff.loc[times[1]][times[0]] = jogos[0][0]
+            df_penaltis.loc[times[0]][times[1]] = jogos[0][3]
+            df_penaltis.loc[times[1]][times[0]] = jogos[0][2]
+        
+        # JOGO 2
+        if times[2] != '-' and times[3] != '-':
+            df_ff.loc[times[2]][times[3]] = jogos[1][1]
+            df_ff.loc[times[3]][times[2]] = jogos[1][0]
+            df_penaltis.loc[times[2]][times[3]] = jogos[1][3]
+            df_penaltis.loc[times[3]][times[2]] = jogos[1][2]
+        
+        df_ff.to_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis.to_pickle('dataset/FaseFinalPenaltis.pkl')
+        
+    def recuperando_semifinais(self):
+        aux = [['-', 'imagens/bandeira.png', '', ''] for i in range(4)]
+        
+        df_semifinais = pd.read_pickle('dataset/Semifinais.pkl')
+        df_ff         = pd.read_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis   = pd.read_pickle('dataset/FaseFinalPenaltis.pkl') 
+        
+        for i in range(0, 4, 2):
+            if df_semifinais[i][0] != '-':
+                aux[i][0] = df_semifinais[i][0]
+                aux[i][1] = 'imagens/bandeiras/' + self.converte_palavra(df_semifinais[i][0]) + '.png'
+            
+            if df_semifinais[i+1][0] != '-':
+                aux[i+1][0] = df_semifinais[i+1][0]
+                aux[i+1][1] = 'imagens/bandeiras/' + self.converte_palavra(df_semifinais[i+1][0]) + '.png'
+                
+            if df_semifinais[i][0]  != '-' and df_semifinais[i+1][0] != '-':
+                aux[i][2]   = df_ff[df_semifinais[i][0]][df_semifinais[i+1][0]]
+                aux[i+1][2] = df_ff[df_semifinais[i+1][0]][df_semifinais[i][0]]
+                aux[i][3]   = df_penaltis[df_semifinais[i][0]][df_semifinais[i+1][0]]
+                aux[i+1][3] = df_penaltis[df_semifinais[i+1][0]][df_semifinais[i][0]]
+                
+        return aux
+    
+    def recuperando_semifinais_str(self):
+        aux = self.recuperando_semifinais()
+        
+        for i in range(4):
+            if aux[i][2] == -1:
+                aux[i][2] = ''
+            else:
+                aux[i][2] = str(aux[i][2]) 
+            
+        return aux
+    
+    def salvando_finais(self, jogos: list):
+        # ----------- TIMES
+        finais      = pd.read_pickle('dataset/Finais.pkl')
+        df_ff       = pd.read_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis = pd.read_pickle('dataset/FaseFinalPenaltis.pkl')
+        
+        times = []
+        
+        for i in range(4):
+            times.append(finais[i][0])
+        
+        # ---------- JOGOS
+                # JOGO 1
+        if times[0] != '-' and times[1] != '-':
+            df_ff.loc[times[0]][times[1]] = jogos[0][1]
+            df_ff.loc[times[1]][times[0]] = jogos[0][0]
+            df_penaltis.loc[times[0]][times[1]] = jogos[0][3]
+            df_penaltis.loc[times[1]][times[0]] = jogos[0][2]
+        
+        # JOGO 2
+        if times[2] != '-' and times[3] != '-':
+            df_ff.loc[times[2]][times[3]] = jogos[1][1]
+            df_ff.loc[times[3]][times[2]] = jogos[1][0]
+            df_penaltis.loc[times[2]][times[3]] = jogos[1][3]
+            df_penaltis.loc[times[3]][times[2]] = jogos[1][2]
+        
+        df_ff.to_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis.to_pickle('dataset/FaseFinalPenaltis.pkl')
+        
+    def recuperando_finais(self):
+        aux = [['-', 'imagens/bandeira.png', '', ''] for i in range(4)]
+        
+        df_finais     = pd.read_pickle('dataset/Finais.pkl')
+        df_ff         = pd.read_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis   = pd.read_pickle('dataset/FaseFinalPenaltis.pkl') 
+        
+        for i in range(0, 4, 2):
+            if df_finais[i][0] != '-':
+                aux[i][0] = df_finais[i][0]
+                aux[i][1] = 'imagens/bandeiras/' + self.converte_palavra(df_finais[i][0]) + '.png'
+            
+            if df_finais[i+1][0] != '-':
+                aux[i+1][0] = df_finais[i+1][0]
+                aux[i+1][1] = 'imagens/bandeiras/' + self.converte_palavra(df_finais[i+1][0]) + '.png'
+                
+            if df_finais[i][0]  != '-' and df_finais[i+1][0] != '-':
+                aux[i][2]   = df_ff[df_finais[i][0]][df_finais[i+1][0]]
+                aux[i+1][2] = df_ff[df_finais[i+1][0]][df_finais[i][0]]
+                aux[i][3]   = df_penaltis[df_finais[i][0]][df_finais[i+1][0]]
+                aux[i+1][3] = df_penaltis[df_finais[i+1][0]][df_finais[i][0]]
+                
+        return aux
+
+    def recuperando_finais_str(self):
+        aux = self.recuperando_finais()
+        
+        for i in range(4):
+            if aux[i][2] == -1:
+                aux[i][2] = ''
+            else:
+                aux[i][2] = str(aux[i][2]) 
+            
+        return aux
+
+
     def converte_palavra(self, palavra):
         palavra = palavra.lower()
         palavra = palavra.replace(" ", "_")
