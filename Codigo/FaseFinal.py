@@ -1,5 +1,10 @@
+import re
+from tkinter.tix import Tree
+
+from numpy import true_divide
 from DataSet import DataSet
 import pandas as pd
+import os
 
 class FaseFinal():
     def __init__(self):
@@ -21,7 +26,24 @@ class FaseFinal():
         self.jogosF = ds.recuperando_jogos('Grupo F')
         self.jogosG = ds.recuperando_jogos('Grupo G')
         self.jogosH = ds.recuperando_jogos('Grupo H')
-        
+    
+    def checando_grupo(self, novos: list):
+        if os.path.exists('dataset/Oitavas.pkl'):
+            # Leitura dos times antigos
+            oitavas = pd.read_pickle('dataset/Oitavas.pkl')
+            antigos = []
+            for i in range(16):
+                antigos.append(oitavas[i][0])
+
+            # Comparação
+            for i in range(16):
+                if antigos[i] != novos[i]:
+                    return False
+            
+            return True
+            
+        return False
+    
     def formando_oitavas(self):
         
         if self.checando_jogos((self.jogosA)) == False:
@@ -56,22 +78,42 @@ class FaseFinal():
             self.grupoH[0].set_nome('-')
             self.grupoH[1].set_nome('-')
         
-        oitavas = {0:[self.grupoA[0].get_nome()],
-                   1:[self.grupoB[1].get_nome()],
-                   2:[self.grupoC[0].get_nome()], 
-                   3:[self.grupoD[1].get_nome()],
-                   4:[self.grupoE[0].get_nome()], 
-                   5:[self.grupoF[1].get_nome()],
-                   6:[self.grupoG[0].get_nome()], 
-                   7:[self.grupoH[1].get_nome()],
-                   8:[self.grupoB[0].get_nome()], 
-                   9:[self.grupoA[1].get_nome()],
-                   10:[self.grupoD[0].get_nome()], 
-                   11:[self.grupoC[1].get_nome()],
-                   12:[self.grupoF[0].get_nome()], 
-                   13:[self.grupoE[1].get_nome()],
-                   14:[self.grupoH[0].get_nome()], 
-                   15:[self.grupoG[1].get_nome()]}
+        times = [self.grupoA[0].get_nome(),
+                 self.grupoB[1].get_nome(),
+                 self.grupoC[0].get_nome(),
+                 self.grupoD[1].get_nome(),
+                 self.grupoE[0].get_nome(),
+                 self.grupoF[1].get_nome(),
+                 self.grupoG[0].get_nome(),
+                 self.grupoH[1].get_nome(),
+                 self.grupoB[0].get_nome(),
+                 self.grupoA[1].get_nome(),
+                 self.grupoD[0].get_nome(),
+                 self.grupoC[1].get_nome(),
+                 self.grupoF[0].get_nome(),
+                 self.grupoE[1].get_nome(),
+                 self.grupoH[0].get_nome(),
+                 self.grupoG[1].get_nome()]
+        
+        if self.checando_grupo(times) == True:
+            return
+        
+        oitavas = {0: times[0],
+                   1: times[1],
+                   2: times[2], 
+                   3: times[3],
+                   4: times[4], 
+                   5: times[5],
+                   6: times[6], 
+                   7: times[7],
+                   8: times[8], 
+                   9: times[9],
+                   10:times[10], 
+                   11:times[11],
+                   12:times[12], 
+                   13:times[13],
+                   14:times[14], 
+                   15:times[15]}
         
         df_oitavas = pd.DataFrame(oitavas, index=[0, 1])
 
