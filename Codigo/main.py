@@ -18,6 +18,7 @@ import pygame
 import random
 
 #from Codigo.Quiz import Quiz
+from Codigo.FaseFinal import FaseFinal
 from Quiz import Quiz
 from Grupo import Grupo
 from DataSet import DataSet
@@ -550,18 +551,111 @@ def janela_fase_final():
 
 
     def salvar_oitavas():
-        print("Salvar Oitavas")
-        resul_oitavas = [[tratamento_dados(oitavas11.get()), tratamento_dados(oitavas12.get())],
-                         [tratamento_dados(oitavas21.get()), tratamento_dados(oitavas22.get())],
-                         [tratamento_dados(oitavas31.get()), tratamento_dados(oitavas32.get())],
-                         [tratamento_dados(oitavas41.get()), tratamento_dados(oitavas42.get())],
-                         [tratamento_dados(oitavas51.get()), tratamento_dados(oitavas52.get())],
-                         [tratamento_dados(oitavas61.get()), tratamento_dados(oitavas62.get())],
-                         [tratamento_dados(oitavas71.get()), tratamento_dados(oitavas72.get())],
-                         [tratamento_dados(oitavas81.get()), tratamento_dados(oitavas82.get())]]
 
-        # dados = DataSet()
-        # dados.salvar_dados_oitavas(resul_oitavas)
+        resul_oitavas = [[tratamento_dados(oitavas11.get()), tratamento_dados(oitavas12.get()), -1, -1],
+                         [tratamento_dados(oitavas21.get()), tratamento_dados(oitavas22.get()), -1, -1],
+                         [tratamento_dados(oitavas31.get()), tratamento_dados(oitavas32.get()), -1, -1],
+                         [tratamento_dados(oitavas41.get()), tratamento_dados(oitavas42.get()), -1, -1],
+                         [tratamento_dados(oitavas51.get()), tratamento_dados(oitavas52.get()), -1, -1],
+                         [tratamento_dados(oitavas61.get()), tratamento_dados(oitavas62.get()), -1, -1],
+                         [tratamento_dados(oitavas71.get()), tratamento_dados(oitavas72.get()), -1, -1],
+                         [tratamento_dados(oitavas81.get()), tratamento_dados(oitavas82.get()), -1, -1]]
+
+        if resul_oitavas[0][0] == resul_oitavas[0][1] and resul_oitavas[0][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s1_str.get() +
+                                      " empatou com a seleção " + dados_oitavas.s2_str.get() + ". A " +
+                                      dados_oitavas.s1_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_oitavas[0][2] = 1
+                resul_oitavas[0][3] = 0
+            else:
+                resul_oitavas[0][2] = 0
+                resul_oitavas[0][3] = 1
+
+
+        if resul_oitavas[1][0] == resul_oitavas[1][1] and resul_oitavas[1][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s3_str.get() +
+                                      " empatou com a seleção " + dados_oitavas.s4_str.get() + ". A " +
+                                      dados_oitavas.s3_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_oitavas[1][2] = 1
+                resul_oitavas[1][3] = 0
+            else:
+                resul_oitavas[1][2] = 0
+                resul_oitavas[1][3] = 1
+
+        if resul_oitavas[2][0] == resul_oitavas[2][1] and resul_oitavas[2][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s5_str.get() +
+                                      " empatou com a seleção " + dados_oitavas.s6_str.get() + ". A " +
+                                      dados_oitavas.s5_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_oitavas[2][2] = 1
+                resul_oitavas[2][3] = 0
+            else:
+                resul_oitavas[2][2] = 0
+                resul_oitavas[2][3] = 1
+
+
+        if resul_oitavas[3][0] == resul_oitavas[3][1] and resul_oitavas[3][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s7_str.get() +
+                                      " empatou com a seleção " + dados_oitavas.s8_str.get() + ". A " +
+                                      dados_oitavas.s7_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_oitavas[3][2] = 1
+                resul_oitavas[3][3] = 0
+            else:
+                resul_oitavas[3][2] = 0
+                resul_oitavas[3][3] = 1
+
+        if resul_oitavas[4][0] == resul_oitavas[4][1] and resul_oitavas[4][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s9_str.get() +
+                                      " empatou com a seleção " + dados_oitavas.s10_str.get() + ". A " +
+                                      dados_oitavas.s9_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_oitavas[4][2] = 1
+                resul_oitavas[4][3] = 0
+            else:
+                resul_oitavas[4][2] = 0
+                resul_oitavas[4][3] = 1
+
+
+        if resul_oitavas[5][0] == resul_oitavas[5][1] and resul_oitavas[5][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s11_str.get() +
+                                      " empatou com a seleção " + dados_oitavas.s12_str.get() + ". A " +
+                                      dados_oitavas.s11_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_oitavas[5][2] = 1
+                resul_oitavas[5][3] = 0
+            else:
+                resul_oitavas[5][2] = 0
+                resul_oitavas[5][3] = 1
+
+        if resul_oitavas[6][0] == resul_oitavas[6][1] and resul_oitavas[6][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s13_str.get() +
+                                      " empatou com a seleção " + dados_oitavas.s14_str.get() + ". A " +
+                                      dados_oitavas.s13_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_oitavas[6][2] = 1
+                resul_oitavas[6][3] = 0
+            else:
+                resul_oitavas[6][2] = 0
+                resul_oitavas[6][3] = 1
+
+        if resul_oitavas[7][0] == resul_oitavas[7][1] and resul_oitavas[7][0] != -1:
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s15_str.get() +
+                                      " empatou com a seleção " + dados_oitavas.s16_str.get() + ". A " +
+                                      dados_oitavas.s15_str.get() + " venceu nos penaltis?")
+            if msg:
+                resul_oitavas[7][2] = 1
+                resul_oitavas[7][3] = 0
+            else:
+                resul_oitavas[7][2] = 0
+                resul_oitavas[7][3] = 1
+
+        print(resul_oitavas)
+        data = DataSet()
+        data.salvando_oitavas(resul_oitavas)
+        print("Salvar Oitavas")
 
 
     def salvar_quartas():
@@ -583,8 +677,6 @@ def janela_fase_final():
         resul_final = [[tratamento_dados(final11.get()), tratamento_dados(final12.get())], # Disputa pelo primeiro
                       [tratamento_dados(final21.get()), tratamento_dados(final22.get())]] # Disputa pelo terceiro
 
-        # dados = DataSet()
-        # dados.salvar_dados_final(resulta_final)
 
 
     def oitavas_final():
@@ -592,16 +684,8 @@ def janela_fase_final():
         frame_quartas_semifinais.place(x=50, y=600, width=700, height=430)  # posição de exibição
         frame_final.place(x=600, y=600, width=700, height=430)  # posição de exibição
 
-        # dados = DataSet()
-        # global
-        #dados_oitavas.atualizar(dados.recuperar_dados_oitavas())
-
-        # Recupera dados do banco de dados (lista de listas).
-        # A lista externa serão compostas de listas que representam seleções.
-        # Por isso, a quantidade de listas internas será exatamente o dobro da fase.
-        # Por exemplo: oitavas, 16; quartas, 8; semifinais, 4; final, 4.
-        # As listas internas possuem 3 variaveis: (string, bandeira, gols).
-
+        dados_oitavas.atualizar(data.recuperando_oitavas_str())
+        print(dados_oitavas)
 
         # Recupera valores para preenchimento dos placares
         oitavas11.delete(0)
@@ -620,22 +704,23 @@ def janela_fase_final():
         oitavas72.delete(0)
         oitavas81.delete(0)
         oitavas82.delete(0)
-        oitavas11.insert(0, dados_oitavas.s[1][2])
-        oitavas12.insert(0, dados_oitavas.s[2][2])
-        oitavas21.insert(0, dados_oitavas.s[3][2])
-        oitavas22.insert(0, dados_oitavas.s[4][2])
-        oitavas31.insert(0, dados_oitavas.s[5][2])
-        oitavas32.insert(0, dados_oitavas.s[6][2])
-        oitavas41.insert(0, dados_oitavas.s[7][2])
-        oitavas42.insert(0, dados_oitavas.s[8][2])
-        oitavas51.insert(0, dados_oitavas.s[9][2])
-        oitavas52.insert(0, dados_oitavas.s[10][2])
-        oitavas61.insert(0, dados_oitavas.s[11][2])
-        oitavas62.insert(0, dados_oitavas.s[12][2])
-        oitavas71.insert(0, dados_oitavas.s[13][2])
-        oitavas72.insert(0, dados_oitavas.s[14][2])
-        oitavas81.insert(0, dados_oitavas.s[15][2])
-        oitavas82.insert(0, dados_oitavas.s[16][2])
+
+        oitavas11.insert(0, dados_oitavas.s1_gol.get())
+        oitavas12.insert(0, dados_oitavas.s2_gol.get())
+        oitavas21.insert(0, dados_oitavas.s3_gol.get())
+        oitavas22.insert(0, dados_oitavas.s4_gol.get())
+        oitavas31.insert(0, dados_oitavas.s5_gol.get())
+        oitavas32.insert(0, dados_oitavas.s6_gol.get())
+        oitavas41.insert(0, dados_oitavas.s7_gol.get())
+        oitavas42.insert(0, dados_oitavas.s8_gol.get())
+        oitavas51.insert(0, dados_oitavas.s9_gol.get())
+        oitavas52.insert(0, dados_oitavas.s10_gol.get())
+        oitavas61.insert(0, dados_oitavas.s11_gol.get())
+        oitavas62.insert(0, dados_oitavas.s12_gol.get())
+        oitavas71.insert(0, dados_oitavas.s13_gol.get())
+        oitavas72.insert(0, dados_oitavas.s14_gol.get())
+        oitavas81.insert(0, dados_oitavas.s15_gol.get())
+        oitavas82.insert(0, dados_oitavas.s16_gol.get())
 
         # Para recuperar imagens dinamicamente, é necessário o seguinte código
         img1 = ImageTk.PhotoImage(Image.open(dados_oitavas.s1_band.get()).resize((50, 30)))
@@ -796,8 +881,13 @@ def janela_fase_final():
     canvas.pack(fill="both", expand=True)
     canvas.create_image(0, 0, image=bg, anchor="nw")
 
+    # Formando as oitavas de final
+    data = DataSet()
+    fase_final = FaseFinal()
+    fase_final.formando_oitavas()
+
     # Criar objetos com as variáveis usadas nos frames
-    dados_oitavas = AtualizarOitavas()
+    dados_oitavas = AtualizarOitavas(data.recuperando_oitavas())
     dados_quartas = AutalizarQuartas()
     dados_semifinal = AtualizarFinalSemi()
     dados_finais = AtualizarFinalSemi()
@@ -1014,24 +1104,6 @@ def janela_fase_final():
     # Botão de salvar resultados
     Label(frame_oitavas, bg='white').grid(row=14, column=0)
     Button(frame_oitavas, font="Verdana 10 bold", text="SALVAR", bd=0, padx=2, pady=2, bg="#405E38", fg="white", command=salvar_oitavas).grid(row=15, column=0, columnspan=7)
-
-    # Recupera valores para preenchimento dos placares
-    oitavas11.insert(0, dados_oitavas.s[1][2])
-    oitavas12.insert(0, dados_oitavas.s[2][2])
-    oitavas21.insert(0, dados_oitavas.s[3][2])
-    oitavas22.insert(0, dados_oitavas.s[4][2])
-    oitavas31.insert(0, dados_oitavas.s[5][2])
-    oitavas32.insert(0, dados_oitavas.s[6][2])
-    oitavas41.insert(0, dados_oitavas.s[7][2])
-    oitavas42.insert(0, dados_oitavas.s[8][2])
-    oitavas51.insert(0, dados_oitavas.s[9][2])
-    oitavas52.insert(0, dados_oitavas.s[10][2])
-    oitavas61.insert(0, dados_oitavas.s[11][2])
-    oitavas62.insert(0, dados_oitavas.s[12][2])
-    oitavas71.insert(0, dados_oitavas.s[13][2])
-    oitavas72.insert(0, dados_oitavas.s[14][2])
-    oitavas81.insert(0, dados_oitavas.s[15][2])
-    oitavas82.insert(0, dados_oitavas.s[16][2])
 
     # ------------------------------------------------------------------------------------------------------------------
     # Montagem do Frame de Quartas e Semifinal (PRINCIPAL)
