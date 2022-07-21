@@ -27,7 +27,7 @@ class FaseFinal():
         self.jogosG = ds.recuperando_jogos('Grupo G')
         self.jogosH = ds.recuperando_jogos('Grupo H')
     
-    def checando_grupo(self, novos: list):
+    def checando_oitavas(self, novos: list):
         if os.path.exists('dataset/Oitavas.pkl'):
             # Leitura dos times antigos
             oitavas = pd.read_pickle('dataset/Oitavas.pkl')
@@ -95,7 +95,7 @@ class FaseFinal():
                  self.grupoH[0].get_nome(),
                  self.grupoG[1].get_nome()]
         
-        if self.checando_grupo(times) == True:
+        if self.checando_oitavas(times) == True:
             return
         
         oitavas = {0: times[0],

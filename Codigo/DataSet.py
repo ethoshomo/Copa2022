@@ -222,48 +222,66 @@ class DataSet():
                    times[15]:inicio}
         
         df_ff = pd.DataFrame(data_ff, index=times)
+        df_penaltis = pd.DataFrame(data_ff, index=times)
         
         # JOGO 1
         if times[0] != '-' and times[1] != '-':
             df_ff.loc[times[0]][times[1]] = jogos[0][1]
             df_ff.loc[times[1]][times[0]] = jogos[0][0]
+            df_penaltis.loc[times[0]][times[1]] = jogos[0][3]
+            df_penaltis.loc[times[1]][times[0]] = jogos[0][2]
         
         # JOGO 2
         if times[2] != '-' and times[3] != '-':
             df_ff.loc[times[2]][times[3]] = jogos[1][1]
             df_ff.loc[times[3]][times[2]] = jogos[1][0]
+            df_penaltis.loc[times[2]][times[3]] = jogos[1][3]
+            df_penaltis.loc[times[3]][times[2]] = jogos[1][2]
         
         # JOGO 3
         if times[4] != '-' and times[5] != '-':
             df_ff.loc[times[4]][times[5]] = jogos[2][1]
             df_ff.loc[times[5]][times[4]] = jogos[2][0]
+            df_penaltis.loc[times[4]][times[5]] = jogos[2][3]
+            df_penaltis.loc[times[5]][times[4]] = jogos[2][2]
         
         # JOGO 4
         if times[6] != '-' and times[7] != '-':
             df_ff.loc[times[6]][times[7]] = jogos[3][1]
             df_ff.loc[times[7]][times[6]] = jogos[3][0]
+            df_penaltis.loc[times[6]][times[7]] = jogos[3][3]
+            df_penaltis.loc[times[7]][times[6]] = jogos[3][2]
         
         # JOGO 5
         if times[8] != '-' and times[9] != '-':
             df_ff.loc[times[8]][times[9]] = jogos[4][1]
             df_ff.loc[times[9]][times[8]] = jogos[4][0]
+            df_penaltis.loc[times[8]][times[9]] = jogos[4][3]
+            df_penaltis.loc[times[9]][times[8]] = jogos[4][2]
         
         # JOGO 6
         if times[10] != '-' and times[11] != '-':
             df_ff.loc[times[10]][times[11]] = jogos[5][1]
             df_ff.loc[times[11]][times[10]] = jogos[5][0]
+            df_penaltis.loc[times[10]][times[11]] = jogos[5][3]
+            df_penaltis.loc[times[11]][times[10]] = jogos[5][2]
         
         # JOGO 7
         if times[12] != '-' and times[13] != '-':
             df_ff.loc[times[12]][times[13]] = jogos[6][1]
             df_ff.loc[times[13]][times[12]] = jogos[6][0]
+            df_penaltis.loc[times[12]][times[13]] = jogos[6][3]
+            df_penaltis.loc[times[13]][times[12]] = jogos[6][2]
         
         # JOGO 8
         if times[14] != '-' and times[15] != '-':
             df_ff.loc[times[14]][times[15]] = jogos[7][1]
             df_ff.loc[times[15]][times[14]] = jogos[7][0]       
+            df_penaltis.loc[times[14]][times[15]] = jogos[7][3]
+            df_penaltis.loc[times[15]][times[14]] = jogos[7][2] 
         
-        df_ff.to_pickle('dataset/FaseFinal.pkl')
+        df_ff.to_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis.to_pickle('dataset/FaseFinalPenaltis.pkl')
         
     def recuperando_oitavas(self):
         aux = [['-', 'imagens/bandeira.png', ''] for i in range(16)]
@@ -287,15 +305,22 @@ class DataSet():
                 if res1 == -1:
                     aux[i][2] = ''
                 else:
-                    aux[i][2] = str(res1)
+                    aux[i][2] = res1
                     
                 if res2 == -1:
                     aux[i+1][2] = ''
                 else:
-                    aux[i+1][2] = str(res2)
+                    aux[i+1][2] = res2
                     
         return aux
     
+    def recuperando_oitavas_str(self):
+        aux = self.recuperando_oitavas()
+        
+        for i in range(16):
+            aux[i][2] = str(aux[i][2]) 
+
+        return aux
         
     def converte_palavra(self, palavra):
         palavra = palavra.lower()
