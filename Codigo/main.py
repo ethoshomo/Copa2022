@@ -1894,7 +1894,7 @@ g_inicial = Grupo('Grupo A')
 
 # Criação da Janela do Menu e suas Configurações
 janela = Tk()
-p1 = PhotoImage(file="/home/pedrohenrique/Documentos/GitHub/Copa2022/Codigo/imagens/icone.png")
+p1 = PhotoImage(file="imagens/icone.png")
 janela.iconphoto(False, p1)
 janela.geometry("600x300+300+300")
 janela.title("Show de Bola!!")
@@ -1904,7 +1904,7 @@ janela.resizable(False, False)
 a = Atualizacao(g_inicial)
 
 # Imagem de fundo
-bg = ImageTk.PhotoImage(Image.open('/home/pedrohenrique/Documentos/GitHub/Copa2022/Codigo/imagens/menu.png').resize((800, 300)))
+bg = ImageTk.PhotoImage(Image.open('imagens/menu.png').resize((800, 300)))
 canvas = Canvas(janela, width=700, height=300)
 canvas.pack(fill="both", expand=True)
 canvas.create_image(0, 0, image=bg, anchor="nw")
