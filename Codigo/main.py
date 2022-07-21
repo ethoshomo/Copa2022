@@ -1078,7 +1078,7 @@ def janela_fase_final():
 
     # Posicionamento dos objetos na tela utilizando a formatação grid
     btn_oitavas.grid(row=0, column=0, padx=1)
-    btn_quartas_semifinais.grid(row=1, column=2, padx=1)
+    btn_quartas_semifinais.grid(row=0, column=1, padx=1)
     btn_final.grid(row=0, column=2, padx=1)
     btn_informacoes.grid(row=0, column=3, padx=1)
     btn_retornar.grid(row=0, column=4, padx=1)
