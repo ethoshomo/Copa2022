@@ -1,7 +1,3 @@
-import re
-from tkinter.tix import Tree
-
-from numpy import true_divide
 from DataSet import DataSet
 import pandas as pd
 import os
@@ -120,8 +116,8 @@ class FaseFinal():
         df_oitavas.to_pickle('dataset/Oitavas.pkl')    
         
         ds = DataSet()
-        ds.salvando_oitavas([[-1, -1], [-1, -1], [-1, -1], [-1, -1], 
-                             [-1, -1], [-1, -1], [-1, -1], [-1, -1]])
+        ds.salvando_oitavas([[-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], 
+                             [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1]])
            
     def checando_jogos(self, jogos):
         for i in range(len(jogos)):
@@ -135,7 +131,14 @@ if __name__ == '__main__':
     ff.formando_oitavas()
     
     ds = DataSet()
+    ds.salvando_oitavas([[1, 1, 1, 0], [1, 1, 1, 0] ,[1, 1, 1, 0], [1, 1, 1, 0],
+                        [1, 1, 1, 0], [1, 1, 1, 0], [1, 1, 1, 0], [1, 1, 1, 0]])
     aux = ds.recuperando_oitavas()
-    
+    aux1 = ds.recuperando_oitavas_str()
     for i in aux:
+        print(i)
+        
+    print()
+    
+    for i in aux1:
         print(i)

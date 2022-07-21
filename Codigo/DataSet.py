@@ -284,10 +284,11 @@ class DataSet():
         df_penaltis.to_pickle('dataset/FaseFinalPenaltis.pkl')
         
     def recuperando_oitavas(self):
-        aux = [['-', 'imagens/bandeira.png', ''] for i in range(16)]
+        aux = [['-', 'imagens/bandeira.png', '', ''] for i in range(16)]
         
-        df_oitavas = pd.read_pickle('dataset/Oitavas.pkl')
-        df_ff      = pd.read_pickle('dataset/FaseFinal.pkl')
+        df_oitavas  = pd.read_pickle('dataset/Oitavas.pkl')
+        df_ff       = pd.read_pickle('dataset/FaseFinalJogos.pkl')
+        df_penaltis = pd.read_pickle('dataset/FaseFinalPenaltis.pkl') 
         
         for i in range(0, 16, 2):
             if df_oitavas[i][0] != '-':
@@ -299,8 +300,10 @@ class DataSet():
                 aux[i+1][1] = 'imagens/bandeiras/' + self.converte_palavra(df_oitavas[i+1][0]) + '.png'
                 
             if df_oitavas[i][0]  != '-' and df_oitavas[i+1][0] != '-':
-                res1 = aux[i][2]   = df_ff[df_oitavas[i][0]][df_oitavas[i+1][0]]
-                res2 = aux[i+1][2] = df_ff[df_oitavas[i+1][0]][df_oitavas[i][0]]
+                res1 = df_ff[df_oitavas[i][0]][df_oitavas[i+1][0]]
+                res2 = df_ff[df_oitavas[i+1][0]][df_oitavas[i][0]]
+                aux[i][3]   = df_penaltis[df_oitavas[i][0]][df_oitavas[i+1][0]]
+                aux[i+1][3] = df_penaltis[df_oitavas[i+1][0]][df_oitavas[i][0]]
                 
                 if res1 == -1:
                     aux[i][2] = ''
