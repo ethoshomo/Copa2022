@@ -630,6 +630,7 @@ def janela_fase_final():
                 resul_oitavas[5][2] = 0
                 resul_oitavas[5][3] = 1
 
+
         if resul_oitavas[6][0] == resul_oitavas[6][1] and resul_oitavas[6][0] != -1:
             msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s13_str.get() +
                                       " empatou com a seleção " + dados_oitavas.s14_str.get() + ". A " +
@@ -640,6 +641,7 @@ def janela_fase_final():
             else:
                 resul_oitavas[6][2] = 0
                 resul_oitavas[6][3] = 1
+
 
         if resul_oitavas[7][0] == resul_oitavas[7][1] and resul_oitavas[7][0] != -1:
             msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s15_str.get() +
@@ -652,10 +654,9 @@ def janela_fase_final():
                 resul_oitavas[7][2] = 0
                 resul_oitavas[7][3] = 1
 
-        print(resul_oitavas)
+
         data = DataSet()
         data.salvando_oitavas(resul_oitavas)
-        print("Salvar Oitavas")
 
 
     def salvar_quartas():
@@ -685,7 +686,6 @@ def janela_fase_final():
         frame_final.place(x=600, y=600, width=700, height=430)  # posição de exibição
 
         dados_oitavas.atualizar(data.recuperando_oitavas_str())
-        print(dados_oitavas)
 
         # Recupera valores para preenchimento dos placares
         oitavas11.delete(0)
