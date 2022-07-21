@@ -23,7 +23,7 @@ from FaseFinal import FaseFinal
 from Quiz import Quiz
 from Grupo import Grupo
 from DataSet import DataSet
-from Atualizacao import *
+from atualizacao import *
 
 
 # ----------------------------------------------------------------------------------------------------------------------

@@ -10,7 +10,7 @@ DISCENTES:
     PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
     PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
 """
-from Atualizacao import Atualizacao
+from atualizacao import Atualizacao
 import pandas as pd
 from Selecao import Selecao
 
