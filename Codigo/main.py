@@ -1034,7 +1034,7 @@ def janela_fase_final():
     janela2.transient(janela)
     janela2.focus_force()
     janela2.grab_set()
-    janela2.resizable(True, True)
+    janela2.resizable(False, False)
 
     # Personaliza o background
     bg = ImageTk.PhotoImage(Image.open('imagens/campo.png').resize((800, 500)))
