@@ -571,8 +571,8 @@ def janela_fase_final():
                          [tratamento_dados(oitavas81.get()), tratamento_dados(oitavas82.get()), -1, -1]]
 
         if resul_oitavas[0][0] == resul_oitavas[0][1] and resul_oitavas[0][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s1_str.get() +
-                                      " empatou com a seleção " + dados_oitavas.s2_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_oitavas.s1_str.get() +
+                                      " empatou com a seleção da(o) " + dados_oitavas.s2_str.get() + ". O(A) " +
                                       dados_oitavas.s1_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_oitavas[0][2] = 1
@@ -583,8 +583,8 @@ def janela_fase_final():
 
 
         if resul_oitavas[1][0] == resul_oitavas[1][1] and resul_oitavas[1][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s3_str.get() +
-                                      " empatou com a seleção " + dados_oitavas.s4_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_oitavas.s3_str.get() +
+                                      " empatou com a seleção da(o) " + dados_oitavas.s4_str.get() + ". O(A) " +
                                       dados_oitavas.s3_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_oitavas[1][2] = 1
@@ -594,8 +594,8 @@ def janela_fase_final():
                 resul_oitavas[1][3] = 1
 
         if resul_oitavas[2][0] == resul_oitavas[2][1] and resul_oitavas[2][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s5_str.get() +
-                                      " empatou com a seleção " + dados_oitavas.s6_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_oitavas.s5_str.get() +
+                                      " empatou com a seleção da(o) " + dados_oitavas.s6_str.get() + ". O(A) " +
                                       dados_oitavas.s5_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_oitavas[2][2] = 1
@@ -606,8 +606,8 @@ def janela_fase_final():
 
 
         if resul_oitavas[3][0] == resul_oitavas[3][1] and resul_oitavas[3][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s7_str.get() +
-                                      " empatou com a seleção " + dados_oitavas.s8_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_oitavas.s7_str.get() +
+                                      " empatou com a seleção da(o) " + dados_oitavas.s8_str.get() + ". O(A) " +
                                       dados_oitavas.s7_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_oitavas[3][2] = 1
@@ -617,8 +617,8 @@ def janela_fase_final():
                 resul_oitavas[3][3] = 1
 
         if resul_oitavas[4][0] == resul_oitavas[4][1] and resul_oitavas[4][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s9_str.get() +
-                                      " empatou com a seleção " + dados_oitavas.s10_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_oitavas.s9_str.get() +
+                                      " empatou com a seleção da(o) " + dados_oitavas.s10_str.get() + ". O(A) " +
                                       dados_oitavas.s9_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_oitavas[4][2] = 1
@@ -629,8 +629,8 @@ def janela_fase_final():
 
 
         if resul_oitavas[5][0] == resul_oitavas[5][1] and resul_oitavas[5][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s11_str.get() +
-                                      " empatou com a seleção " + dados_oitavas.s12_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_oitavas.s11_str.get() +
+                                      " empatou com a seleção da(o) " + dados_oitavas.s12_str.get() + ". O(A) " +
                                       dados_oitavas.s11_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_oitavas[5][2] = 1
@@ -641,8 +641,8 @@ def janela_fase_final():
 
 
         if resul_oitavas[6][0] == resul_oitavas[6][1] and resul_oitavas[6][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s13_str.get() +
-                                      " empatou com a seleção " + dados_oitavas.s14_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_oitavas.s13_str.get() +
+                                      " empatou com a seleção da(o) " + dados_oitavas.s14_str.get() + ". O(A) " +
                                       dados_oitavas.s13_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_oitavas[6][2] = 1
@@ -653,8 +653,8 @@ def janela_fase_final():
 
 
         if resul_oitavas[7][0] == resul_oitavas[7][1] and resul_oitavas[7][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_oitavas.s15_str.get() +
-                                      " empatou com a seleção " + dados_oitavas.s16_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_oitavas.s15_str.get() +
+                                      " empatou com a seleção da(o) " + dados_oitavas.s16_str.get() + ". O(A) " +
                                       dados_oitavas.s15_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_oitavas[7][2] = 1
@@ -681,8 +681,8 @@ def janela_fase_final():
 
 
         if resul_quartas[0][0] == resul_quartas[0][1] and resul_quartas[0][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_quartas.s1_str.get() +
-                                      " empatou com a seleção " + dados_quartas.s2_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_quartas.s1_str.get() +
+                                      " empatou com a seleção da(o) " + dados_quartas.s2_str.get() + ". O(A) " +
                                       dados_quartas.s1_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_quartas[0][2] = 1
@@ -692,8 +692,8 @@ def janela_fase_final():
                 resul_quartas[0][3] = 1
 
         if resul_quartas[1][0] == resul_quartas[1][1] and resul_quartas[1][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_quartas.s3_str.get() +
-                                      " empatou com a seleção " + dados_quartas.s4_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_quartas.s3_str.get() +
+                                      " empatou com a seleção da(o) " + dados_quartas.s4_str.get() + ". O(A) " +
                                       dados_quartas.s3_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_quartas[1][2] = 1
@@ -703,8 +703,8 @@ def janela_fase_final():
                 resul_quartas[1][3] = 1
 
         if resul_quartas[2][0] == resul_quartas[2][1] and resul_quartas[2][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_quartas.s5_str.get() +
-                                      " empatou com a seleção " + dados_quartas.s6_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_quartas.s5_str.get() +
+                                      " empatou com a seleção da(o) " + dados_quartas.s6_str.get() + ". O(A) " +
                                       dados_quartas.s5_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_quartas[2][2] = 1
@@ -714,8 +714,8 @@ def janela_fase_final():
                 resul_quartas[2][3] = 1
 
         if resul_quartas[3][0] == resul_quartas[3][1] and resul_quartas[3][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_quartas.s7_str.get() +
-                                      " empatou com a seleção " + dados_quartas.s8_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_quartas.s7_str.get() +
+                                      " empatou com a seleção " + dados_quartas.s8_str.get() + ". O(A) " +
                                       dados_quartas.s7_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_quartas[3][2] = 1
@@ -738,8 +738,8 @@ def janela_fase_final():
 
 
         if resul_semifinais[0][0] == resul_semifinais[0][1] and resul_semifinais[0][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_semifinal.s1_str.get() +
-                                      " empatou com a seleção " + dados_semifinal.s2_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_semifinal.s1_str.get() +
+                                      " empatou com a seleção da(o) " + dados_semifinal.s2_str.get() + ". O(A) " +
                                       dados_semifinal.s1_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_semifinais[0][2] = 1
@@ -749,8 +749,8 @@ def janela_fase_final():
                 resul_semifinais[0][3] = 1
 
         if resul_semifinais[1][0] == resul_semifinais[1][1] and resul_semifinais[1][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_semifinal.s3_str.get() +
-                                      " empatou com a seleção " + dados_semifinal.s4_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_semifinal.s3_str.get() +
+                                      " empatou com a seleção da(o) " + dados_semifinal.s4_str.get() + ". O(A) " +
                                       dados_semifinal.s3_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_semifinais[1][2] = 1
@@ -772,8 +772,8 @@ def janela_fase_final():
 
 
         if resul_finais[1][0] == resul_finais[1][1] and resul_finais[1][0] != -1:
-            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_finais.s3_str.get() +
-                                      " empatou com a seleção " + dados_finais.s4_str.get() + ". A " +
+            msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_finais.s3_str.get() +
+                                      " empatou com a seleção da(o) " + dados_finais.s4_str.get() + ". O(A) " +
                                       dados_finais.s3_str.get() + " venceu nos penaltis?")
             if msg:
                 resul_finais[1][2] = 1
@@ -785,19 +785,19 @@ def janela_fase_final():
 
         if resul_finais[0][0] != -1 and resul_finais[0][1] != -1:
             if resul_finais[0][0] > resul_finais[0][1]:
-                messagebox.showinfo("CAMPEÃ!!!", "A seleção da " + dados_finais.s1_str.get() + " é a campeã!!!")
+                messagebox.showinfo("CAMPEÃ!!!", "A seleção da(o) " + dados_finais.s1_str.get() + " é a campeã!!!")
             elif resul_finais[0][0] < resul_finais[0][1]:
-                messagebox.showinfo("CAMPEÃ!!!", "A seleção da " + dados_finais.s2_str.get() + " é a campeã!!!")
+                messagebox.showinfo("CAMPEÃ!!!", "A seleção da(o) " + dados_finais.s2_str.get() + " é a campeã!!!")
             else:
-                msg = messagebox.askyesno("PENALTIS!!!", "A seleção da " + dados_finais.s1_str.get() +
-                                            " empatou com a seleção " + dados_finais.s2_str.get() + ". A " +
+                msg = messagebox.askyesno("PENALTIS!!!", "A seleção da(o) " + dados_finais.s1_str.get() +
+                                            " empatou com a seleção da(o) " + dados_finais.s2_str.get() + ". O(A) " +
                                             dados_finais.s1_str.get() + " venceu nos penaltis?")
                 if msg:
-                    messagebox.showinfo("CAMPEÃ!!!", "A seleção da " + dados_finais.s1_str.get() + " é a campeã!!!")
+                    messagebox.showinfo("CAMPEÃ!!!", "A seleção da(o) " + dados_finais.s1_str.get() + " é a campeã!!!")
                     resul_finais[0][2] = 1
                     resul_finais[0][3] = 0
                 else:
-                    messagebox.showinfo("CAMPEÃ!!!", "A seleção da " + dados_finais.s2_str.get() + " é a campeã!!!")
+                    messagebox.showinfo("CAMPEÃ!!!", "A seleção da(o) " + dados_finais.s2_str.get() + " é a campeã!!!")
                     resul_finais[0][2] = 0
                     resul_finais[0][3] = 1
 
@@ -1077,10 +1077,10 @@ def janela_fase_final():
                           fg="white", command=lambda: quit(janela2))
 
     # Posicionamento dos objetos na tela utilizando a formatação grid
-    btn_informacoes.grid(row=0, column=0, padx=1)
-    btn_oitavas.grid(row=0, column=1, padx=1)
-    btn_quartas_semifinais.grid(row=0, column=2, padx=1)
-    btn_final.grid(row=0, column=3, padx=1)
+    btn_oitavas.grid(row=0, column=0, padx=1)
+    btn_quartas_semifinais.grid(row=0, column=1, padx=1)
+    btn_final.grid(row=0, column=2, padx=1)
+    btn_informacoes.grid(row=0, column=3, padx=1)
     btn_retornar.grid(row=0, column=4, padx=1)
 
 
