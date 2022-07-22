@@ -9,6 +9,8 @@ DISCENTES:
     JOÃO GABRIEL SASSERON ROBERTO AMORIN (12542564)
     PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
     PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
+
+OBSERVAÇÃO: todos os alunos participaram de forma equivalente.
 """
 
 from tkinter import *

@@ -159,7 +159,7 @@ class AtualizarOitavas:
 
         :param dados: Dados de debugação que serão impressos.
         """
-        print(dados)
+
         self.s1_str.set(value=dados[0][0])
         self.s1_band.set(value=dados[0][1])
         self.s1_gol.set(value=dados[0][2])
@@ -277,7 +277,6 @@ class AutalizarQuartas:
         :param dados: Dados de debugação que serão impressos.
         """
 
-        print(dados)
         self.s1_str.set(value=dados[0][0])
         self.s1_band.set(value=dados[0][1])
         self.s1_gol.set(value=dados[0][2])
@@ -323,7 +322,6 @@ class AtualizarFinalSemi:
 
     def __init__(self, dados : list):
 
-        print(dados)
         self.s1_str = StringVar(value=dados[0][0])
         self.s1_band = StringVar(value=dados[0][1])
         self.s1_gol = StringVar(value=dados[0][2])
@@ -348,8 +346,7 @@ class AtualizarFinalSemi:
 
         :param dados: Dados de debugação que serão impressos.
         """
-        print("Atualizando Finais:")
-        print(dados)
+
         self.s1_str.set(value=dados[0][0])
         self.s1_band.set(value=dados[0][1])
         self.s1_gol.set(value=dados[0][2])
