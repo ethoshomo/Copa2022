@@ -37,7 +37,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Conteúdos:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Codigo</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="DataSet.html">DataSet module</a></li>
@@ -84,35 +84,90 @@
 <dt class="sig sig-object py" id="FaseFinal.FaseFinal">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">FaseFinal.</span></span><span class="sig-name descname"><span class="pre">FaseFinal</span></span><a class="headerlink" href="#FaseFinal.FaseFinal" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manipula e atualiza os dados de todos os jogos da fase final.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="FaseFinal.FaseFinal.checando_finais">
 <span class="sig-name descname"><span class="pre">checando_finais</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">novos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FaseFinal.FaseFinal.checando_finais" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Checa se os valores antigos da final são equivalentes
+aos novos valores da final.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>novos</strong> – Novos valores da final.</p>
+</dd>
+<dt class="field-even">Return bool</dt>
+<dd class="field-even"><p>Verdadeiros se todos os valores forem equivalentes. Se não, falso.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FaseFinal.FaseFinal.checando_jogos">
 <span class="sig-name descname"><span class="pre">checando_jogos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jogos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FaseFinal.FaseFinal.checando_jogos" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Checa se todos os jogos estão inicializados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>jogos</strong> – Jogos a serem checados.</p>
+</dd>
+<dt class="field-even">Return bool</dt>
+<dd class="field-even"><p>Verdadeiro se estiverem todos inicializados. Se não, falso.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FaseFinal.FaseFinal.checando_oitavas">
 <span class="sig-name descname"><span class="pre">checando_oitavas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">novos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FaseFinal.FaseFinal.checando_oitavas" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Checa se os valores antigos das oitavas de final são equivalentes
+aos novos valores das oitavas de final.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>novos</strong> – Novos valores das oitavas de final.</p>
+</dd>
+<dt class="field-even">Return bool</dt>
+<dd class="field-even"><p>Verdadeiros se todos os valores forem equivalentes. Se não, falso.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FaseFinal.FaseFinal.checando_quartas">
 <span class="sig-name descname"><span class="pre">checando_quartas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">novos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FaseFinal.FaseFinal.checando_quartas" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Checa se os valores antigos das quartas de final são equivalentes
+aos novos valores das quartas de final.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>novos</strong> – Novos valores das quartas de final.</p>
+</dd>
+<dt class="field-even">Return bool</dt>
+<dd class="field-even"><p>Verdadeiros se todos os valores forem equivalentes. Se não, falso.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FaseFinal.FaseFinal.checando_semifinais">
 <span class="sig-name descname"><span class="pre">checando_semifinais</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">novos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#FaseFinal.FaseFinal.checando_semifinais" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Checa se os valores antigos das semifinais são equivalentes
+aos novos valores das semifinais.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>novos</strong> – Novos valores das semifinais.</p>
+</dd>
+<dt class="field-even">Return bool</dt>
+<dd class="field-even"><p>Verdadeiros se todos os valores forem equivalentes. Se não, falso.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FaseFinal.FaseFinal.formando_finais">
 <span class="sig-name descname"><span class="pre">formando_finais</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FaseFinal.FaseFinal.formando_finais" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FaseFinal.FaseFinal.formando_oitavas">
@@ -122,12 +177,22 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="FaseFinal.FaseFinal.formando_quartas">
 <span class="sig-name descname"><span class="pre">formando_quartas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FaseFinal.FaseFinal.formando_quartas" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="FaseFinal.FaseFinal.formando_semifinais">
 <span class="sig-name descname"><span class="pre">formando_semifinais</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#FaseFinal.FaseFinal.formando_semifinais" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
