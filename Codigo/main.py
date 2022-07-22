@@ -10,6 +10,7 @@ DISCENTES:
     PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
     PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
 """
+
 from tkinter import *
 from tkinter import messagebox
 
@@ -28,13 +29,21 @@ from atualizacao import *
 
 # ----------------------------------------------------------------------------------------------------------------------
 # FUNÇOES AUXILIARES COMUNS A TODAS AS JANELAS
-# Função que fecha janelas
 def quit(uma):
+    """
+    Função que fecha janelas.
+
+    :param uma: Uma janela.
+    """
     uma.destroy()
 
 
-# Função que verifica se as informações dos placares são consistentes
 def tratamento_dados(valor):
+    """
+    Função que verifica se as informações dos placares são consistentes
+
+    :param valor: Valor que será checado.
+    """
     # Verifica valores de entrada
     if valor.isdigit() and valor != '' and int(valor) >= 0:
         return int(valor)
@@ -49,6 +58,15 @@ def tratamento_dados(valor):
 # ----------------------------------------------------------------------------------------------------------------------
 # JANELAS
 def janela_grupos():
+    """
+    Manipula a janela de grupos, seus dados, estilos, botões e
+    funcionamento geral. Nessa janela o usuário pode inserir os
+    resultados dos jogos entre as seleções de cada um dos grupos.
+    A tabela de colocação e pontuações de cada grupo pode ser
+    atualizada de acordo com os dados inseridos ao apertar o botão
+    de atualizar, mostrando as vitórias, derrotas, saldo de gol, etc,
+    de cada seleção do grupo.
+    """
     # Inicia o DataSet recuperando os jogos
     data = DataSet()
     lista = data.recuperando_jogos_str(a.grupo_nome.get())
@@ -56,14 +74,19 @@ def janela_grupos():
     # ------------------------------------------------------------------------------------------------------------------
     # Funções auxiliares
 
-    # Função que exibe uma caixa de informações de ajuda para orientar o usuário.
     def ajuda():
+        """
+        Função que exibe uma caixa de informações de ajuda para orientar o usuário.
+        """
         messagebox.showinfo("AJUDA", "Para utilizar o programa, esteja atento aos seguintes tópicos:\na) os "
                                      "resultados somente serão salvos se a tabela for atualizada.\nb) os placares "
                                      "somente aceitam valores de números inteiros maiores ou iguais a zero.")
 
-    # Função atualizar tabela realiza a gravação dos resultados inseridos pelo usuário e atualiza a tabela do grupo.
     def atualizar_tabela():
+        """
+        Função atualizar tabela realiza a gravação dos resultados inseridos pelo
+        usuário e atualiza a tabela do grupo.
+        """
         resultados = [[tratamento_dados(resultado11.get()), tratamento_dados(resultado12.get())],
                       [tratamento_dados(resultado21.get()), tratamento_dados(resultado22.get())],
                       [tratamento_dados(resultado31.get()), tratamento_dados(resultado32.get())],
@@ -75,9 +98,12 @@ def janela_grupos():
         grupo = data.recuperando_grupos(a.grupo_nome.get())
         grupo.atualizar(a)
 
-    # Modifica o Grupo em exibição mostrando os dados do grupo clicado
     def alterar_grupo(novo):
+        """
+        # Modifica o Grupo em exibição mostrando os dados do grupo clicado.
 
+        :param novo:
+        """
         # Acessa um novo agrupo e recupera os placares para atualização
         novo_grupo = Grupo(novo)
         novo_grupo.atualizar(a)
@@ -549,6 +575,18 @@ def janela_grupos():
 
 
 def janela_fase_final():
+    """
+    Manipula a janela da fase final, seus dados, botões, estilo e
+    funcionamento geral. Nessa janela, os vencedores da fase de grupos,
+    escolhidos de acordo com o input do usuário na janela de fase de grupos,
+    seram escalados em jogos seguindo a lógica oficial da FIFA. O usuário pode
+    decidir os gols marcados e os resultados de eventuais desempates por penaltis.
+    Essa fase começa nas oitavas de final, mas os vencedores dela progredirão
+    para as quartas de final e os vencedores dessa para as semifinais. Por fim,
+    as duas seleções vitoriosas prosseguirão para as finais e o usuário poderá decidir
+    quem será o vencedor da Copa do Mundo de 2022 e o vencedor da disputa pelo terceiro
+    lugar.
+    """
 
     # Função destinada a mostrar informações ao usuário
     def informacoes():
@@ -564,6 +602,10 @@ def janela_fase_final():
 
     # Salva o resultado das oitavas (lembrando que pode acontecer empate que é resolvido por penaltis).
     def salvar_oitavas():
+        """
+
+        :return:
+        """
 
         #criação de uma lista com dados devidamente tratados que serão salvos no banco de dados.
         resul_oitavas = [[tratamento_dados(oitavas11.get()), tratamento_dados(oitavas12.get()), -1, -1],
@@ -932,7 +974,6 @@ def janela_fase_final():
 
     # Função que atualiza os valores das variáveis
     def atualizar_quartas():
-
         # Recupera valores das quartas de finais.
         dados_quartas.atualizar(data.recuperando_quartas_str())
 
@@ -1574,6 +1615,12 @@ def janela_fase_final():
 
 
 def janela_quizz():
+    """
+    Manipula a janela do Quiz da Copa, seus dados, estilo e funcionamento
+    geral. Nessa janela o usuário pode tentar responder a um quiz de 10
+    questões, valendo 10 pontos cada resposta correta. A ordem das questões
+    é aleatória e o usuário tem 4 opções de resposta.
+    """
     # Essa função verifica se a resposta corresponde ao gabarito
     def verificar_resposta(resposta):
 
@@ -1590,6 +1637,10 @@ def janela_quizz():
 
     # Função que atualiza informações para próxima pergunta
     def proxima_pergunta():
+        """
+
+        :return:
+        """
 
         # Coleta a próxima pergunta
         prox = quizz.proxima_pergunta()
@@ -1765,6 +1816,11 @@ def janela_quizz():
 
 
 def janela_vidente():
+    """
+    Manipula a janela da funcionalidade Vidente, seus dados, estilo,
+    botões e funcionamento. Nessa janela o usuário pode inserir o nome
+    de duas seleções e o programa irá prever qual deles vencerá a disputa.
+    """
     # Função para sair da tela desligando a música
     def quit_musica(tela):
         pygame.mixer.music.stop()
@@ -1845,6 +1901,11 @@ def janela_vidente():
 
 
 def janela_sobre():
+    """
+    Manipula a janela que expõe informações sobre o programa
+    e os seus desenvolvedores, e controla o funcionamento dos
+    seus botões e dados.
+    """
     # Cria a janela que expõe informações sobre o programa
     janela2 = Toplevel()
     janela2.title("SHOW DE BOLA - SOBRE")

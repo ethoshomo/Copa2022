@@ -21,7 +21,18 @@ Sob a tutela do docente:
 
 Nosso programa é baseado na copa do mundo de 2022 e planeja fazer uma emulação divertida para quem gosta do assunto.
 
+.. note::
+   As características do programa, tais como imagens, nomes e outros, foram utilizadas com propósitos 
+   educacionais e acadêmicos sem qualquer intenção de obter fins lucrativos. Ressalte-se ainda que os 
+   elementos do programa foram coletados na internet (em sites de conteúdos gratuitos e sem direitos autorais),
+   sendo, por isso, desconhecidos os seus verdadeiros autores. Desse modo, caso haja interesse de receber os 
+   devidos créditos, favor entrar em contato com integrantes do grupo para as devidas correções.
 
+.. figure:: showdebola_menu.png
+   :scale: 70 %
+   :alt: Menu principal.
+   
+   Menu principal do Show de Bola.
 
 .. toctree::
    :maxdepth: 2
@@ -29,9 +40,20 @@ Nosso programa é baseado na copa do mundo de 2022 e planeja fazer uma emulaçã
 
    modules
 
-Indices e Tabelas
+Índices e Tabelas
 ==================
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+Módulos Utilizados
+===================
+	
+* matplotlib
+* os
+* pandas
+* PIL
+* pygame
+* random	
+* tk

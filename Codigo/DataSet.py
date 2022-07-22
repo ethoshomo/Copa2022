@@ -10,6 +10,7 @@ DISCENTES:
     PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
     PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
 """
+
 import os
 from select import select
 from time import time
@@ -17,14 +18,24 @@ import pandas as pd
 from Grupo import Grupo
 
 class DataSet():
-    # Inicia a classe com um draframe contendo todos os nomes das seleções
+    """
+    Manipula os arquivos da base de dados e realiza as operações
+    de salvar e recuperar dados, além de quaisquer funções auxiliares
+    necessárias.
+    """
+    # Inicia a classe com um dataframe contendo todos os nomes das seleções
     def __init__(self):
         self.df_selecoes = pd.read_pickle('dataset/Selecoes.plk')
         self.oitavas = []
 
-    # A partir dos jogos realizados pelas seleções de um grupo, salva eles
-    # em arquivos do tipo pkl
-    def salvando_grupo(self, grupo :str, jogos: list):
+    def salvando_grupo(self, grupo: str, jogos: list):
+        """
+        Salva os jogos realizados pelas seleções de um dos grupo em um arquivo
+        da base de dados.
+
+        :param grupo: Nome do grupo desejado
+        :param jogos: Dados dos jogos do grupo.
+        """
         nome_grupo = grupo.replace(' ', '') # Caso o nome venha com espaço
 
         df_jogos = self.criando_DataFrame(nome_grupo) # Dataframe standart
@@ -58,8 +69,13 @@ class DataSet():
 
         df_jogos.to_pickle(nome) # Salvamento
 
-    # A partir do dataset recupera o estado que os jogos se encontravam
     def recuperando_jogos(self, grupo: str):
+        """
+        Lê um arquivo da base de dados e recupera o placar dos jogos registrado nele.
+
+        :param grupo: Nome do grupo que será recuperado.
+        :return jogos: Jogos que foram recuperados.
+        """
         nome_grupo = grupo.replace(' ', '') # Remove o espaço
 
         self.cria_arq(grupo) # Se o arquivo do jogo ainda não existe, cria
@@ -96,9 +112,14 @@ class DataSet():
 
         return jogos
 
-    # A partir da listas do jogos em int transformas os resultados para str
-    # e caso não haja preencimenoto no placar, assume vazio
     def recuperando_jogos_str(self, grupo: str):
+        """
+        A partir da listas do jogos em int transforma os resultados para str
+        e caso haja campos não preenchidos, assume que estão vazios
+
+        :param grupo: Nome do grupo recuperado.
+        :return jogos_str: Placar dos jogos transformado em string.
+        """
         jogos_int = self.recuperando_jogos(grupo)
 
         jogos_str = [['',''] for i in range(6)]
@@ -112,9 +133,15 @@ class DataSet():
 
         return jogos_str
 
-    # A partir dos jogos recuperados, retorna o grupo no estado que ele se
-    # encontrava
+
     def recuperando_grupos(self, grupo: str):
+        """
+        A partir dos jogos recuperados, retorna o grupo no estado que ele se
+        encontrava
+
+        :param grupo: Nome do grupo.
+        :return grupo: Grupo pedido.
+        """
         nome_grupo = grupo.replace(' ', '')
 
         jogos = self.recuperando_jogos(nome_grupo)
@@ -158,8 +185,13 @@ class DataSet():
 
         return grupo
 
-    # Cria um dataframe standart com os valores não inicializados
     def criando_DataFrame(self, grupo: str):
+        """
+        Cria um dataframe padrão com os valores não inicializados.
+
+        :param grupo: Nome do grupo.
+        :return df_padrao: Dataframe padrão.
+        """
         nome_grupo = grupo.replace(' ', '')
 
         inicio = [-1 for i in range(4)] # Auxilia a ciação
@@ -175,9 +207,14 @@ class DataSet():
 
         return df_padrao
 
-    # Checa se o arquivo exite. Se sim abre normalmente, mas caso contrário
-    # cria um arquivos com todos os dados não inicializados
     def cria_arq(self, grupo: str):
+        """
+        Checa se o arquivo exite. Se sim, abre normalmente, mas caso contrário
+        cria um arquivo com todos os dados não inicializados.
+
+        :param grupo: Nome do grupo.
+        """
+
         #cria um arquivo se ele não existir
         nome_grupo = grupo.replace(' ', '')
         nome_data  = 'dataset/' + nome_grupo + '.pkl'
@@ -188,11 +225,23 @@ class DataSet():
             df.to_pickle(nome_data)
 
     def recuperando_grupos_lista(self, grupo: str):
+        """
+        Recupera os dados de um grupo.
+
+        :param grupo: Nome do grupo.
+        :return aux: Grupo pedido.
+        """
         aux = self.recuperando_grupos(grupo)
 
         return aux.organizando_grupos()
 
     def salvando_oitavas(self, jogos: list):
+        """
+        Salva as informações das oitavas de final em um arquivo da
+        base de dados.
+
+        :param jogos: Jogos das oitavas de final.
+        """
         # ------------------------ SELEÇÕES
         oitavas = pd.read_pickle('dataset/Oitavas.pkl')
 
@@ -284,6 +333,12 @@ class DataSet():
         df_penaltis.to_pickle('dataset/FaseFinalPenaltis.pkl')
 
     def recuperando_oitavas(self):
+        """
+        Recupera os dados dos jogas das oitavas de final que
+        estão armazenados em um arquivo na base de dados.
+
+        :return aux: Dados dos jogos em int.
+        """
         aux = [['-', 'imagens/bandeira.png', '', ''] for i in range(16)]
 
         df_oitavas  = pd.read_pickle('dataset/Oitavas.pkl')
@@ -308,6 +363,12 @@ class DataSet():
         return aux
 
     def recuperando_oitavas_str(self):
+        """
+        Transforma os dados dos jogas das oitavas de final de
+        int para string.
+
+        :return aux: Dados dos jogos em string.
+        """
         aux = self.recuperando_oitavas()
 
         for i in range(16):
@@ -319,6 +380,12 @@ class DataSet():
         return aux
 
     def salvando_quartas(self, jogos: list):
+        """
+        Salva os dados dos jogos das quartas de final em um
+        arquivo da base de dados.
+
+        :param jogos: Lista de listas com os dados dos jogos salvos.
+        """
         # ----------- TIMES
         quartas     = pd.read_pickle('dataset/Quartas.pkl')
         df_ff       = pd.read_pickle('dataset/FaseFinalJogos.pkl')
@@ -362,6 +429,12 @@ class DataSet():
         df_penaltis.to_pickle('dataset/FaseFinalPenaltis.pkl')
 
     def recuperando_quartas(self):
+        """
+        Recupera os dados dos jogos das quartas de final de um
+        arquivo da base de dados.
+
+        :return aux: Dados dos jogos das quartas de final em int.
+        """
         aux = [['-', 'imagens/bandeira.png', '', ''] for i in range(8)]
 
         df_quartas  = pd.read_pickle('dataset/Quartas.pkl')
@@ -386,6 +459,12 @@ class DataSet():
         return aux
 
     def recuperando_quartas_str(self):
+        """
+        Transforma os dados dos jogos das quartas de final de int
+        para string.
+
+        :return aux: Dados dos jogos das quartas de final em string.
+        """
         aux = self.recuperando_quartas()
 
         for i in range(8):
@@ -397,6 +476,12 @@ class DataSet():
         return aux
 
     def salvando_semifinais(self, jogos: list):
+        """
+        Salva os dados dos jogos das semifinais em um
+        arquivo da base de dados.
+
+        :param jogos: Lista de listas com os dados dos jogos das semifinais.
+        """
         # ----------- TIMES
         semifinais  = pd.read_pickle('dataset/Semifinais.pkl')
         df_ff       = pd.read_pickle('dataset/FaseFinalJogos.pkl')
@@ -426,6 +511,12 @@ class DataSet():
         df_penaltis.to_pickle('dataset/FaseFinalPenaltis.pkl')
 
     def recuperando_semifinais(self):
+        """
+        Recupera os dados dos jogos das semifinais de um
+        arquivo da base de dados.
+
+        :return aux: Dados dos jogos das semifinais em int.
+        """
         aux = [['-', 'imagens/bandeira.png', '', ''] for i in range(4)]
 
         df_semifinais = pd.read_pickle('dataset/Semifinais.pkl')
@@ -450,6 +541,12 @@ class DataSet():
         return aux
 
     def recuperando_semifinais_str(self):
+        """
+        Transformas os dados dos jogos das semifinais de int
+        para string
+
+        :return aux: Dados dos jogos das semifinais em string.
+        """
         aux = self.recuperando_semifinais()
 
         for i in range(4):
@@ -461,9 +558,21 @@ class DataSet():
         return aux
 
     def recuperando_quartassemis(self):
+        """
+        Recupera os dados dos jogos das quartas de finais e das semifinais,
+        transforma eles em string e juntas ambas as string em uma único,
+        pois comapartilham a mesma janela no programa.
+
+        :return str: Soma dos dados em string das quartas de final e das semifinais.
+        """
         return self.recuperando_quartas_str() + self.recuperando_semifinais_str()
 
     def salvando_finais(self, jogos: list):
+        """
+        Salva os dados do jogo final em um arquivo da base de dados.
+
+        :param jogos: Lista com os dados do jogo da final.
+        """
         # ----------- TIMES
         finais      = pd.read_pickle('dataset/Finais.pkl')
         df_ff       = pd.read_pickle('dataset/FaseFinalJogos.pkl')
@@ -493,6 +602,11 @@ class DataSet():
         df_penaltis.to_pickle('dataset/FaseFinalPenaltis.pkl')
 
     def recuperando_finais(self):
+        """
+        Recupera os dados da final da Copa do Mundo 2022.
+
+        :return aux: Dados do jogo da final em int.
+        """
         aux = [['-', 'imagens/bandeira.png', '', ''] for i in range(4)]
 
         df_finais     = pd.read_pickle('dataset/Finais.pkl')
@@ -517,6 +631,11 @@ class DataSet():
         return aux
 
     def recuperando_finais_str(self):
+        """
+        Transforma os dados do jogo da final de int para string.
+
+        :return aux: Dados do jogo da final em string.
+        """
         aux = self.recuperando_finais()
 
         for i in range(4):
@@ -529,6 +648,13 @@ class DataSet():
 
 
     def converte_palavra(self, palavra):
+        """
+        Elimina os caractéres especiais e substitui os espaços vazios
+        por underlines para aumentar a compatibilidadecom quaisquer sistemas.
+
+        :param palavra: String qualquer.
+        :return palavra: Palavra após as modificações.
+        """
         palavra = palavra.lower()
         palavra = palavra.replace(" ", "_")
         palavra = palavra.replace("á", "a")

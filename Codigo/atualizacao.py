@@ -10,6 +10,7 @@ DISCENTES:
     PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
     PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
 """
+
 from tkinter import StringVar
 from Grupo import *
 
@@ -17,6 +18,12 @@ from Grupo import *
 # Essa classe agrupa conjuntos de variaveis que serão usadas em
 # atualizações do programa.
 class Atualizacao:
+    """
+    Armazena os valores das strings variáveis das seleções de um grupo relacionadas
+    inputs recebidos do usuário através da interface e armazena, tambeḿ, os aos
+    valores calculados a partir desses inputs. Esses valores serão utilizados
+    para atualizar os arquivos da base de dados.
+    """
 
     def __init__(self, g):
         # Nome do Grupo
@@ -72,7 +79,13 @@ class Atualizacao:
 
 
 class AtualizarOitavas:
-
+    """
+    Armazena os valores das strings variáveis das oitavas de final
+    relacionadas à quantidade de gols inserida pelo usuário através da
+    interface e aos nomes e bandeiras das seleções vitoriosas da fase de
+    grupos. Esses valores serão utilizados para atualizar os arquivos da
+    base de dados.
+    """
     def __init__(self, dados: list):
 
         self.s1_str = StringVar(value=dados[0][0])
@@ -140,7 +153,12 @@ class AtualizarOitavas:
         self.s16_gol = StringVar(value=dados[15][2])
 
     def atualizar(self, dados: list):
+        """
+        Atualiza os valores da classe para que estejam coerentes
+        com os novos valores inseridos pelo usuário.
 
+        :param dados: Dados de debugação que serão impressos.
+        """
         print(dados)
         self.s1_str.set(value=dados[0][0])
         self.s1_band.set(value=dados[0][1])
@@ -208,7 +226,13 @@ class AtualizarOitavas:
 
 
 class AutalizarQuartas:
-
+    """
+    Armazena os valores das strings variáveis das quartas de final
+    relacionadas à quantidade de gols inserida pelo usuário através da
+    interface e aos nomes e bandeiras das seleções vitoriosas das oitavas
+    de final. Esses valores serão utilizados para atualizar os arquivos
+    da base de dados.
+    """
 
     def __init__(self, dados: list):
 
@@ -246,6 +270,12 @@ class AutalizarQuartas:
 
 
     def atualizar(self, dados: list):
+        """
+        Atualiza os valores da classe para que estejam coerentes
+        com os novos valores inseridos pelo usuário.
+
+        :param dados: Dados de debugação que serão impressos.
+        """
 
         print(dados)
         self.s1_str.set(value=dados[0][0])
@@ -283,7 +313,13 @@ class AutalizarQuartas:
 
 
 class AtualizarFinalSemi:
-
+    """
+    Armazena os valores das strings variáveis das semfinais e da final
+    relacionadas à quantidade de gols inserida pelo usuário através da
+    interface e aos nomes e bandeiras das seleções vitoriosas das quartas
+    de final. Esses valores serão utilizados para atualizar os arquivos
+    da base de dados.
+    """
 
     def __init__(self, dados : list):
 
@@ -306,6 +342,12 @@ class AtualizarFinalSemi:
 
 
     def atualizar(self, dados: list):
+        """
+        Atualiza os valores da classe para que estejam coerentes
+        com os novos valores inseridos pelo usuário.
+
+        :param dados: Dados de debugação que serão impressos.
+        """
         print("Atualizando Finais:")
         print(dados)
         self.s1_str.set(value=dados[0][0])

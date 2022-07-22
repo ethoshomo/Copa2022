@@ -10,12 +10,17 @@ DISCENTES:
     PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
     PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
 """
+
 from atualizacao import Atualizacao
 import pandas as pd
 from Selecao import Selecao
 
 class Grupo(Selecao):
-    # Inicia um grupo com as seleções contidas nele
+    """
+    A partir do nome de um grupo, acessa as seleções que estão contidas nele
+    e cria os objetos do tipo seleção com seus respectivos nomes. Após isso,
+    inicia as colocações das seleções na tabela da UI
+    """
     def __init__(self, grupo: str):
         nome_grupo = grupo.replace(' ', '') # Formatação
 
@@ -35,10 +40,15 @@ class Grupo(Selecao):
         self.selecao3.set_colocacao(3)
         self.selecao4.set_colocacao(4)
 
-    # A partir dos dados das seleções, faz a ordenação das colocações no grupo
-    # segundo a ordem estabeleciada pela classificação da FIFA, que segue a 
-    # seguinte prioridade: pontos, saldo de gols e vitórias
     def organizando_grupos(self):
+        """
+        A partir dos dados das seleções, faz a ordenação das colocações no grupo
+        segundo a ordem estabelecida pela classificação da FIFA, que segue a
+        seguinte prioridade: pontos, saldo de gols e vitórias.
+
+        :return lista_grupos: Lista com cada uma das seleções em ordem com as regras da FIFA.
+        """
+
         # Cria lista para ser ordenada
         lista_grupos = [self.selecao1, self.selecao2, self.selecao3, self.selecao4]
 
@@ -56,6 +66,13 @@ class Grupo(Selecao):
         return lista_grupos
 
     def atualizar(self, atualizar: Atualizacao):
+        """
+        Quando o programa é inicializado, é criado um Objeto atualização que
+        recebe as variáveis do grupo. Essas variáveis são dinâmicas e pertencem à
+        interface. Com elas, a função atualiza os valores de um grupo.
+
+        :param atualizar: Valores atuais do grupo que serão utilizados para atualizar o grupo.
+        """
         # Atualiza posicoes
         self.organizando_grupos()
 

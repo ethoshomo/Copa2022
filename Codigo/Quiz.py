@@ -10,14 +10,16 @@ DISCENTES:
     PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
     PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
 """
+
 import random
 import pandas as pd
 from Pergunta import Pergunta
 
 class Quiz():
-    # Faz a leitura de todas as perguntas e inicia os objetos 
-    # do tipo pergunta, que contém uma questão, 4 resposta e 
-    # um gabarito
+    """
+    Faz a leitura de todas as perguntas e inicia os objetos do
+    tipo pergunta, que contêm uma questão, 4 respostas e um gabarito.
+    """
     def __init__(self):
         df_perguntas = pd.read_pickle('dataset/Perguntas.pkl')
 
@@ -32,6 +34,10 @@ class Quiz():
 
         self.pontuacao = 0
 
-    # Retira uma pergunta para não houver repetição
     def proxima_pergunta(self):
+        """
+        Retira uma pergunta para não houver repetição
+
+        :return self.perguntas.pop(0): Pergunta removida da lista.
+        """
         return self.perguntas.pop(0)

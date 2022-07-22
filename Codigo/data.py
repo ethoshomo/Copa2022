@@ -10,6 +10,7 @@ DISCENTES:
     PEDRO HENRIQUE VILELA DO NASCIMENTO (12803492)
     PEDRO GUILHERME DOS REIS TEIXEIRA (12542477)
 """
+
 from click import password_option
 from Grupo import Grupo
 import pandas as pd
@@ -27,6 +28,13 @@ basta executar esse arquivo para que sejam criados novos arquivos.
 """
 
 def criando_pkl_jogos(nomes):
+    """
+    Cria um arquivo da base de dados com os nomes das seleções
+    dos jogos de um grupo, mas com a quantidade de gols marcados
+    vazia.
+
+    :param nomes: Nomes das seleções de cada jogo.
+    """
     lista_zeros = ['---' for i in range(4)]
 
     data = {nomes[0][0]:lista_zeros,
@@ -40,7 +48,12 @@ def criando_pkl_jogos(nomes):
     print()
 
 def criando_pkl_selecoes(nomes):
+    """
+    Cria um arquivada da base de dados com os nomes das seleções
+    de cada de cada grupo.
 
+    :param nomes: Lista de listas com os nomes das seleções de cada grupo.
+    """
     data_selecoes = {'GrupoA':nomes[0],
                      'GrupoB':nomes[1],
                      'GrupoC':nomes[2],
@@ -60,6 +73,12 @@ def criando_pkl_selecoes(nomes):
     print()
 
 def nomes_por_grupo():
+    """
+    Retorna uma lista de listas com cada um dos nomes das seleções dos grupos das
+    seleções que participarão da Copa do Mundo de 2022.
+
+    :return nomes: Lista de listas com os nomes das seleções dos grupos. Cada sublista é um grupo.
+    """
     nomes = [['Catar', 'Equador', 'Senegal', 'Holanda'],
              ['Inglaterra', 'Irã', 'Estados Unidos', 'País de Gales'],
              ['Argentina', 'Arábia Saudita', 'México', 'Polônia'],
@@ -72,6 +91,9 @@ def nomes_por_grupo():
     return nomes
 
 def perguntas_quiz():
+    """
+    Encapsula as peguntas do Quiz da Copa em um arquivo da base dados.
+    """
     perguntas = [[] for i in range(11)]
 
     perguntas[0] = ['Em que ano o Brasil conquistou sua primeira Copa da mundo?',
